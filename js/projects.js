@@ -1,16 +1,16 @@
 const projectsData = [
   {
     id: "smack-chicken",
-    title: "Smack Chicken - Ecossistema Operacional",
-    category: "systems",
-    categoryName: "Sistemas & Apps",
-    shortDesc: "Sistema completo para restaurante: Cardápio Web, Caixa (PDV), Painel de Cozinha em tempo real e Vendas.",
-    fullDesc: "Solução completa para gestão e operação de food service. Integra pedidos efetuados no site com a tela de comanda da cozinha em tempo real, controle de caixa (PDV) e relatórios financeiros.",
+    title: "SMACK CHICKEN — Frango crocante no Estreito",
+    category: "ecommerce",
+    categoryName: "Delivery & WhatsApp",
+    shortDesc: "Landing page de alta conversão e ecossistema de pedidos com cardápio web, controle de caixa (PDV) e painel de cozinha.",
+    fullDesc: "Desenvolvimento da landing page de alta conversão e solução de food service do SMACK CHICKEN (Estreito). Permite pedidos instantâneos pelo site com integração direta para a cozinha em tempo real, controle de caixa e dashboard operacional.",
     techs: ["React", "Node.js", "Tailwind CSS", "WebSockets", "Vercel"],
-    metrics: "+40% de velocidade nos pedidos | Zerou erros de comanda",
+    metrics: "+40% de velocidade nos pedidos | Zero taxas de delivery",
     demo: "https://smack-chicken.vercel.app/",
     github: "https://github.com/LucasGabrielOM/smack-chicken-painel-oficial",
-    badge: "Solução Completa",
+    badge: "Caso de Sucesso",
     icon: "utensils"
   },
   {
