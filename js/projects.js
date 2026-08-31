@@ -1,19 +1,5 @@
 const projectsData = [
   {
-    id: "burgerhouse",
-    title: "BurgerHouse - Cardápio Web com WhatsApp",
-    category: "ecommerce",
-    categoryName: "Delivery & WhatsApp",
-    shortDesc: "Cardápio dinâmico com carrinho de compras, adicionais e envio de pedido direto no WhatsApp sem taxa de entrega.",
-    fullDesc: "Aplicação de alta conversão para hamburguerias e restaurantes. Permite ao cliente escolher opcionais, montar combos, calcular entrega e enviar a comanda completa formatada direto no WhatsApp da loja sem pagar comissão a aplicativos de delivery.",
-    techs: ["HTML5", "CSS3", "JavaScript", "LocalStorage", "WhatsApp API"],
-    metrics: "Zero comissões de delivery | +28% na conversão de visitantes",
-    demo: "https://lucasgabrielom.github.io/burgerhouse/",
-    github: "https://github.com/LucasGabrielOM/burgerhouse",
-    badge: "Sem Taxas de App",
-    icon: "shopping-bag"
-  },
-  {
     id: "smack-chicken",
     title: "Smack Chicken - Ecossistema Operacional",
     category: "systems",

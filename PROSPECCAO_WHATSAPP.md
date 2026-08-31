@@ -1,6 +1,6 @@
 # Guia Prático de Prospecção Local & Disparo Comercial no WhatsApp
 
-Este guia foi elaborado para apoiar a nova operação comercial da sua empresa (**LM Tech & Automação**). Ele contém o passo a passo para encontrar empresas na sua região, preparar o disparo de mensagens estilo WhatsDash com segurança e converter contatos em clientes.
+Este guia foi elaborado para apoiar a operação comercial da sua empresa (**INSCOP Tech** - CNPJ: 68.056.263/0001-56). Ele contém o passo a passo para encontrar empresas na sua região, preparar o disparo de mensagens estilo WhatsDash com segurança e converter contatos em clientes.
 
 ---
 
@@ -33,7 +33,7 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 ### Boas Práticas Obrigatórias:
 1. **Maturação do Número (Warm-up)**:
    - Nunca use um chip recém-comprado para disparos em massa.
-   - Movimente o número durante 7 a 14 dias conversando com amigos/grupos antes de iniciar a prospecção.
+   - Movimente o número oficial **(48) 99611-6327** durante 7 a 14 dias conversando com amigos/grupos antes de iniciar os disparos comerciais.
 2. **Intervalo Randômico entre Envios**:
    - Configure um delay de **45 a 120 segundos** entre cada mensagem enviada.
 3. **Uso de Spintax (Variação de Palavras)**:
@@ -53,9 +53,9 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 *(Aguarde o cliente responder)*
 
 **Mensagem 2 (Apresentação do site/cardápio):**
-> "Legal! Pergunto porque nós desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
+> "Legal! Pergunto porque nós da INSCOP Tech desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
 > 
-> Montei um modelo de demonstração para empresas da região. Se quiser dar uma olhada no nosso site oficial: **https://lucasgabrielom.github.io** (LM Tech). Conseguimos rodar o seu cardápio essa semana. Posso te enviar um vídeo rápido de 1 minuto de como funciona?"
+> Montei um modelo de demonstração para empresas da região. Se quiser dar uma olhada no nosso site oficial: **https://lucasgabrielom.github.io** (INSCOP Tech - CNPJ 68.056.263/0001-56). Conseguimos rodar o seu cardápio essa semana. Posso te enviar um vídeo rápido de 1 minuto de como funciona?"
 
 ---
 
@@ -67,7 +67,7 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 *(Aguarde a resposta)*
 
 **Mensagem 2 (Oferta de valor):**
-> "Show! Nós somos uma empresa de tecnologia aqui da região (LM Tech - CNPJ ativo) e criamos websites e catálogos virtuais de alta conversão para lojistas. 
+> "Show! Nós somos uma empresa de tecnologia aqui da região (**INSCOP Tech** - CNPJ 68.056.263/0001-56) e criamos websites e catálogos virtuais de alta conversão para lojistas. 
 > 
 > Com o site, seus clientes encontram sua loja no Google 24h por dia e já chegam no seu WhatsApp prontos para fechar a compra. Você pode dar uma olhada em nossos cases entregues no site: **https://lucasgabrielom.github.io**. 
 > 
@@ -95,4 +95,4 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 2. **Dia 2**: Se o cliente respondeu, envie a Mensagem 2 com o link do seu novo site.
 3. **Dia 4 (Follow-up de quem não respondeu)**:
    > "Oi [Nome], conseguiu ver a mensagem acima? Se fizer sentido, posso te mostrar uma demonstração rápida sem compromisso!"
-4. **Fechamento**: Envie proposta formal com contrato (garantia pelo seu CNPJ) e prazo de entrega rápido (3 a 7 dias).
+4. **Fechamento**: Envie proposta formal com contrato (garantia pelo seu CNPJ 68.056.263/0001-56) e prazo de entrega rápido (3 a 7 dias).

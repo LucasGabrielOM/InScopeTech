@@ -1,7 +1,10 @@
-// Main Client-Side Logic for Agency Website (Theme Switcher, Project Showcase, ROI Calculator)
+// Main Client-Side Logic for INSCOP Tech (Theme Switcher, Project Configurator, ROI Calculator)
+
+const PHONE_NUMBER = "5548996116327";
+const REAL_CNPJ = "68.056.263/0001-56";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Theme (Dark by default, restore user preference)
+  // Initialize Theme (Dark by default, restore preference)
   initTheme();
 
   // Initialize Lucide Icons
@@ -9,61 +12,65 @@ document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   }
 
-  // Render Projects Grid with Real Live URLs
+  // Render Projects Grid
   renderProjects("all");
 
-  // Setup Listeners
+  // Setup Event Listeners
   setupThemeToggle();
   setupPortfolioFilters();
   setupRoiCalculator();
+  setupCustomProjectBuilder();
   setupWhatsAppForm();
   setupCnpjCopy();
   setupMobileMenu();
 });
 
-// Theme Management (Light / Dark Mode)
+// Theme Toggle Management (Fix for Light/Dark Mode)
 function initTheme() {
   const savedTheme = localStorage.getItem("theme") || "dark";
-  const html = document.documentElement;
+  applyTheme(savedTheme);
+}
 
-  if (savedTheme === "light") {
+function applyTheme(theme) {
+  const html = document.documentElement;
+  if (theme === "light") {
     html.classList.remove("dark");
     html.classList.add("light");
   } else {
     html.classList.remove("light");
     html.classList.add("dark");
   }
+  localStorage.setItem("theme", theme);
+  updateThemeIcon(theme);
+}
+
+function updateThemeIcon(theme) {
+  const iconContainer = document.getElementById("theme-icon");
+  if (!iconContainer) return;
+  
+  if (theme === "light") {
+    iconContainer.setAttribute("data-lucide", "moon");
+    iconContainer.className = "w-4 h-4 text-indigo-600 pointer-events-none";
+  } else {
+    iconContainer.setAttribute("data-lucide", "sun");
+    iconContainer.className = "w-4 h-4 text-amber-400 pointer-events-none";
+  }
+  if (window.lucide) lucide.createIcons();
 }
 
 function setupThemeToggle() {
   const toggleBtn = document.getElementById("theme-toggle-btn");
   if (!toggleBtn) return;
 
-  toggleBtn.addEventListener("click", () => {
-    const html = document.documentElement;
-    const isDark = html.classList.contains("dark");
-    const newTheme = isDark ? "light" : "dark";
-
-    if (newTheme === "light") {
-      html.classList.remove("dark");
-      html.classList.add("light");
-    } else {
-      html.classList.remove("light");
-      html.classList.add("dark");
-    }
-
-    localStorage.setItem("theme", newTheme);
-
-    // Update Theme Toggle Icon
-    const iconContainer = document.getElementById("theme-icon");
-    if (iconContainer && window.lucide) {
-      iconContainer.setAttribute("data-lucide", newTheme === "light" ? "moon" : "sun");
-      lucide.createIcons();
-    }
+  toggleBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const isLight = document.documentElement.classList.contains("light");
+    const nextTheme = isLight ? "dark" : "light";
+    applyTheme(nextTheme);
   });
 }
 
-// Render Projects Cards (Pointing to Real Live Websites)
+// Render Projects Cards
 function renderProjects(filterCategory) {
   const container = document.getElementById("projects-grid");
   if (!container) return;
@@ -147,8 +154,8 @@ function openProjectModal(id) {
   const content = document.getElementById("modal-content");
   if (!modal || !content) return;
 
-  const whatsappMessage = encodeURIComponent(`Olá Lucas! Vi o projeto "${project.title}" no seu site e gostaria de um orçamento para uma solução parecida no meu negócio.`);
-  const whatsappUrl = `https://wa.me/5548999999999?text=${whatsappMessage}`;
+  const whatsappMessage = encodeURIComponent(`Olá INSCOP Tech! Vi o projeto "${project.title}" no seu site e gostaria de um orçamento para uma solução parecida no meu negócio.`);
+  const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${whatsappMessage}`;
 
   content.innerHTML = `
     <div class="p-6 md:p-8">
@@ -192,8 +199,8 @@ function openProjectModal(id) {
         ` : ''}
 
         <a href="${whatsappUrl}" target="_blank" class="py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-          Quero um Projeto Assim
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          Solicitar Orçamento no WhatsApp
         </a>
       </div>
     </div>
@@ -212,7 +219,40 @@ function closeProjectModal() {
   }
 }
 
-// ROI / Economy Calculator
+// Custom Project Configurator ("Monte seu Projeto Personalizado")
+function setupCustomProjectBuilder() {
+  const checkboxes = document.querySelectorAll(".project-opt");
+  const resultTime = document.getElementById("custom-est-time");
+  const btnSend = document.getElementById("btn-send-custom-project");
+
+  if (!checkboxes.length || !btnSend) return;
+
+  function updateEstimate() {
+    let selected = [];
+    let days = 0;
+
+    checkboxes.forEach(cb => {
+      if (cb.checked) {
+        selected.push(cb.value);
+        days += parseInt(cb.getAttribute("data-days") || "3");
+      }
+    });
+
+    if (days === 0) days = 3;
+    if (resultTime) resultTime.innerText = `Estimativa: ${days} a ${days + 3} dias úteis`;
+
+    const text = selected.length > 0 
+      ? `Olá INSCOP Tech! Quero montar um projeto personalizado com as seguintes soluções:\n\n` + selected.map(s => `• ${s}`).join("\n") + `\n\nQual o valor estimado e próximos passos?`
+      : `Olá INSCOP Tech! Gostaria de um orçamento personalizado para a minha empresa.`;
+
+    btnSend.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener("change", updateEstimate));
+  updateEstimate();
+}
+
+// ROI Calculator
 function setupRoiCalculator() {
   const ordersSlider = document.getElementById("roi-orders");
   const valueSlider = document.getElementById("roi-value");
@@ -255,10 +295,9 @@ function setupWhatsAppForm() {
     const service = document.getElementById("lead-service")?.value || "Site/Landing Page";
     const detail = document.getElementById("lead-detail")?.value.trim() || "";
 
-    const text = `Olá! Meu nome é *${name}*${company ? ` da empresa *${company}*` : ''}.\nTenho interesse em: *${service}*.\n${detail ? `Detalhes: ${detail}` : ''}\n\nGostaria de solicitar um orçamento sem compromisso!`;
+    const text = `Olá INSCOP Tech! Meu nome é *${name}*${company ? ` da empresa *${company}*` : ''}.\nTenho interesse em: *${service}*.\n${detail ? `Detalhes: ${detail}` : ''}\n\nGostaria de solicitar um orçamento sem compromisso!`;
 
-    const phone = "5548999999999";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   });
 }
@@ -269,7 +308,7 @@ function setupCnpjCopy() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    const cnpj = btn.getAttribute("data-cnpj") || "50.000.000/0001-00";
+    const cnpj = REAL_CNPJ;
     navigator.clipboard.writeText(cnpj).then(() => {
       const originalText = btn.innerText;
       btn.innerText = "CNPJ Copiado!";
