@@ -1,6 +1,6 @@
 # Guia Prático de Prospecção Local & Disparo Comercial no WhatsApp
 
-Este guia foi elaborado para apoiar a operação comercial da sua empresa (**INSCOP Tech** - CNPJ: 68.056.263/0001-56). Ele contém o passo a passo para encontrar empresas na sua região, preparar o disparo de mensagens estilo WhatsDash com segurança e converter contatos em clientes.
+Este guia foi elaborado para apoiar a operação comercial da sua empresa (**InScope - Serviços Tecnológicos** - CNPJ: 68.056.263/0001-56). Ele contém o passo a passo para encontrar empresas na sua região, preparar o disparo de mensagens estilo WhatsDash com segurança e converter contatos em clientes.
 
 ---
 
@@ -18,7 +18,7 @@ Para encontrar lojas e empresas na sua cidade/região que precisam de um site ou
   - Empresas com sites antigos, lentos ou não adaptados para celular.
 
 ### 2. Mineração B2B via CNPJ e Technographics
-- Utilize sua ferramenta **`b2b-technographics-prospector`** (localizada em seu repositório GitHub) para filtrar empresas por CNAE e cidade na base pública de CNPJs.
+- Utilize sua ferramenta **`b2b-technographics-prospector`** para filtrar empresas por CNAE e cidade na base pública de CNPJs.
 - Extraia nome do sócio, telefone fixo/WhatsApp e e-mail corporativo.
 
 ---
@@ -53,9 +53,9 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 *(Aguarde o cliente responder)*
 
 **Mensagem 2 (Apresentação do site/cardápio):**
-> "Legal! Pergunto porque nós da INSCOP Tech desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
+> "Legal! Pergunto porque nós da **InScope - Serviços Tecnológicos** desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real, como o do SMACK CHICKEN) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
 > 
-> Montei um modelo de demonstração para empresas da região. Se quiser dar uma olhada no nosso site oficial: **https://lucasgabrielom.github.io** (INSCOP Tech - CNPJ 68.056.263/0001-56). Conseguimos rodar o seu cardápio essa semana. Posso te enviar um vídeo rápido de 1 minuto de como funciona?"
+> Montei um modelo de demonstração para empresas da região. Se quiser dar uma olhada no nosso site oficial: **https://lucasgabrielom.github.io**. Conseguimos rodar o seu cardápio essa semana. Posso te enviar um vídeo rápido de 1 minuto de como funciona?"
 
 ---
 
@@ -67,7 +67,7 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 *(Aguarde a resposta)*
 
 **Mensagem 2 (Oferta de valor):**
-> "Show! Nós somos uma empresa de tecnologia aqui da região (**INSCOP Tech** - CNPJ 68.056.263/0001-56) e criamos websites e catálogos virtuais de alta conversão para lojistas. 
+> "Show! Nós somos uma empresa de tecnologia aqui da região (**InScope - Serviços Tecnológicos**) e criamos websites e catálogos virtuais de alta conversão para lojistas. 
 > 
 > Com o site, seus clientes encontram sua loja no Google 24h por dia e já chegam no seu WhatsApp prontos para fechar a compra. Você pode dar uma olhada em nossos cases entregues no site: **https://lucasgabrielom.github.io**. 
 > 
@@ -95,4 +95,4 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 2. **Dia 2**: Se o cliente respondeu, envie a Mensagem 2 com o link do seu novo site.
 3. **Dia 4 (Follow-up de quem não respondeu)**:
    > "Oi [Nome], conseguiu ver a mensagem acima? Se fizer sentido, posso te mostrar uma demonstração rápida sem compromisso!"
-4. **Fechamento**: Envie proposta formal com contrato (garantia pelo seu CNPJ 68.056.263/0001-56) e prazo de entrega rápido (3 a 7 dias).
+4. **Fechamento**: Envie proposta formal com contrato (garantia sob CNPJ 68.056.263/0001-56) e prazo de entrega rápido (3 a 7 dias).

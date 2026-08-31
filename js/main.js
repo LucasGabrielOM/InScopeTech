@@ -1,10 +1,10 @@
-// Main Client-Side Logic for INSCOP Tech (Theme Switcher, Project Configurator, ROI Calculator)
+// InScope Serviços Tecnológicos - Client Logic & Theme Handler
 
 const PHONE_NUMBER = "5548996116327";
 const REAL_CNPJ = "68.056.263/0001-56";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Theme (Dark by default, restore preference)
+  // Initialize Theme (Dark by default, restore stored preference)
   initTheme();
 
   // Initialize Lucide Icons
@@ -19,13 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   setupThemeToggle();
   setupPortfolioFilters();
   setupRoiCalculator();
-  setupCustomProjectBuilder();
   setupWhatsAppForm();
-  setupCnpjCopy();
+  setupCustomServiceSelectHandler();
   setupMobileMenu();
 });
 
-// Theme Toggle Management (Fix for Light/Dark Mode)
+// Theme Toggle Handler (Light / Dark Mode Fix)
 function initTheme() {
   const savedTheme = localStorage.getItem("theme") || "dark";
   applyTheme(savedTheme);
@@ -70,6 +69,22 @@ function setupThemeToggle() {
   });
 }
 
+// Dynamic Custom Service Field Handler
+function setupCustomServiceSelectHandler() {
+  const serviceSelect = document.getElementById("lead-service");
+  const customFieldContainer = document.getElementById("custom-service-container");
+
+  if (!serviceSelect || !customFieldContainer) return;
+
+  serviceSelect.addEventListener("change", () => {
+    if (serviceSelect.value === "Serviço Personalizado") {
+      customFieldContainer.classList.remove("hidden");
+    } else {
+      customFieldContainer.classList.add("hidden");
+    }
+  });
+}
+
 // Render Projects Cards
 function renderProjects(filterCategory) {
   const container = document.getElementById("projects-grid");
@@ -80,7 +95,7 @@ function renderProjects(filterCategory) {
     : projectsData.filter(p => p.category === filterCategory);
 
   container.innerHTML = filtered.map(p => `
-    <div class="shadcn-card p-6 flex flex-col justify-between group cursor-pointer" onclick="openProjectModal('${p.id}')">
+    <div class="inscope-card p-6 flex flex-col justify-between group cursor-pointer" onclick="openProjectModal('${p.id}')">
       <div>
         <div class="flex items-center justify-between mb-4">
           <span class="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -114,7 +129,7 @@ function renderProjects(filterCategory) {
             ${p.metrics.split('|')[0]}
           </span>
           <a href="${p.demo || '#'}" target="_blank" onclick="event.stopPropagation()" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-bold transition flex items-center gap-1">
-            Ver Site Live <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            Acessar Site Live <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
           </a>
         </div>
       </div>
@@ -126,7 +141,7 @@ function renderProjects(filterCategory) {
   }
 }
 
-// Portfolio Filter Buttons Setup
+// Portfolio Filter Setup
 function setupPortfolioFilters() {
   const filterBtns = document.querySelectorAll(".filter-btn");
   filterBtns.forEach(btn => {
@@ -154,7 +169,7 @@ function openProjectModal(id) {
   const content = document.getElementById("modal-content");
   if (!modal || !content) return;
 
-  const whatsappMessage = encodeURIComponent(`Olá INSCOP Tech! Vi o projeto "${project.title}" no seu site e gostaria de um orçamento para uma solução parecida no meu negócio.`);
+  const whatsappMessage = encodeURIComponent(`Olá InScope! Vi o projeto "${project.title}" no seu site e gostaria de um orçamento para uma solução parecida.`);
   const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${whatsappMessage}`;
 
   content.innerHTML = `
@@ -199,7 +214,7 @@ function openProjectModal(id) {
         ` : ''}
 
         <a href="${whatsappUrl}" target="_blank" class="py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5">
           Solicitar Orçamento no WhatsApp
         </a>
       </div>
@@ -217,39 +232,6 @@ function closeProjectModal() {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
   }
-}
-
-// Custom Project Configurator ("Monte seu Projeto Personalizado")
-function setupCustomProjectBuilder() {
-  const checkboxes = document.querySelectorAll(".project-opt");
-  const resultTime = document.getElementById("custom-est-time");
-  const btnSend = document.getElementById("btn-send-custom-project");
-
-  if (!checkboxes.length || !btnSend) return;
-
-  function updateEstimate() {
-    let selected = [];
-    let days = 0;
-
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-        selected.push(cb.value);
-        days += parseInt(cb.getAttribute("data-days") || "3");
-      }
-    });
-
-    if (days === 0) days = 3;
-    if (resultTime) resultTime.innerText = `Estimativa: ${days} a ${days + 3} dias úteis`;
-
-    const text = selected.length > 0 
-      ? `Olá INSCOP Tech! Quero montar um projeto personalizado com as seguintes soluções:\n\n` + selected.map(s => `• ${s}`).join("\n") + `\n\nQual o valor estimado e próximos passos?`
-      : `Olá INSCOP Tech! Gostaria de um orçamento personalizado para a minha empresa.`;
-
-    btnSend.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
-  }
-
-  checkboxes.forEach(cb => cb.addEventListener("change", updateEstimate));
-  updateEstimate();
 }
 
 // ROI Calculator
@@ -282,7 +264,7 @@ function setupRoiCalculator() {
   updateRoi();
 }
 
-// WhatsApp Lead Form Setup
+// WhatsApp Lead Form Setup with Custom Service Field
 function setupWhatsAppForm() {
   const form = document.getElementById("whatsapp-lead-form");
   if (!form) return;
@@ -293,31 +275,23 @@ function setupWhatsAppForm() {
     const name = document.getElementById("lead-name")?.value.trim() || "";
     const company = document.getElementById("lead-company")?.value.trim() || "";
     const service = document.getElementById("lead-service")?.value || "Site/Landing Page";
+    const customServiceDetail = document.getElementById("lead-custom-service")?.value.trim() || "";
     const detail = document.getElementById("lead-detail")?.value.trim() || "";
 
-    const text = `Olá INSCOP Tech! Meu nome é *${name}*${company ? ` da empresa *${company}*` : ''}.\nTenho interesse em: *${service}*.\n${detail ? `Detalhes: ${detail}` : ''}\n\nGostaria de solicitar um orçamento sem compromisso!`;
+    let text = `Olá InScope! Meu nome é *${name}*${company ? ` da empresa *${company}*` : ''}.\nTenho interesse em: *${service}*.\n`;
+    
+    if (service === "Serviço Personalizado" && customServiceDetail) {
+      text += `Especificação do Serviço Personalizado: *${customServiceDetail}*\n`;
+    }
+    
+    if (detail) {
+      text += `Detalhes do projeto: ${detail}\n`;
+    }
+
+    text += `\nGostaria de solicitar um orçamento sem compromisso!`;
 
     const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
-  });
-}
-
-// CNPJ Copy Function
-function setupCnpjCopy() {
-  const btn = document.getElementById("btn-copy-cnpj");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    const cnpj = REAL_CNPJ;
-    navigator.clipboard.writeText(cnpj).then(() => {
-      const originalText = btn.innerText;
-      btn.innerText = "CNPJ Copiado!";
-      btn.classList.add("bg-emerald-600", "text-white");
-      setTimeout(() => {
-        btn.innerText = originalText;
-        btn.classList.remove("bg-emerald-600", "text-white");
-      }, 2000);
-    });
   });
 }
 

@@ -1,128 +1,86 @@
-/* Shadcn UI Custom Theme Styles with Full Light/Dark Support */
+/* InScope Serviços Tecnológicos - Human Clean Theme Styles */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Dark Theme Variables */
+/* Dark Theme Variables (Crisp Obsidian & Charcoal) */
 html.dark body {
-  background-color: #030712;
-  color: #f3f4f6;
+  background-color: #0b0f19;
+  color: #f1f5f9;
 }
 
-/* Light Theme Variables */
+/* Light Theme Variables (Clean Minimalist White) */
 html.light body {
   background-color: #f8fafc;
   color: #0f172a;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #0b0f19;
 }
 html.light ::-webkit-scrollbar-track {
   background: #f8fafc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #334155;
   border-radius: 4px;
 }
 html.light ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
 }
 
-/* Gradient Text */
-.shadcn-gradient-text {
-  background: linear-gradient(135deg, #D247BF 0%, #6366f1 50%, #38bdf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Hero Glow */
-html.dark .hero-glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 280px;
-  background: radial-gradient(circle, rgba(210, 71, 191, 0.22) 0%, rgba(99, 102, 241, 0.15) 50%, rgba(0, 0, 0, 0) 80%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-html.light .hero-glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 280px;
-  background: radial-gradient(circle, rgba(210, 71, 191, 0.15) 0%, rgba(99, 102, 241, 0.12) 50%, rgba(255, 255, 255, 0) 80%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Floating Pill Navbar */
+/* Floating Navbar */
 html.dark .floating-navbar {
-  width: 92%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 html.light .floating-navbar {
-  width: 92%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
 }
 
-/* Cards Style */
-html.dark .shadcn-card {
+/* Human Minimalist Cards */
+html.dark .inscope-card {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
 }
 
-html.light .shadcn-card {
+html.light .inscope-card {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
 }
 
-.shadcn-card:hover {
+.inscope-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.2);
+  border-color: #6366f1;
 }
 
-/* Light Mode Text Overrides */
+/* Light Mode Overrides for Crisp Readability */
 html.light h1, 
 html.light h2, 
 html.light h3, 
@@ -137,9 +95,12 @@ html.light .text-slate-300 {
 }
 
 html.light .bg-slate-900, 
-html.light .bg-slate-950 {
+html.light .bg-slate-950,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/90 {
   background-color: #f1f5f9 !important;
   border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 html.light .bg-slate-800\/60,
@@ -157,7 +118,7 @@ html.light textarea {
   border-color: #cbd5e1 !important;
 }
 
-/* Marquee Infinite Loop Animation */
+/* Marquee Infinite Loop */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -166,19 +127,19 @@ html.light textarea {
 .animate-marquee {
   display: flex;
   width: 200%;
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Pulse Badge */
-@keyframes pulseBadge {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+/* Floating WhatsApp Badge Pulsing Shadow */
+@keyframes pulseGreen {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
 }
 
-.pulse-badge {
-  animation: pulseBadge 3s infinite ease-in-out;
+.whatsapp-pulse {
+  animation: pulseGreen 2.5s infinite ease-in-out;
 }
