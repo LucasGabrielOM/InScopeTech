@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LM Tech & Automação | Desenvolvimento Web, Cardápios WhatsApp & Sistemas para Empresas</title>
-  <meta name="description" content="Soluções digitais de alta conversão para empresas locais: Websites, Cardápios Digitais no WhatsApp, Chatbots, ERPs e Automação de Processos.">
+  <meta name="description" content="Soluções digitais sob medida para empresas locais: Websites, Cardápios no WhatsApp sem taxa de delivery, Chatbots e ERPs de Gestão.">
   <meta name="author" content="Lucas Gabriel de Oliveira Moreira">
 
   <!-- Tailwind CSS CDN -->
@@ -15,14 +15,12 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#eff6ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              accent: '#a855f7',
-              dark: '#090d16',
-              card: '#0f172a'
+            border: 'rgba(255, 255, 255, 0.1)',
+            card: '#0f172a',
+            primary: {
+              DEFAULT: '#6366f1',
+              hover: '#4f46e5',
+              accent: '#D247BF'
             }
           }
         }
@@ -41,451 +39,443 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-[#090d16] text-slate-100 antialiased relative selection:bg-indigo-500 selection:text-white">
+<body class="bg-[#030712] text-slate-100 antialiased relative selection:bg-[#D247BF] selection:text-white">
 
-  <!-- Background Gradients -->
-  <div class="fixed top-0 left-1/4 glow-indigo pointer-events-none"></div>
-  <div class="fixed bottom-1/3 right-10 glow-purple pointer-events-none"></div>
-  <div class="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
+  <!-- Glow Elements -->
+  <div class="hero-glow"></div>
+  <div class="hero-glow-secondary"></div>
 
-  <!-- HEADER / NAVBAR -->
-  <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#090d16]/80 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <!-- FLOATING NAVBAR (SHADCN PILL STYLE) -->
+  <div class="sticky top-5 z-50 w-full px-4">
+    <header class="floating-navbar rounded-2xl px-4 py-3 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition">
-          LM
+      <a href="#" class="flex items-center gap-2.5 font-bold text-lg group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#D247BF] via-indigo-600 to-indigo-500 flex items-center justify-center text-white border border-white/20 shadow-md group-hover:scale-105 transition">
+          <i data-lucide="chevrons-down" class="w-5 h-5"></i>
         </div>
-        <div>
-          <span class="text-lg font-extrabold tracking-tight text-white block group-hover:text-indigo-400 transition">
-            LM <span class="gradient-text">Tech & Automação</span>
-          </span>
-          <span class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            CNPJ Ativo & Registrado
-          </span>
-        </div>
+        <span class="text-white font-extrabold tracking-tight">
+          LM <span class="shadcn-gradient-text">Tech & Automação</span>
+        </span>
       </a>
 
-      <!-- Navigation Links (Desktop) -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#beneficios" class="hover:text-indigo-400 transition">Benefícios</a>
         <a href="#servicos" class="hover:text-indigo-400 transition">Serviços</a>
         <a href="#portfolio" class="hover:text-indigo-400 transition">Cases Reais</a>
         <a href="#calculadora" class="hover:text-indigo-400 transition">Calculadora ROI</a>
-        <a href="#beneficios" class="hover:text-indigo-400 transition">Por que Automação?</a>
         <a href="#contato" class="hover:text-indigo-400 transition">Contato</a>
       </nav>
 
-      <!-- CTA Button Desktop -->
-      <div class="hidden md:flex items-center gap-4">
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-3">
         <button id="btn-copy-cnpj" data-cnpj="CNPJ Ativo" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition flex items-center gap-1.5">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
           CNPJ Ativo
         </button>
 
-        <a href="https://wa.me/5548999999999?text=Ol%C3%A1%20Lucas!%20Vim%20pelo%20site%20da%20sua%20empresa%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 transition flex items-center gap-2">
+        <a href="https://wa.me/5548999999999?text=Ol%C3%A1%20Lucas!%20Vim%20pelo%20site%20da%20sua%20empresa%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-500/20 transition flex items-center gap-2">
           <i data-lucide="message-circle" class="w-4 h-4"></i>
-          Falar no WhatsApp
+          WhatsApp Comercial
         </a>
       </div>
 
       <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white">
-        <i data-lucide="menu" class="w-6 h-6"></i>
+      <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white">
+        <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
-    </div>
 
-    <!-- Mobile Nav Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-white/10 px-4 py-6 space-y-4">
-      <a href="#servicos" class="block text-slate-300 hover:text-indigo-400 text-base font-medium">Serviços</a>
-      <a href="#portfolio" class="block text-slate-300 hover:text-indigo-400 text-base font-medium">Cases Reais</a>
-      <a href="#calculadora" class="block text-slate-300 hover:text-indigo-400 text-base font-medium">Calculadora ROI</a>
-      <a href="#beneficios" class="block text-slate-300 hover:text-indigo-400 text-base font-medium">Por que Automação?</a>
-      <a href="#contato" class="block text-slate-300 hover:text-indigo-400 text-base font-medium">Contato</a>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden floating-navbar rounded-2xl mt-2 p-6 space-y-4 text-center">
+      <a href="#beneficios" class="block text-slate-300 hover:text-indigo-400 font-medium">Benefícios</a>
+      <a href="#servicos" class="block text-slate-300 hover:text-indigo-400 font-medium">Serviços</a>
+      <a href="#portfolio" class="block text-slate-300 hover:text-indigo-400 font-medium">Cases Reais</a>
+      <a href="#calculadora" class="block text-slate-300 hover:text-indigo-400 font-medium">Calculadora ROI</a>
+      <a href="#contato" class="block text-slate-300 hover:text-indigo-400 font-medium">Contato</a>
       <a href="https://wa.me/5548999999999?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold text-center block">
         Chamar no WhatsApp
       </a>
     </div>
-  </header>
+  </div>
 
-  <!-- HERO SECTION -->
-  <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+  <!-- HERO SECTION (SHADCN TEMPLATE STYLE) -->
+  <section class="container max-w-7xl mx-auto px-4 pt-16 pb-24 md:pt-24 md:pb-32 text-center relative z-10">
+    
+    <!-- Top Pill Badge -->
+    <div class="inline-flex items-center rounded-full border border-white/10 px-3.5 py-1.5 text-xs font-semibold bg-slate-900/80 mb-8 backdrop-blur-md">
+      <span class="mr-2.5 px-2 py-0.5 rounded-full bg-gradient-to-r from-[#D247BF] to-indigo-600 text-white text-[10px] uppercase font-bold tracking-wide shadow-sm">
+        Empresa com CNPJ
+      </span>
+      <span class="text-slate-300">Soluções Digitais sob Medida para Negócios Locais</span>
+    </div>
+
+    <!-- Main Title -->
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight max-w-5xl mx-auto">
+      Eleve o nível da sua empresa com <span class="shadcn-gradient-text">Websites & Automação</span> de vendas
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-normal leading-relaxed mb-10">
+      Desenvolvemos Landing Pages de alta conversão, Cardápios Digitais no WhatsApp sem taxa de delivery, Chatbots de atendimento e ERPs de gestão sob medida.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+      <a href="https://wa.me/5548999999999?text=Ol%C3%A1%20Lucas!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-xl shadow-indigo-500/25 transition flex items-center justify-center gap-2 group/btn">
+        Solicitar Orçamento Gratuito
+        <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+      </a>
+
+      <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-bold text-sm border border-white/10 transition flex items-center justify-center gap-2">
+        <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
+        Ver Cases Reais
+      </a>
+    </div>
+
+    <!-- Hero Interactive Mockup Box -->
+    <div class="relative max-w-5xl mx-auto mt-6">
+      <div class="p-6 md:p-8 rounded-3xl bg-slate-900/90 border border-white/10 shadow-2xl backdrop-blur-xl text-left">
+        
+        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+            <span class="text-xs text-slate-400 font-mono ml-2">lm-tech-ecosystem.app</span>
+          </div>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Operacional 24/7
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
+            <span class="text-xs text-slate-400 block mb-1">Taxas de Delivery Pagas</span>
+            <span class="text-2xl font-bold text-emerald-400">R$ 0,00</span>
+            <span class="text-[11px] text-slate-400 block mt-1">Economia direta no seu caixa</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
+            <span class="text-xs text-slate-400 block mb-1">Agilidade nos Pedidos</span>
+            <span class="text-2xl font-bold text-indigo-400">+40%</span>
+            <span class="text-[11px] text-slate-400 block mt-1">Cozinha e atendimento integrados</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
+            <span class="text-xs text-slate-400 block mb-1">Garantia & Suporte</span>
+            <span class="text-2xl font-bold text-[#D247BF]">CNPJ</span>
+            <span class="text-[11px] text-slate-400 block mt-1">Contrato comercial registrado</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MARQUEE INFINITO (SPONSORS / STACK BAR) -->
+  <section class="border-y border-white/5 py-8 bg-slate-950/60 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Tecnologias & Soluções Dominadas</span>
+    </div>
+
+    <div class="relative w-full overflow-hidden">
+      <div class="animate-marquee flex items-center gap-12 text-slate-400 font-semibold text-lg whitespace-nowrap">
+        <div class="flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-indigo-400"></i> ReactJS & Next.js</div>
+        <div class="flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-purple-400"></i> Node.js & APIs REST</div>
+        <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-400"></i> Automação Python</div>
+        <div class="flex items-center gap-2"><i data-lucide="message-square" class="w-5 h-5 text-emerald-400"></i> WhatsApp Cloud API</div>
+        <div class="flex items-center gap-2"><i data-lucide="workflow" class="w-5 h-5 text-amber-400"></i> CRM Bitrix24</div>
+        <div class="flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-cyan-400"></i> Supabase & PostgreSQL</div>
+        <div class="flex items-center gap-2"><i data-lucide="palette" class="w-5 h-5 text-[#D247BF]"></i> Tailwind CSS & Shadcn</div>
+
+        <!-- Duplicated for seamless infinite loop -->
+        <div class="flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-indigo-400"></i> ReactJS & Next.js</div>
+        <div class="flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-purple-400"></i> Node.js & APIs REST</div>
+        <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-400"></i> Automação Python</div>
+        <div class="flex items-center gap-2"><i data-lucide="message-square" class="w-5 h-5 text-emerald-400"></i> WhatsApp Cloud API</div>
+        <div class="flex items-center gap-2"><i data-lucide="workflow" class="w-5 h-5 text-amber-400"></i> CRM Bitrix24</div>
+        <div class="flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-cyan-400"></i> Supabase & PostgreSQL</div>
+        <div class="flex items-center gap-2"><i data-lucide="palette" class="w-5 h-5 text-[#D247BF]"></i> Tailwind CSS & Shadcn</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION (SHADCN NUMBERED CARDS 01, 02, 03, 04) -->
+  <section id="beneficios" class="container max-w-7xl mx-auto px-4 py-24">
+    <div class="grid lg:grid-cols-2 place-items-center lg:gap-16">
       
-      <!-- Top Pill Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700/80 mb-8 backdrop-blur-md shadow-inner">
-        <span class="flex h-2 w-2 rounded-full bg-indigo-400"></span>
-        <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-          Desenvolvimento Web & Automação Comercial sob Medida
-        </span>
+      <div class="mb-12 lg:mb-0">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Diferenciais</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+          Seu atalho para o sucesso comercial
+        </h2>
+        <p class="text-lg text-slate-400 leading-relaxed mb-8">
+          Criamos soluções pensadas exclusivamente para os desafios do comércio e empresas locais: mais clientes, zero tarefas manuais repetitivas e total controle das suas vendas.
+        </p>
+
+        <div class="p-6 rounded-2xl bg-indigo-950/30 border border-indigo-500/20 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center shrink-0">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-white mb-1">Garantia Corporativa com CNPJ</h4>
+            <p class="text-xs text-slate-400">Desenvolvimento com contrato, entrega no prazo e suporte contínuo pós-lançamento.</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight max-w-5xl mx-auto">
-        Transforme sua empresa local em uma <span class="gradient-text">máquina de vendas 24/7</span>
-      </h1>
+      <!-- Numbered Cards Grid -->
+      <div class="grid sm:grid-cols-2 gap-4 w-full">
+        
+        <!-- Card 01 -->
+        <div class="shadcn-card p-6 flex flex-col justify-between group/number">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                <i data-lucide="blocks" class="w-5 h-5"></i>
+              </div>
+              <span class="text-4xl text-slate-700/60 font-bold transition group-hover/number:text-indigo-400/80">01</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Presença Digital Forte</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Sites e landing pages modernas que passam autoridade imediata e colocam sua empresa no topo das buscas do Google.
+            </p>
+          </div>
+        </div>
 
-      <!-- Subheadline -->
-      <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
-        Criamos <strong>Websites Profissionais</strong>, <strong>Cardápios Web sem taxa de delivery</strong>, <strong>Atendimento no WhatsApp</strong> e <strong>Sistemas Internos de Gestão</strong>. Tudo feito sob medida para aumentar suas vendas e zerar tarefas manuais.
+        <!-- Card 02 -->
+        <div class="shadcn-card p-6 flex flex-col justify-between group/number">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="trending-up" class="w-5 h-5"></i>
+              </div>
+              <span class="text-4xl text-slate-700/60 font-bold transition group-hover/number:text-emerald-400/80">02</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Mais Leads & Vendas</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Botões de contato estratégico e formulários inteligentes que direcionam o comprador direto para o seu WhatsApp.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="shadcn-card p-6 flex flex-col justify-between group/number">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
+                <i data-lucide="wallet" class="w-5 h-5"></i>
+              </div>
+              <span class="text-4xl text-slate-700/60 font-bold transition group-hover/number:text-purple-400/80">03</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Zero Comissões de App</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Tenha seu próprio cardápio e loja virtual sem precisar dividir 12% a 27% do seu faturamento com intermediários.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="shadcn-card p-6 flex flex-col justify-between group/number">
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <span class="text-4xl text-slate-700/60 font-bold transition group-hover/number:text-rose-400/80">04</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Automação de Processos</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Sistemas internos, Kanban e respostas automáticas no WhatsApp para economizar até 20 horas por mês da equipe.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES & FEATURES SECTION (SHADCN RINGS STYLE) -->
+  <section id="servicos" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Serviços Oferecidos</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
+        O que torna Nossas Soluções Diferentes
+      </h2>
+      <p class="text-slate-400 text-base">
+        Combinamos código limpo, alta velocidade e design instruído por conversão para gerar resultados reais.
       </p>
+    </div>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-        <a href="https://wa.me/5548999999999?text=Ol%C3%A1%20Lucas!%20Quero%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-base shadow-xl shadow-emerald-500/25 transition flex items-center justify-center gap-3">
-          <i data-lucide="message-square-plus" class="w-5 h-5"></i>
-          Solicitar Orçamento Gratuito no WhatsApp
-        </a>
-
-        <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-bold text-base border border-slate-700 transition flex items-center justify-center gap-2">
-          <i data-lucide="layout-grid" class="w-5 h-5 text-indigo-400"></i>
-          Ver Nossos Cases Reais
-        </a>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Feature 1 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-indigo-500/20 p-3 rounded-full ring-8 ring-indigo-500/10 mb-4 text-indigo-400">
+          <i data-lucide="smartphone" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">100% Adaptado para Celular</h3>
+        <p class="text-sm text-slate-400">Design leve, intuitivo e com carregamento instantâneo em qualquer smartphone.</p>
       </div>
 
-      <!-- Key Proof Indicators -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-white/10 pt-10">
-        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-          <span class="text-2xl md:text-3xl font-extrabold text-white block">100%</span>
-          <span class="text-xs text-slate-400">Código Próprio Sem Templates Genéricos</span>
+      <!-- Feature 2 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-emerald-500/20 p-3 rounded-full ring-8 ring-emerald-500/10 mb-4 text-emerald-400">
+          <i data-lucide="badge-check" class="w-6 h-6"></i>
         </div>
-        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-          <span class="text-2xl md:text-3xl font-extrabold text-emerald-400 block">+40%</span>
-          <span class="text-xs text-slate-400">Ganhos de Produtividade Comercial</span>
+        <h3 class="text-lg font-bold text-white mb-2">Cardápios Web no WhatsApp</h3>
+        <p class="text-sm text-slate-400">Comanda automatizada enviada pronta com adicionais, endereço e forma de pagamento.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-purple-500/20 p-3 rounded-full ring-8 ring-purple-500/10 mb-4 text-purple-400">
+          <i data-lucide="bot" class="w-6 h-6"></i>
         </div>
-        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-          <span class="text-2xl md:text-3xl font-extrabold text-indigo-400 block">R$ 0,00</span>
-          <span class="text-xs text-slate-400">Sem Comissões por Pedido</span>
+        <h3 class="text-lg font-bold text-white mb-2">Atendimento no WhatsApp 24h</h3>
+        <p class="text-sm text-slate-400">Chatbots para triagem de leads, resposta a perguntas frequentes e agendamentos.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-cyan-500/20 p-3 rounded-full ring-8 ring-cyan-500/10 mb-4 text-cyan-400">
+          <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
         </div>
-        <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-          <span class="text-2xl md:text-3xl font-extrabold text-purple-400 block">CNPJ</span>
-          <span class="text-xs text-slate-400">Garantia & Contrato Corporativo</span>
+        <h3 class="text-lg font-bold text-white mb-2">Dashboards & ERPs sob Medida</h3>
+        <p class="text-sm text-slate-400">Controle de estoque, quebra de insumos e escalas da equipe em quadro Kanban.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-amber-500/20 p-3 rounded-full ring-8 ring-amber-500/10 mb-4 text-amber-400">
+          <i data-lucide="workflow" class="w-6 h-6"></i>
         </div>
+        <h3 class="text-lg font-bold text-white mb-2">Integração Bitrix24 & APIs</h3>
+        <p class="text-sm text-slate-400">Conexão fluida entre seu site, formulários, planilhas automáticas e sistemas CRM.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="shadcn-card p-6 text-center flex flex-col items-center">
+        <div class="bg-rose-500/20 p-3 rounded-full ring-8 ring-rose-500/10 mb-4 text-rose-400">
+          <i data-lucide="search" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Otimização SEO para Google</h3>
+        <p class="text-sm text-slate-400">Seu negócio preparado para aparecer quando novos clientes pesquisarem na sua cidade.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- SERVICES SECTION -->
-  <section id="servicos" class="py-20 relative border-t border-white/5 bg-slate-950/40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- PORTFOLIO / CASES SHOWCASE (SHADCN UI STYLE) -->
+  <section id="portfolio" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Portfólio de Projetos</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white">Cases Reais Entregues</h2>
+      </div>
+      <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
+        Clique em qualquer projeto para abrir os detalhes técnicos, métricas e o repositório no GitHub.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap gap-2 mb-10">
+      <button data-category="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-lg shadow-indigo-500/30">
+        Todos os Projetos
+      </button>
+      <button data-category="websites" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
+        Websites & Landing Pages
+      </button>
+      <button data-category="ecommerce" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
+        Delivery & WhatsApp
+      </button>
+      <button data-category="systems" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
+        Sistemas & Apps
+      </button>
+      <button data-category="automation" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
+        Automações & IA
+      </button>
+    </div>
+
+    <!-- Projects Grid Container -->
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Rendered dynamically by js/main.js -->
+    </div>
+
+  </section>
+
+  <!-- ROI CALCULATOR SECTION -->
+  <section id="calculadora" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">O Que Fazemos</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4">
-          Soluções Tecnológicas para o <span class="gradient-text">Seu Segmento</span>
+      <div class="lg:col-span-5">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-2">Simulador de Economia</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">
+          Calcule seu ganho com <span class="shadcn-gradient-text">Automação</span>
         </h2>
-        <p class="text-slate-400 text-base">
-          Do site institucional ao sistema interno de gestão, construímos a ferramenta perfeita para alavancar seu negócio.
+        <p class="text-slate-400 text-base leading-relaxed mb-6">
+          O atendimento manual no WhatsApp consome tempo precioso da sua equipe. Veja quanto você pode economizar automatizando a triagem de clientes e o cardápio.
         </p>
+
+        <div class="space-y-4">
+          <div class="p-4 rounded-xl bg-slate-900 border border-white/5 flex items-center gap-3 text-sm text-slate-300">
+            <i data-lucide="clock" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+            <span>Salva cerca de <strong>4 minutos por pedido</strong> no atendimento.</span>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900 border border-white/5 flex items-center gap-3 text-sm text-slate-300">
+            <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400 shrink-0"></i>
+            <span>Previne desistências e gera até <strong>28% a mais em vendas</strong>.</span>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Calculator Card -->
+      <div class="lg:col-span-7 shadcn-card p-8 border-indigo-500/30">
         
-        <!-- Service 1: Websites -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <i data-lucide="calculator" class="w-5 h-5 text-indigo-400"></i>
+          Simulador Comercial
+        </h3>
+
+        <!-- Control 1 -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-sm font-semibold text-slate-300">Atendimentos / Pedidos por Mês:</label>
+            <span id="roi-orders-val" class="text-lg font-bold text-indigo-400">300</span>
+          </div>
+          <input type="range" id="roi-orders" min="50" max="2000" step="50" value="300" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+        </div>
+
+        <!-- Control 2 -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-sm font-semibold text-slate-300">Ticket Médio (R$):</label>
+            <span id="roi-value-val" class="text-lg font-bold text-indigo-400">R$ 50</span>
+          </div>
+          <input type="range" id="roi-value" min="10" max="300" step="10" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+        </div>
+
+        <!-- Result Display -->
+        <div class="p-6 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 grid grid-cols-2 gap-4 text-center mb-6">
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
-              <i data-lucide="globe" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Websites & Landing Pages</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Páginas ultra-rápidas, com design moderno e otimizadas para SEO local. Ideais para clínicas, imobiliárias, estúdios, lojas e prestadores de serviços.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Design 100% Responsivo</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Botões de Atendimento WhatsApp</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Otimização Google My Business</li>
-          </ul>
-        </div>
-
-        <!-- Service 2: Food Service & Delivery -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-indigo-500/30 relative">
-          <div class="absolute -top-3 right-6 px-3 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-[10px] font-bold uppercase tracking-wider text-white rounded-full">
-            Mais Vendido
+            <span class="text-xs text-slate-400 font-medium block mb-1">Tempo Livre para a Equipe</span>
+            <span id="roi-result-hours" class="text-xl sm:text-2xl font-extrabold text-emerald-400 block">20 Horas/Mês</span>
           </div>
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
-              <i data-lucide="shopping-cart" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Cardápios Web & Pedidos WhatsApp</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Seu próprio sistema de delivery sem pagar comissão de 12% a 27% para aplicativos. O cliente monta o pedido e recebe tudo pronto no seu WhatsApp.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Cardápio Dinâmico com Adicionais</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Painel de Cozinha em Tempo Real</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Impressão de Comanda & PDV Caixa</li>
-          </ul>
-        </div>
-
-        <!-- Service 3: Chatbots -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
-              <i data-lucide="bot" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Automação & Bots WhatsApp</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Atendimento automático 24 horas por dia. Qualificação de leads, tira-dúvidas frequentes, agendamento de horários e disparo de mensagens.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Resposta Instantânea sem Fila</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Triagem Inteligente de Clientes</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Notificações de Status do Pedido</li>
-          </ul>
-        </div>
-
-        <!-- Service 4: ERPs / Custom Systems -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6">
-              <i data-lucide="layout-dashboard" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Dashboards & ERPs Sob Medida</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Sistemas web personalizados para controle de estoque, quebra de insumos, margem de lucro e gestão de tarefas em formato Kanban.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Controle Operacional & Estoque</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Quadro Kanban de Equipe</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Gráficos e Relatórios Mensais</li>
-          </ul>
-        </div>
-
-        <!-- Service 5: CRM Integrations -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
-              <i data-lucide="workflow" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Integrações CRM & Bitrix24</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Conectamos seu site, WhatsApp, planilhas do Google e sistemas internos com CRMs (como Bitrix24) para automatizar a jornada do cliente.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Sincronização em Tempo Real</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Disparo de E-mails e Webhooks</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Automação de Google Sheets</li>
-          </ul>
-        </div>
-
-        <!-- Service 6: Web Scraping & B2B -->
-        <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-              <i data-lucide="database" class="w-7 h-7"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Inteligência de Dados & B2B</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Coleta automatizada de dados de mercado (PNCP, dados públicos, CNPJs) para mapear concorrentes e identificar oportunidades de vendas.
-            </p>
-          </div>
-          <ul class="space-y-2 text-xs text-slate-300 border-t border-white/10 pt-4">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Minerador B2B de Oportunidades</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Relatórios em Excel/Python</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Monitoramento de Concorrentes</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO / CASES SECTION -->
-  <section id="portfolio" class="py-20 relative border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Cases de Sucesso</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
-            Projetos Reais Entregues
-          </h2>
-        </div>
-        <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
-          Clique nos cards para visualizar detalhes das tecnologias utilizadas e métricas alcançadas pelos nossos clientes.
-        </p>
-      </div>
-
-      <!-- Filter Tabs -->
-      <div class="flex flex-wrap gap-2 mb-10">
-        <button data-category="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-lg shadow-indigo-500/30">
-          Todos os Projetos
-        </button>
-        <button data-category="websites" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-          Websites & Landing Pages
-        </button>
-        <button data-category="ecommerce" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-          Delivery & WhatsApp
-        </button>
-        <button data-category="systems" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-          Sistemas & Apps
-        </button>
-        <button data-category="automation" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-          Automações & IA
-        </button>
-      </div>
-
-      <!-- Projects Grid Container -->
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered dynamically by js/main.js -->
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ROI / ECONOMY CALCULATOR SECTION -->
-  <section id="calculadora" class="py-20 relative border-t border-white/5 bg-slate-950/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-2">Simulador de Eficiência</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6">
-            Quanto tempo e dinheiro sua empresa <span class="gradient-text">está perdendo?</span>
-          </h2>
-          <p class="text-slate-400 text-base leading-relaxed mb-6">
-            O atendimento manual no WhatsApp e a falta de um cardápio web rápido custam caro. Faça a simulação abaixo para ver quanto você pode economizar automatizando seu processo.
-          </p>
-
-          <div class="space-y-4 text-sm text-slate-300">
-            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
-              <i data-lucide="clock" class="w-5 h-5 text-indigo-400"></i>
-              <span>Economize até <strong>4 minutos por atendimento</strong> via WhatsApp.</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
-              <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i>
-              <span>Aumente as vendas diretas em até <strong>28%</strong> com um site responsivo.</span>
-            </div>
+            <span class="text-xs text-slate-400 font-medium block mb-1">Faturamento Adicional Est.</span>
+            <span id="roi-result-money" class="text-xl sm:text-2xl font-extrabold text-indigo-300 block">R$ 1.800/Mês</span>
           </div>
         </div>
 
-        <!-- Calculator Card -->
-        <div class="glass-card rounded-3xl p-8 border-indigo-500/30">
-          
-          <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <i data-lucide="calculator" class="w-6 h-6 text-indigo-400"></i>
-            Calculadora de Economia Comercial
-          </h3>
-
-          <!-- Control 1: Orders per month -->
-          <div class="mb-6">
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-sm font-semibold text-slate-300">Atendimentos / Pedidos por Mês:</label>
-              <span id="roi-orders-val" class="text-lg font-bold text-indigo-400">300</span>
-            </div>
-            <input type="range" id="roi-orders" min="50" max="2000" step="50" value="300" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
-          </div>
-
-          <!-- Control 2: Average ticket -->
-          <div class="mb-8">
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-sm font-semibold text-slate-300">Ticket Médio (R$):</label>
-              <span id="roi-value-val" class="text-lg font-bold text-indigo-400">R$ 50</span>
-            </div>
-            <input type="range" id="roi-value" min="10" max="300" step="10" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
-          </div>
-
-          <!-- Result Display Box -->
-          <div class="p-6 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 grid grid-cols-2 gap-4 text-center mb-6">
-            <div>
-              <span class="text-xs text-slate-400 font-medium block mb-1">Tempo Salvo da Equipe</span>
-              <span id="roi-result-hours" class="text-xl sm:text-2xl font-extrabold text-emerald-400 block">20 Horas/Mês</span>
-            </div>
-            <div>
-              <span class="text-xs text-slate-400 font-medium block mb-1">Faturamento Adicional Est.</span>
-              <span id="roi-result-money" class="text-xl sm:text-2xl font-extrabold text-indigo-300 block">R$ 1.800/Mês</span>
-            </div>
-          </div>
-
-          <a href="https://wa.me/5548999999999?text=Fiz%20a%20simula%C3%A7%C3%A3o%20no%20site%20e%20quero%20automatizar%20meu%20atendimento!" target="_blank" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-center block shadow-lg transition flex items-center justify-center gap-2">
-            <i data-lucide="zap" class="w-5 h-5"></i>
-            Quero Automatizar Minha Empresa Agora
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- COMPARISON / BENEFITS SECTION -->
-  <section id="beneficios" class="py-20 relative border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Comparativo Prático</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
-          Por que ter um sistema ou site próprio?
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Sem Automação -->
-        <div class="p-8 rounded-3xl bg-rose-950/20 border border-rose-500/20">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
-              <i data-lucide="x-circle" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-rose-300">Sem Nossa Automação</h3>
-          </div>
-          <ul class="space-y-4 text-sm text-slate-300">
-            <li class="flex items-start gap-3">
-              <i data-lucide="x" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-              <span>Clientes esperando minutos no WhatsApp por uma resposta de cardápio ou preço.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="x" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-              <span>Pagamento de altas taxas e comissões para aplicativos terceiros de delivery.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="x" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-              <span>Erros na anotação de pedidos e falta de histórico organizado de vendas.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="x" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
-              <span>Apenas perfil de Instagram sem presença profissional de busca no Google.</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Com Nossa Empresa -->
-        <div class="p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 relative overflow-hidden">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-              <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-emerald-300">Com Nossa Empresa (LM Tech)</h3>
-          </div>
-          <ul class="space-y-4 text-sm text-slate-300">
-            <li class="flex items-start gap-3">
-              <i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-              <span>Cardápio e site funcionando 24h/dia, gerando vendas de forma automática.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-              <span>Zero comissões: 100% do valor do pedido vai direto para o seu caixa.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-              <span>Comandas organizadas direto na tela da cozinha ou impressora térmica.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-              <span>Site próprio com SEO e selo de credibilidade que passa confiança ao cliente.</span>
-            </li>
-          </ul>
-        </div>
+        <a href="https://wa.me/5548999999999?text=Fiz%20a%20simula%C3%A7%C3%A3o%20no%20site%20e%20quero%20automatizar%20minha%20empresa!" target="_blank" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-center block shadow-lg transition flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          Quero Automatizar Minha Empresa
+        </a>
 
       </div>
 
@@ -493,138 +483,108 @@
   </section>
 
   <!-- LEAD CONTACT SECTION -->
-  <section id="contato" class="py-20 relative border-t border-white/5 bg-slate-950/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="contato" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Contato Corporativo</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">
+          Pronto para dar o próximo passo?
+        </h2>
+        <p class="text-slate-400 text-base leading-relaxed mb-8">
+          Envie os dados do seu projeto para gerar uma mensagem formatada diretamente para o nosso WhatsApp comercial.
+        </p>
+
+        <div class="space-y-4 text-sm text-slate-300">
+          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
+            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+            <span><strong>Razão Social & CNPJ</strong>: LM Tech & Automações LTDA</span>
+          </div>
+          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
+            <i data-lucide="phone" class="w-5 h-5 text-indigo-400"></i>
+            <span><strong>WhatsApp Oficial</strong>: +55 (48) 99999-9999</span>
+          </div>
+          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
+            <i data-lucide="mail" class="w-5 h-5 text-purple-400"></i>
+            <span><strong>E-mail</strong>: lucasgabrielwww2218@gmail.com</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Box -->
+      <div class="lg:col-span-7 shadcn-card p-8">
+        <h3 class="text-2xl font-bold text-white mb-6">Solicitar Orçamento Rápido</h3>
         
-        <div class="lg:col-span-5">
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Fale Conosco</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6">
-            Vamos impulsionar seu negócio?
-          </h2>
-          <p class="text-slate-400 text-base leading-relaxed mb-8">
-            Preencha os campos ao lado para gerar uma solicitação direta pelo WhatsApp ou entre em contato pelos canais oficiais da empresa.
-          </p>
-
-          <div class="space-y-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
-                <i data-lucide="file-badge" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs text-slate-400 block">Razão Social & CNPJ</span>
-                <span class="text-sm font-bold text-white">LM Tech & Automações LTDA</span>
-              </div>
+        <form id="whatsapp-lead-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Seu Nome *</label>
+              <input type="text" id="lead-name" required placeholder="Ex: Lucas Gabriel" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm">
             </div>
 
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                <i data-lucide="phone" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs text-slate-400 block">WhatsApp Oficial</span>
-                <span class="text-sm font-bold text-white">+55 (48) 99999-9999</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
-                <i data-lucide="mail" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs text-slate-400 block">E-mail Comercial</span>
-                <span class="text-sm font-bold text-white">lucasgabrielwww2218@gmail.com</span>
-              </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nome da Empresa</label>
+              <input type="text" id="lead-company" placeholder="Ex: Hamburgueria Destaque" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm">
             </div>
           </div>
-        </div>
 
-        <!-- Form Generator Box -->
-        <div class="lg:col-span-7">
-          <div class="glass-card rounded-3xl p-8 border-indigo-500/20">
-            <h3 class="text-2xl font-bold text-white mb-6">Solicitar Orçamento Rápido</h3>
-            
-            <form id="whatsapp-lead-form" class="space-y-5">
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-2">Seu Nome *</label>
-                  <input type="text" id="lead-name" required placeholder="Ex: Lucas Gabriel" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
-                </div>
-
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 mb-2">Nome da Empresa / Loja</label>
-                  <input type="text" id="lead-company" placeholder="Ex: Burger King Local" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-2">Qual solução você busca?</label>
-                <select id="lead-service" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white focus:outline-none focus:border-indigo-500 transition">
-                  <option value="Website ou Landing Page">Website ou Landing Page Profissional</option>
-                  <option value="Cardápio Digital / Delivery sem Taxa">Cardápio Digital no WhatsApp (Food Service)</option>
-                  <option value="Bot de Atendimento Automatico">Bot de Atendimento Automático no WhatsApp</option>
-                  <option value="Dashboard ou Sistema Interno (ERP)">Dashboard / Sistema de Gestão Interna</option>
-                  <option value="Automação CRM e Planilhas">Automação de CRM (Bitrix24) / Planilhas</option>
-                  <option value="Outra Solução Personalizada">Outra Solução Personalizada</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-2">Detalhes do Projeto (Opcional)</label>
-                <textarea id="lead-detail" rows="3" placeholder="Descreva brevemente o que sua empresa precisa..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition resize-none"></textarea>
-              </div>
-
-              <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-base shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
-                <i data-lucide="send" class="w-5 h-5"></i>
-                Enviar Orçamento via WhatsApp
-              </button>
-
-            </form>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Solução Desejada</label>
+            <select id="lead-service" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white focus:outline-none focus:border-indigo-500 transition text-sm">
+              <option value="Website ou Landing Page">Website ou Landing Page Profissional</option>
+              <option value="Cardápio Digital no WhatsApp">Cardápio Digital no WhatsApp (Sem Taxa)</option>
+              <option value="Bot de Atendimento 24h">Bot de Atendimento Automático 24h</option>
+              <option value="Dashboard ou ERP Interno">Dashboard / Sistema de Gestão Interno</option>
+              <option value="Automação CRM Bitrix24">Automação de CRM (Bitrix24) / Planilhas</option>
+            </select>
           </div>
-        </div>
 
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Detalhes do Projeto</label>
+            <textarea id="lead-detail" rows="3" placeholder="Descreva brevemente o que sua empresa precisa..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/20 transition flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            Enviar Orçamento no WhatsApp
+          </button>
+        </form>
       </div>
 
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-12 border-t border-white/10 bg-[#090d16] text-slate-400 text-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-      
+  <footer class="py-10 border-t border-white/10 bg-[#030712] text-slate-400 text-xs">
+    <div class="container max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
-        <span class="text-white font-bold block mb-1">LM Tech & Automação</span>
-        <p class="text-xs text-slate-400">
-          CNPJ Registrado • Todos os direitos reservados © 2026.
-        </p>
+        <span class="text-white font-bold text-sm block">LM Tech & Automação</span>
+        <p>CNPJ Registrado • Todos os direitos reservados © 2026.</p>
       </div>
 
-      <div class="flex items-center gap-6 text-slate-300">
-        <a href="https://github.com/LucasGabrielOM" target="_blank" class="hover:text-white transition flex items-center gap-1.5 text-xs">
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/LucasGabrielOM" target="_blank" class="hover:text-white transition flex items-center gap-1">
           <i data-lucide="github" class="w-4 h-4"></i> GitHub
         </a>
-        <a href="https://www.linkedin.com/in/lucas-gabriel-de-oliveira-moreira-400769350" target="_blank" class="hover:text-white transition flex items-center gap-1.5 text-xs">
+        <a href="https://www.linkedin.com/in/lucas-gabriel-de-oliveira-moreira-400769350" target="_blank" class="hover:text-white transition flex items-center gap-1">
           <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
         </a>
-        <a href="https://www.instagram.com/lucs_g0m/" target="_blank" class="hover:text-white transition flex items-center gap-1.5 text-xs">
+        <a href="https://www.instagram.com/lucs_g0m/" target="_blank" class="hover:text-white transition flex items-center gap-1">
           <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
         </a>
       </div>
-
     </div>
   </footer>
 
   <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/5548999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20sua%20empresa%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="whatsapp-float-btn fixed bottom-6 right-6 z-50 p-4 rounded-full bg-emerald-500 text-white shadow-2xl hover:bg-emerald-400 hover:scale-110 transition duration-300 flex items-center justify-center">
-    <i data-lucide="message-circle" class="w-7 h-7"></i>
+  <a href="https://wa.me/5548999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20sua%20empresa." target="_blank" class="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-emerald-500 text-white shadow-2xl hover:bg-emerald-400 hover:scale-110 transition duration-300 flex items-center justify-center pulse-badge">
+    <i data-lucide="message-circle" class="w-6 h-6"></i>
   </a>
 
-  <!-- PROJECT DETAIL MODAL CONTAINER -->
+  <!-- PROJECT DETAIL MODAL -->
   <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
     <div class="bg-slate-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative" id="modal-content">
-      <!-- Dynamic modal content loaded via js/main.js -->
+      <!-- Loaded dynamically -->
     </div>
   </div>
 
