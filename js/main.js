@@ -1,31 +1,69 @@
-// Main Client-Side Logic for Agency Website
+// Main Client-Side Logic for Agency Website (Theme Switcher, Project Showcase, ROI Calculator)
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Theme (Dark by default, restore user preference)
+  initTheme();
+
   // Initialize Lucide Icons
   if (window.lucide) {
     lucide.createIcons();
   }
 
-  // Render Projects Grid
+  // Render Projects Grid with Real Live URLs
   renderProjects("all");
 
-  // Setup Portfolio Filter Listeners
+  // Setup Listeners
+  setupThemeToggle();
   setupPortfolioFilters();
-
-  // Setup ROI Calculator
   setupRoiCalculator();
-
-  // Setup WhatsApp Form Lead Generator
   setupWhatsAppForm();
-
-  // Setup CNPJ Copy Button
   setupCnpjCopy();
-
-  // Mobile Menu Toggle
   setupMobileMenu();
 });
 
-// Render Projects Cards
+// Theme Management (Light / Dark Mode)
+function initTheme() {
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  const html = document.documentElement;
+
+  if (savedTheme === "light") {
+    html.classList.remove("dark");
+    html.classList.add("light");
+  } else {
+    html.classList.remove("light");
+    html.classList.add("dark");
+  }
+}
+
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle-btn");
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    const html = document.documentElement;
+    const isDark = html.classList.contains("dark");
+    const newTheme = isDark ? "light" : "dark";
+
+    if (newTheme === "light") {
+      html.classList.remove("dark");
+      html.classList.add("light");
+    } else {
+      html.classList.remove("light");
+      html.classList.add("dark");
+    }
+
+    localStorage.setItem("theme", newTheme);
+
+    // Update Theme Toggle Icon
+    const iconContainer = document.getElementById("theme-icon");
+    if (iconContainer && window.lucide) {
+      iconContainer.setAttribute("data-lucide", newTheme === "light" ? "moon" : "sun");
+      lucide.createIcons();
+    }
+  });
+}
+
+// Render Projects Cards (Pointing to Real Live Websites)
 function renderProjects(filterCategory) {
   const container = document.getElementById("projects-grid");
   if (!container) return;
@@ -35,18 +73,18 @@ function renderProjects(filterCategory) {
     : projectsData.filter(p => p.category === filterCategory);
 
   container.innerHTML = filtered.map(p => `
-    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-indigo-500/40 transition-all duration-300" onclick="openProjectModal('${p.id}')">
+    <div class="shadcn-card p-6 flex flex-col justify-between group cursor-pointer" onclick="openProjectModal('${p.id}')">
       <div>
         <div class="flex items-center justify-between mb-4">
           <span class="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
             ${p.badge || p.categoryName}
           </span>
-          <div class="p-2 rounded-xl bg-white/5 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition">
+          <div class="p-2 rounded-xl bg-slate-800/60 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition">
             <i data-lucide="${p.icon || 'code'}" class="w-5 h-5"></i>
           </div>
         </div>
 
-        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-300 transition">
+        <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition mb-2">
           ${p.title}
         </h3>
         <p class="text-slate-400 text-sm mb-4 line-clamp-2">
@@ -65,12 +103,12 @@ function renderProjects(filterCategory) {
 
         <div class="pt-4 border-t border-white/10 flex items-center justify-between">
           <span class="text-xs text-emerald-400 font-medium flex items-center gap-1">
-            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
             ${p.metrics.split('|')[0]}
           </span>
-          <span class="text-xs text-indigo-400 group-hover:translate-x-1 transition font-semibold flex items-center gap-1">
-            Detalhes <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </span>
+          <a href="${p.demo || '#'}" target="_blank" onclick="event.stopPropagation()" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-bold transition flex items-center gap-1">
+            Ver Site Live <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -130,8 +168,8 @@ function openProjectModal(id) {
         ${project.fullDesc}
       </p>
 
-      <div class="mb-6 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-        <h4 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">Impacto Real no Cliente:</h4>
+      <div class="mb-6 bg-slate-900/80 p-4 rounded-xl border border-white/10">
+        <h4 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">Resultado Real para o Cliente:</h4>
         <p class="text-emerald-400 font-semibold text-sm flex items-center gap-2">
           <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
           ${project.metrics}
@@ -146,24 +184,17 @@ function openProjectModal(id) {
       </div>
 
       <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3">
-        <a href="${whatsappUrl}" target="_blank" class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-          Quero uma solução similar no meu WhatsApp
-        </a>
-
-        ${project.github ? `
-          <a href="${project.github}" target="_blank" class="py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-center flex items-center justify-center gap-2 transition">
-            <i data-lucide="github" class="w-5 h-5"></i>
-            Ver Repositório
-          </a>
-        ` : ''}
-
         ${project.demo ? `
-          <a href="${project.demo}" target="_blank" class="py-3 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-center flex items-center justify-center gap-2 transition">
+          <a href="${project.demo}" target="_blank" class="flex-1 py-3.5 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20 transition">
             <i data-lucide="external-link" class="w-5 h-5"></i>
-            Ver Demo Online
+            Acessar Site do Cliente (Ao Vivo)
           </a>
         ` : ''}
+
+        <a href="${whatsappUrl}" target="_blank" class="py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          Quero um Projeto Assim
+        </a>
       </div>
     </div>
   `;
@@ -199,14 +230,7 @@ function setupRoiCalculator() {
     ordersValSpan.innerText = orders;
     valueValSpan.innerText = `R$ ${avgTicket}`;
 
-    // Calculation estimates:
-    // Manual order handling takes approx 5 mins of staff time per order on WhatsApp/Phone.
-    // Automation saves 80% of that time = 4 mins saved per order.
-    // Saved hours per month = (orders * 4 mins) / 60
     const hoursSaved = Math.round((orders * 4) / 60);
-
-    // Additional turnover / prevented loss:
-    // Having a fast web store / bot increases conversion & prevents customer abandonment by ~12%
     const extraRevenue = Math.round(orders * avgTicket * 0.12);
 
     resultHours.innerText = `${hoursSaved} Horas/Mês`;
@@ -233,7 +257,7 @@ function setupWhatsAppForm() {
 
     const text = `Olá! Meu nome é *${name}*${company ? ` da empresa *${company}*` : ''}.\nTenho interesse em: *${service}*.\n${detail ? `Detalhes: ${detail}` : ''}\n\nGostaria de solicitar um orçamento sem compromisso!`;
 
-    const phone = "5548999999999"; // Can be replaced by real phone number
+    const phone = "5548999999999";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   });

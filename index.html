@@ -7,6 +7,9 @@
   <meta name="description" content="Soluções digitais sob medida para empresas locais: Websites, Cardápios no WhatsApp sem taxa de delivery, Chatbots e ERPs de Gestão.">
   <meta name="author" content="Lucas Gabriel de Oliveira Moreira">
 
+  <!-- Favicon Icon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -43,17 +46,14 @@
 
   <!-- Glow Elements -->
   <div class="hero-glow"></div>
-  <div class="hero-glow-secondary"></div>
 
-  <!-- FLOATING NAVBAR (SHADCN PILL STYLE) -->
+  <!-- FLOATING NAVBAR (SHADCN PILL STYLE WITH THEME TOGGLE & SVG LOGO) -->
   <div class="sticky top-5 z-50 w-full px-4">
     <header class="floating-navbar rounded-2xl px-4 py-3 flex items-center justify-between">
       
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 font-bold text-lg group">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#D247BF] via-indigo-600 to-indigo-500 flex items-center justify-center text-white border border-white/20 shadow-md group-hover:scale-105 transition">
-          <i data-lucide="chevrons-down" class="w-5 h-5"></i>
-        </div>
+      <!-- Brand Logo with Custom SVG Icon -->
+      <a href="#" class="flex items-center gap-3 font-bold text-lg group">
+        <img src="assets/logo.svg" alt="LM Tech Logo" class="w-9 h-9 group-hover:scale-105 transition">
         <span class="text-white font-extrabold tracking-tight">
           LM <span class="shadcn-gradient-text">Tech & Automação</span>
         </span>
@@ -68,13 +68,20 @@
         <a href="#contato" class="hover:text-indigo-400 transition">Contato</a>
       </nav>
 
-      <!-- Desktop Actions -->
+      <!-- Desktop Actions + Theme Switcher -->
       <div class="hidden md:flex items-center gap-3">
+        <!-- Theme Toggle Button (Light/Dark Mode) -->
+        <button id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-800/80 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center justify-center" title="Alternar Tema Claro/Escuro">
+          <i id="theme-icon" data-lucide="sun" class="w-4 h-4 text-amber-400"></i>
+        </button>
+
+        <!-- CNPJ Badge -->
         <button id="btn-copy-cnpj" data-cnpj="CNPJ Ativo" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition flex items-center gap-1.5">
           <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
           CNPJ Ativo
         </button>
 
+        <!-- WhatsApp Commercial Action -->
         <a href="https://wa.me/5548999999999?text=Ol%C3%A1%20Lucas!%20Vim%20pelo%20site%20da%20sua%20empresa%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-500/20 transition flex items-center gap-2">
           <i data-lucide="message-circle" class="w-4 h-4"></i>
           WhatsApp Comercial
@@ -101,7 +108,7 @@
     </div>
   </div>
 
-  <!-- HERO SECTION (SHADCN TEMPLATE STYLE) -->
+  <!-- HERO SECTION -->
   <section class="container max-w-7xl mx-auto px-4 pt-16 pb-24 md:pt-24 md:pb-32 text-center relative z-10">
     
     <!-- Top Pill Badge -->
@@ -174,7 +181,7 @@
 
   </section>
 
-  <!-- MARQUEE INFINITO (SPONSORS / STACK BAR) -->
+  <!-- MARQUEE INFINITO -->
   <section class="border-y border-white/5 py-8 bg-slate-950/60 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
       <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Tecnologias & Soluções Dominadas</span>
@@ -190,7 +197,6 @@
         <div class="flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-cyan-400"></i> Supabase & PostgreSQL</div>
         <div class="flex items-center gap-2"><i data-lucide="palette" class="w-5 h-5 text-[#D247BF]"></i> Tailwind CSS & Shadcn</div>
 
-        <!-- Duplicated for seamless infinite loop -->
         <div class="flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-indigo-400"></i> ReactJS & Next.js</div>
         <div class="flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-purple-400"></i> Node.js & APIs REST</div>
         <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-400"></i> Automação Python</div>
@@ -202,7 +208,7 @@
     </div>
   </section>
 
-  <!-- BENEFITS SECTION (SHADCN NUMBERED CARDS 01, 02, 03, 04) -->
+  <!-- BENEFITS SECTION -->
   <section id="beneficios" class="container max-w-7xl mx-auto px-4 py-24">
     <div class="grid lg:grid-cols-2 place-items-center lg:gap-16">
       
@@ -229,7 +235,6 @@
       <!-- Numbered Cards Grid -->
       <div class="grid sm:grid-cols-2 gap-4 w-full">
         
-        <!-- Card 01 -->
         <div class="shadcn-card p-6 flex flex-col justify-between group/number">
           <div>
             <div class="flex justify-between items-start mb-6">
@@ -245,7 +250,6 @@
           </div>
         </div>
 
-        <!-- Card 02 -->
         <div class="shadcn-card p-6 flex flex-col justify-between group/number">
           <div>
             <div class="flex justify-between items-start mb-6">
@@ -261,7 +265,6 @@
           </div>
         </div>
 
-        <!-- Card 03 -->
         <div class="shadcn-card p-6 flex flex-col justify-between group/number">
           <div>
             <div class="flex justify-between items-start mb-6">
@@ -277,7 +280,6 @@
           </div>
         </div>
 
-        <!-- Card 04 -->
         <div class="shadcn-card p-6 flex flex-col justify-between group/number">
           <div>
             <div class="flex justify-between items-start mb-6">
@@ -298,7 +300,7 @@
     </div>
   </section>
 
-  <!-- SERVICES & FEATURES SECTION (SHADCN RINGS STYLE) -->
+  <!-- SERVICES SECTION -->
   <section id="servicos" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
     
     <div class="text-center max-w-3xl mx-auto mb-16">
@@ -313,7 +315,6 @@
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Feature 1 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-indigo-500/20 p-3 rounded-full ring-8 ring-indigo-500/10 mb-4 text-indigo-400">
           <i data-lucide="smartphone" class="w-6 h-6"></i>
@@ -322,7 +323,6 @@
         <p class="text-sm text-slate-400">Design leve, intuitivo e com carregamento instantâneo em qualquer smartphone.</p>
       </div>
 
-      <!-- Feature 2 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-emerald-500/20 p-3 rounded-full ring-8 ring-emerald-500/10 mb-4 text-emerald-400">
           <i data-lucide="badge-check" class="w-6 h-6"></i>
@@ -331,7 +331,6 @@
         <p class="text-sm text-slate-400">Comanda automatizada enviada pronta com adicionais, endereço e forma de pagamento.</p>
       </div>
 
-      <!-- Feature 3 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-purple-500/20 p-3 rounded-full ring-8 ring-purple-500/10 mb-4 text-purple-400">
           <i data-lucide="bot" class="w-6 h-6"></i>
@@ -340,7 +339,6 @@
         <p class="text-sm text-slate-400">Chatbots para triagem de leads, resposta a perguntas frequentes e agendamentos.</p>
       </div>
 
-      <!-- Feature 4 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-cyan-500/20 p-3 rounded-full ring-8 ring-cyan-500/10 mb-4 text-cyan-400">
           <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
@@ -349,7 +347,6 @@
         <p class="text-sm text-slate-400">Controle de estoque, quebra de insumos e escalas da equipe em quadro Kanban.</p>
       </div>
 
-      <!-- Feature 5 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-amber-500/20 p-3 rounded-full ring-8 ring-amber-500/10 mb-4 text-amber-400">
           <i data-lucide="workflow" class="w-6 h-6"></i>
@@ -358,7 +355,6 @@
         <p class="text-sm text-slate-400">Conexão fluida entre seu site, formulários, planilhas automáticas e sistemas CRM.</p>
       </div>
 
-      <!-- Feature 6 -->
       <div class="shadcn-card p-6 text-center flex flex-col items-center">
         <div class="bg-rose-500/20 p-3 rounded-full ring-8 ring-rose-500/10 mb-4 text-rose-400">
           <i data-lucide="search" class="w-6 h-6"></i>
@@ -370,7 +366,7 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO / CASES SHOWCASE (SHADCN UI STYLE) -->
+  <!-- PORTFOLIO / CASES SHOWCASE -->
   <section id="portfolio" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
     
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -379,7 +375,7 @@
         <h2 class="text-3xl md:text-5xl font-extrabold text-white">Cases Reais Entregues</h2>
       </div>
       <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
-        Clique em qualquer projeto para abrir os detalhes técnicos, métricas e o repositório no GitHub.
+        Clique em qualquer projeto para abrir a demonstração online em tempo real ou detalhes da solução.
       </p>
     </div>
 
