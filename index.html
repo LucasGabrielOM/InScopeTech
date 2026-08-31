@@ -1,573 +1,635 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InScope - Serviços Tecnológicos | Websites, Automação & Sistemas</title>
-  <meta name="description" content="InScope Serviços Tecnológicos - Soluções em tecnologia, desenvolvimento web, cardápios no WhatsApp, automações e sistemas web sob medida.">
-  <meta name="author" content="InScope Serviços Tecnológicos">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InScope — Serviços Tecnológicos | Sites, Automação & Sistemas sob medida</title>
+<meta name="description" content="InScope Serviços Tecnológicos: sites de alta performance, cardápios digitais sem taxa, automações no WhatsApp e sistemas web sob medida para empresas em crescimento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a18;
+    --paper:#eeeeec;
+    --paper-raise:#f7f7f5;
+    --white:#ffffff;
+    --line:#d6d4cf;
+    --line-strong:#b9b6ae;
+    --muted:#63615b;
+    --accent:#2f5d50;
+    --accent-ink:#e9f1ee;
+    --accent-dark:#1f4038;
+    --radius:2px;
+    --wrap:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--accent-ink);}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  h1,h2,h3{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.01em;margin:0;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
+  .serif{font-family:'Source Serif 4',serif;}
+  .serif-i{font-family:'Source Serif 4',serif;font-style:italic;}
+  .label{
+    font-family:'Source Serif 4',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  .label::before{content:"— ";color:var(--line-strong);}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important;transition-duration:0.001ms !important;}
+  }
 
-  <!-- WhatsApp Official Favicon -->
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(238,238,236,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    display:flex;flex-direction:column;line-height:1;text-decoration:none;
+  }
+  .brand .word{font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.02em;}
+  .brand .tag{font-family:'Source Serif 4',serif;font-size:12px;color:var(--muted);margin-top:2px;}
+  nav.links{display:flex;gap:34px;align-items:center;}
+  nav.links a{
+    font-size:15px;text-decoration:none;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);
+    transition:width .2s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .cta-wa{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:#fff;
+    padding:11px 20px;text-decoration:none;
+    font-size:14px;font-weight:600;
+    border-radius:var(--radius);
+    white-space:nowrap;
+  }
+  .cta-wa:hover{background:var(--accent-dark);}
+  .cta-wa svg{width:16px;height:16px;fill:currentColor;flex:none;}
+  .burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius);width:44px;height:44px;cursor:pointer;}
+  .burger span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;}
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            border: 'rgba(255, 255, 255, 0.1)',
-            card: '#0f172a',
-            primary: {
-              DEFAULT: '#6366f1',
-              hover: '#4f46e5'
-            }
-          }
-        }
-      }
+  /* ---------- hero ---------- */
+  .hero{
+    padding:88px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.35fr 1fr;gap:64px;align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(38px,5.2vw,64px);
+    line-height:1.03;
+    max-width:15ch;
+  }
+  .hero .lede{
+    font-family:'Source Serif 4',serif;
+    font-size:19px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:26px 0 34px;
+  }
+  .hero .lede b{color:var(--ink);font-weight:600;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--ink);color:var(--ink);text-decoration:none;
+    padding:12px 20px;font-size:14px;font-weight:600;border-radius:var(--radius);
+  }
+  .btn-outline:hover{background:var(--ink);color:var(--paper);}
+  .hero-side{border-left:1px solid var(--line);padding-left:36px;}
+  .hero-side .domain{font-family:'Source Serif 4',serif;font-style:italic;font-size:15px;color:var(--muted);margin-bottom:18px;}
+  .stat{padding:18px 0;border-top:1px solid var(--line);}
+  .stat:first-of-type{border-top:none;padding-top:0;}
+  .stat .num{font-family:'Archivo',sans-serif;font-weight:800;font-size:30px;color:var(--accent-dark);}
+  .stat .desc{font-size:13.5px;color:var(--muted);margin-top:2px;}
+
+  /* ---------- marquee ---------- */
+  .stack{
+    padding:26px 0;border-bottom:1px solid var(--line);
+    background:var(--paper-raise);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .stack .track{display:inline-flex;gap:56px;animation:scroll 32s linear infinite;}
+  .stack .track span{
+    font-family:'Archivo',sans-serif;font-weight:600;font-size:14.5px;color:var(--muted);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .stack .track span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  .section-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:56px;align-items:start;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);max-width:14ch;}
+  .section-head .desc{font-family:'Source Serif 4',serif;color:var(--muted);font-size:17px;max-width:42ch;padding-top:6px;}
+
+  /* ---------- services ---------- */
+  .service-list{border-top:1px solid var(--line);}
+  .service{
+    display:grid;grid-template-columns:2fr 3fr;gap:40px;
+    padding:34px 0;border-bottom:1px solid var(--line);
+  }
+  .service h3{font-size:22px;font-weight:700;}
+  .service p{color:var(--muted);margin:10px 0 0;max-width:56ch;}
+  .service .idx{font-family:'Source Serif 4',serif;font-style:italic;color:var(--line-strong);font-size:14px;display:block;margin-bottom:8px;}
+
+  /* ---------- security ---------- */
+  .sec-alt{background:var(--ink);color:var(--paper);}
+  .sec-alt .label{color:#a9a69c;}
+  .sec-alt .section-head .desc{color:#b9b6ae;}
+  .sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#3a3833;border:1px solid #3a3833;}
+  .sec-item{background:var(--ink);padding:32px;}
+  .sec-item h3{font-size:18px;color:#fff;}
+  .sec-item p{color:#b9b6ae;font-size:14.5px;margin:10px 0 0;}
+
+  /* ---------- portfolio ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+  .filters button{
+    font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;
+    padding:9px 16px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);
+    border-radius:999px;cursor:pointer;
+  }
+  .filters button.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .case-list{display:flex;flex-direction:column;}
+  .case{
+    display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;
+    padding:26px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);
+  }
+  .case:last-child{border-bottom:1px solid var(--line);}
+  .case .name{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;}
+  .case .meta{color:var(--muted);font-size:14px;margin-top:4px;}
+  .case .cat{
+    font-size:12.5px;color:var(--accent-dark);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;
+    white-space:nowrap;
+  }
+  .case .arrow{font-size:20px;color:var(--line-strong);transition:transform .15s ease;}
+  .case:hover .arrow{transform:translateX(4px);color:var(--accent);}
+
+  /* ---------- calculator ---------- */
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .calc-copy .point{display:flex;gap:14px;margin-top:22px;}
+  .calc-copy .point .mark{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:9px;flex:none;}
+  .calc-copy .point p{margin:0;color:var(--muted);}
+  .calc-copy .point b{color:var(--ink);}
+  .calc-card{
+    background:var(--white);border:1px solid var(--line);padding:36px;
+  }
+  .field{margin-bottom:26px;}
+  .field label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:10px;}
+  .field label output{font-family:'Archivo',sans-serif;font-weight:800;color:var(--accent-dark);}
+  input[type=range]{
+    width:100%;accent-color:var(--accent);height:2px;background:var(--line-strong);
+  }
+  .calc-results{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px;}
+  .calc-result{background:var(--paper-raise);padding:20px;}
+  .calc-result .n{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;color:var(--accent-dark);}
+  .calc-result .l{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  /* ---------- contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;}
+  .contact-info .row{padding:18px 0;border-top:1px solid var(--line);}
+  .contact-info .row:first-child{border-top:none;padding-top:0;}
+  .contact-info .k{font-size:12.5px;color:var(--muted);text-transform:none;}
+  .contact-info .v{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin-top:4px;}
+  form{display:grid;gap:18px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  label.f{font-size:13.5px;font-weight:600;display:block;margin-bottom:8px;}
+  input,select,textarea{
+    width:100%;padding:13px 14px;border:1px solid var(--line-strong);background:var(--white);
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border-radius:var(--radius);
+  }
+  textarea{resize:vertical;min-height:96px;}
+  .submit-btn{
+    justify-self:start;display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:#fff;border:none;padding:14px 26px;font-size:15px;font-weight:600;
+    border-radius:var(--radius);cursor:pointer;font-family:'Inter',sans-serif;
+  }
+  .submit-btn:hover{background:var(--accent-dark);}
+  .fine{font-size:12.5px;color:var(--muted);margin-top:-4px;}
+
+  /* ---------- footer ---------- */
+  footer{padding:48px 0;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .foot-brand{display:flex;align-items:center;gap:10px;}
+  .foot-brand .word{font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;}
+  .foot-legal{font-size:12.5px;color:var(--muted);}
+  .foot-social{display:flex;gap:18px;}
+  .foot-social a{font-size:13.5px;text-decoration:none;border-bottom:1px solid transparent;}
+  .foot-social a:hover{border-color:var(--ink);}
+
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;z-index:60;
+    width:56px;height:56px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.25);
+  }
+  .wa-float svg{width:26px;height:26px;fill:#fff;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media (max-width:960px){
+    .hero-grid,.calc-grid,.contact-grid,.section-head{grid-template-columns:1fr;}
+    .hero-side{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:28px;}
+    .sec-grid{grid-template-columns:1fr;}
+    .service{grid-template-columns:1fr;gap:10px;}
+    .form-row{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    nav.links{
+      position:fixed;top:76px;left:0;right:0;bottom:0;background:var(--paper);
+      flex-direction:column;padding:32px;gap:24px;align-items:flex-start;
+      transform:translateX(100%);transition:transform .25s ease;
+      border-top:1px solid var(--line);
     }
-  </script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+    nav.links.open{transform:translateX(0);}
+    .burger{display:block;}
+    .nav .cta-wa.desktop-only{display:none;}
+    .case{grid-template-columns:1fr;gap:8px;}
+    .case .arrow{display:none;}
+    section{padding:64px 0;}
+    .wrap{padding:0 20px;}
+  }
+</style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 antialiased relative selection:bg-indigo-600 selection:text-white">
+<body>
 
-  <!-- FLOATING NAVBAR WITH OFFICIAL INSCOPE LOGO & THEME SWITCHER -->
-  <div class="sticky top-5 z-50 w-full px-4">
-    <header class="floating-navbar rounded-2xl px-5 py-3.5 flex items-center justify-between">
-      
-      <!-- Official Brand Logo -->
-      <a href="#" class="flex items-center gap-3 font-bold text-lg group">
-        <img src="assets/logo.jpg" alt="InScope - Serviços Tecnológicos" class="h-9 w-auto rounded-lg object-contain bg-white p-1">
-        <div class="hidden sm:block">
-          <span class="text-white font-extrabold tracking-tight block text-base leading-tight">InScope</span>
-          <span class="text-[11px] text-slate-400 font-medium block leading-none">Serviços Tecnológicos</span>
-        </div>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="#servicos" class="hover:text-indigo-400 transition">Serviços</a>
-        <a href="#seguranca" class="hover:text-indigo-400 transition">Segurança & LGPD</a>
-        <a href="#portfolio" class="hover:text-indigo-400 transition">Cases Reais</a>
-        <a href="#calculadora" class="hover:text-indigo-400 transition">Calculadora ROI</a>
-        <a href="#contato" class="hover:text-indigo-400 transition">Contato</a>
-      </nav>
-
-      <!-- Desktop Actions + Theme Toggle Button -->
-      <div class="hidden md:flex items-center gap-3">
-        <!-- Theme Toggle Button (Sol / Lua) -->
-        <button id="theme-toggle-btn" class="p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center justify-center cursor-pointer" title="Alternar Tema Claro/Escuro">
-          <i id="theme-icon" data-lucide="sun" class="w-4 h-4 text-amber-400 pointer-events-none"></i>
-        </button>
-
-        <!-- WhatsApp Action Button -->
-        <a href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-2">
-          <img src="assets/favicon.png" alt="WhatsApp" class="w-4 h-4">
-          (48) 99611-6327
-        </a>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white">
-        <i data-lucide="menu" class="w-5 h-5"></i>
-      </button>
-
-    </header>
-
-    <!-- Mobile Menu Drawer -->
-    <div id="mobile-menu" class="hidden lg:hidden floating-navbar rounded-2xl mt-2 p-6 space-y-4 text-center">
-      <a href="#servicos" class="block text-slate-300 hover:text-indigo-400 font-medium">Serviços</a>
-      <a href="#seguranca" class="block text-slate-300 hover:text-indigo-400 font-medium">Segurança & LGPD</a>
-      <a href="#portfolio" class="block text-slate-300 hover:text-indigo-400 font-medium">Cases Reais</a>
-      <a href="#calculadora" class="block text-slate-300 hover:text-indigo-400 font-medium">Calculadora ROI</a>
-      <a href="#contato" class="block text-slate-300 hover:text-indigo-400 font-medium">Contato</a>
-      <a href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-center block flex items-center justify-center gap-2">
-        <img src="assets/favicon.png" alt="WhatsApp" class="w-4 h-4">
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="word">InScope</span>
+      <span class="tag serif-i">Serviços Tecnológicos</span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#servicos">Serviços</a>
+      <a href="#seguranca">Segurança &amp; LGPD</a>
+      <a href="#portfolio">Cases Reais</a>
+      <a href="#calculadora">Calculadora ROI</a>
+      <a href="#contato">Contato</a>
+      <a class="cta-wa" href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." style="margin-top:8px;">
         (48) 99611-6327
       </a>
+    </nav>
+    <a class="cta-wa desktop-only" href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa.">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.8 14.03c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.05.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.25.1 1.6.76 1.87.9.27.14.46.2.52.32.07.11.07.65-.17 1.33Z"/></svg>
+      (48) 99611-6327
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:1px solid var(--line);padding-top:88px;">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label">InScope · Tecnologia para empresas em crescimento</p>
+        <h1>Sites, automação e sistemas que seu negócio consegue medir.</h1>
+        <p class="lede">Desenvolvemos <b>websites de alta performance</b>, <b>cardápios digitais sem taxa por pedido</b>, <b>sistemas web sob medida</b> e <b>automações comerciais</b> — como o cardápio do SMACK CHICKEN, frango crocante no Estreito.</p>
+        <div class="hero-actions">
+          <a class="cta-wa" href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa.">
+            <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.8 14.03c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.05.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.25.1 1.6.76 1.87.9.27.14.46.2.52.32.07.11.07.65-.17 1.33Z"/></svg>
+            Solicitar orçamento
+          </a>
+          <a class="btn-outline" href="#portfolio">Ver cases reais →</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <p class="domain">inscope.com.br · SSL ativo · conforme LGPD</p>
+        <div class="stat"><div class="num">+28%</div><div class="desc">Crescimento estimado em vendas com sites e cardápios de alta conversão</div></div>
+        <div class="stat"><div class="num">+40%</div><div class="desc">Agilidade no atendimento com automação de comandas no WhatsApp</div></div>
+        <div class="stat"><div class="num">256-bit</div><div class="desc">Criptografia de dados em todas as aplicações entregues</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK MARQUEE -->
+  <div class="stack">
+    <div class="track" id="track">
+      <span>ReactJS &amp; Next.js</span><span>Node.js &amp; APIs REST</span><span>Automação em Python</span><span>WhatsApp Cloud API</span><span>CRM Bitrix24</span><span>Supabase &amp; PostgreSQL</span><span>Criptografia SSL 256-bit</span>
+      <span>ReactJS &amp; Next.js</span><span>Node.js &amp; APIs REST</span><span>Automação em Python</span><span>WhatsApp Cloud API</span><span>CRM Bitrix24</span><span>Supabase &amp; PostgreSQL</span><span>Criptografia SSL 256-bit</span>
     </div>
   </div>
 
-  <!-- HERO SECTION -->
-  <section class="container max-w-7xl mx-auto px-4 pt-16 pb-24 md:pt-24 md:pb-32 text-center relative z-10">
-    
-    <!-- Top Pill Badge -->
-    <div class="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-slate-900/80 mb-8 backdrop-blur-md">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="text-xs font-semibold text-slate-300">InScope • Serviços Tecnológicos para Empresas em Crescimento</span>
-    </div>
-
-    <!-- Main Title -->
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight max-w-5xl mx-auto">
-      Soluções em Tecnologia & Automação para sua Empresa
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-normal leading-relaxed mb-10">
-      Desenvolvemos Websites de Alta Performance, Cardápios Digitais sem taxas (como o <strong>SMACK CHICKEN — Frango crocante no Estreito</strong>), Sistemas Web e Automações comerciais sob medida.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-      <a href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 transition flex items-center justify-center gap-2 group/btn">
-        <img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5">
-        Solicitar Orçamento no WhatsApp
-      </a>
-
-      <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-bold text-sm border border-white/10 transition flex items-center justify-center gap-2">
-        <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
-        Ver Cases Reais Entregues
-      </a>
-    </div>
-
-    <!-- Clean Tech Mockup Card -->
-    <div class="relative max-w-5xl mx-auto mt-6">
-      <div class="p-6 md:p-8 rounded-3xl bg-slate-900/90 border border-white/10 shadow-2xl backdrop-blur-xl text-left">
-        
-        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-            <span class="text-xs text-slate-400 font-mono ml-2">inscope.com.br</span>
-          </div>
-          <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 flex items-center gap-1">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> SSL HTTPS & LGPD
-          </span>
+  <!-- SERVICES -->
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">Especialidades</p>
+          <h2>Tecnologia sob medida para destravar o seu operacional.</h2>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
-            <span class="text-xs text-slate-400 block mb-1">Crescimento em Vendas</span>
-            <span class="text-2xl font-bold text-emerald-400">+28% Est.</span>
-            <span class="text-[11px] text-slate-400 block mt-1">Sites e cardápios de alta conversão</span>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
-            <span class="text-xs text-slate-400 block mb-1">Agilidade de Atendimento</span>
-            <span class="text-2xl font-bold text-indigo-400">+40%</span>
-            <span class="text-[11px] text-slate-400 block mt-1">Automação de comandas no WhatsApp</span>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-800/50 border border-white/5">
-            <span class="text-xs text-slate-400 block mb-1">Segurança da Informação</span>
-            <span class="text-2xl font-bold text-purple-400">100% LGPD</span>
-            <span class="text-[11px] text-slate-400 block mt-1">Criptografia de dados 256-bit</span>
-          </div>
-        </div>
-
+        <p class="desc serif">Cada projeto nasce de um gargalo real — atendimento lento, planilha manual, cardápio sem sistema. Resolvemos o problema, não só entregamos código.</p>
       </div>
-    </div>
 
-  </section>
-
-  <!-- MARQUEE INFINITO -->
-  <section class="border-y border-white/5 py-8 bg-slate-950/60 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Tecnologias & Ferramentas Utilizadas pela InScope</span>
-    </div>
-
-    <div class="relative w-full overflow-hidden">
-      <div class="animate-marquee flex items-center gap-12 text-slate-400 font-semibold text-base whitespace-nowrap">
-        <div class="flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-indigo-400"></i> ReactJS & Next.js</div>
-        <div class="flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-purple-400"></i> Node.js & APIs REST</div>
-        <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-400"></i> Automação Python</div>
-        <div class="flex items-center gap-2"><img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5"> WhatsApp Cloud API</div>
-        <div class="flex items-center gap-2"><i data-lucide="workflow" class="w-5 h-5 text-amber-400"></i> CRM Bitrix24</div>
-        <div class="flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-cyan-400"></i> Supabase & PostgreSQL</div>
-        <div class="flex items-center gap-2"><i data-lucide="lock" class="w-5 h-5 text-emerald-400"></i> Criptografia SSL 256-Bit</div>
-
-        <div class="flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-indigo-400"></i> ReactJS & Next.js</div>
-        <div class="flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-purple-400"></i> Node.js & APIs REST</div>
-        <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5 text-emerald-400"></i> Automação Python</div>
-        <div class="flex items-center gap-2"><img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5"> WhatsApp Cloud API</div>
-        <div class="flex items-center gap-2"><i data-lucide="workflow" class="w-5 h-5 text-amber-400"></i> CRM Bitrix24</div>
-        <div class="flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-cyan-400"></i> Supabase & PostgreSQL</div>
-        <div class="flex items-center gap-2"><i data-lucide="lock" class="w-5 h-5 text-emerald-400"></i> Criptografia SSL 256-Bit</div>
+      <div class="service-list reveal">
+        <div class="service">
+          <div><span class="idx serif-i">01</span><h3>Websites &amp; Landing Pages</h3></div>
+          <p>Páginas ultra-rápidas com design exclusivo, pensadas para transformar quem chega pelo Google ou Instagram em cliente ativo — não apenas visitante.</p>
+        </div>
+        <div class="service">
+          <div><span class="idx serif-i">02</span><h3>Cardápios Web &amp; Delivery</h3></div>
+          <p>Sistema próprio para restaurantes e food service, como o SMACK CHICKEN. O cliente pede pelo site e a comanda chega pronta no seu WhatsApp — sem comissão por pedido.</p>
+        </div>
+        <div class="service">
+          <div><span class="idx serif-i">03</span><h3>Automações &amp; Chatbots 24h</h3></div>
+          <p>Respostas automáticas no WhatsApp para as perguntas mais frequentes, triagem de interessados e agendamento de horários — mesmo fora do expediente.</p>
+        </div>
+        <div class="service">
+          <div><span class="idx serif-i">04</span><h3>Dashboards Internos &amp; ERPs</h3></div>
+          <p>Sistemas web para controle de estoque, quebra de insumos, relatório mensal de vendas e gestão de equipe organizada em quadro Kanban.</p>
+        </div>
+        <div class="service">
+          <div><span class="idx serif-i">05</span><h3>Integrações CRM &amp; Bitrix24</h3></div>
+          <p>Conexão automatizada entre o seu site, formulários, planilhas do Google e o CRM Bitrix24 — sem digitação manual entre sistemas.</p>
+        </div>
+        <div class="service">
+          <div><span class="idx serif-i">06</span><h3>Projetos sob demanda</h3></div>
+          <p>Quando a necessidade foge do padrão, desenvolvemos exatamente para os requisitos da sua empresa ou infraestrutura existente.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVIÇOS -->
-  <section id="servicos" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-    
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Especialidades</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
-        Serviços Tecnológicos sob Medida
-      </h2>
-      <p class="text-slate-400 text-base">
-        Soluções focadas em resolver gargalos operacionais e alavancar a presença digital do seu negócio.
-      </p>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
-          <i data-lucide="globe" class="w-6 h-6"></i>
+  <!-- SECURITY -->
+  <section id="seguranca" class="sec-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">Segurança &amp; privacidade</p>
+          <h2>A proteção dos dados do seu cliente é inegociável.</h2>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Websites & Landing Pages</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Páginas ultra-rápidas com design exclusivo, focadas em transformar visitantes do Google e Instagram em clientes ativos.
-        </p>
+        <p class="desc serif">Todo projeto da InScope nasce com segurança da informação como requisito — não como extra.</p>
       </div>
-
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
-          <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+      <div class="sec-grid">
+        <div class="sec-item">
+          <h3>SSL 256-bit (HTTPS)</h3>
+          <p>Navegação criptografada de ponta a ponta, com o cadeado de segurança ativo no navegador dos seus clientes.</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Cardápios Web & Delivery</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Sistema próprio para restaurantes e food service (como o SMACK CHICKEN). O cliente faz o pedido no site e recebe a comanda pronta no seu WhatsApp sem pagar comissão.
-        </p>
-      </div>
-
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
-          <i data-lucide="bot" class="w-6 h-6"></i>
+        <div class="sec-item">
+          <h3>Conformidade com a LGPD</h3>
+          <p>Aplicações construídas em observância à Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Automações & Chatbots 24h</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Respostas automáticas no WhatsApp para perguntas frequentes, triagem inteligente de interessados e agendamento de horários.
-        </p>
-      </div>
-
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6">
-          <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+        <div class="sec-item">
+          <h3>Infraestrutura em nuvem protegida</h3>
+          <p>Bancos de dados com redundância, backups periódicos e proteção contra vazamento de informações.</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Dashboards Internos & ERPs</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Sistemas web para controle de estoque, quebra de insumos, relatório mensal de vendas e gestão de equipe em quadro Kanban.
-        </p>
       </div>
-
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
-          <i data-lucide="workflow" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Integrações CRM & Bitrix24</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Conexão automatizada entre seu site, formulários, planilhas inteligentes do Google e seu sistema CRM Bitrix24.
-        </p>
-      </div>
-
-      <div class="inscope-card p-6">
-        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-          <i data-lucide="sliders" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Serviços Personalizados sob Medida</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Desenvolvimento sob demanda para atender exatamente aos requisitos específicos da sua empresa ou infraestrutura.
-        </p>
-      </div>
-
     </div>
   </section>
 
-  <!-- SEGURANÇA & LGPD -->
-  <section id="seguranca" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-    
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-2">Segurança & Privacidade</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
-        Proteção de Dados & Conformidade LGPD
-      </h2>
-      <p class="text-slate-400 text-base">
-        Na InScope, a segurança da informação do seu cliente é prioridade máxima em todos os projetos.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <div class="inscope-card p-8 border-emerald-500/20">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
-          <i data-lucide="lock" class="w-6 h-6"></i>
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">Portfólio</p>
+          <h2>Cases reais entregues.</h2>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Certificado SSL 256-Bit (HTTPS)</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Navegação criptografada de ponta a ponta com o cadeado de segurança ativado no navegador dos seus clientes.
-        </p>
+        <p class="desc serif">Clique em um projeto abaixo para ver a demonstração online em tempo real.</p>
       </div>
 
-      <div class="inscope-card p-8 border-indigo-500/20">
-        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
-          <i data-lucide="shield-check" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Conformidade com a LGPD</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Aplicações construídas em estrita observância à Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
-        </p>
+      <div class="filters" id="filters">
+        <button class="active" data-cat="all">Todos os projetos</button>
+        <button data-cat="delivery">Delivery &amp; WhatsApp</button>
+        <button data-cat="site">Websites &amp; Landing Pages</button>
+        <button data-cat="sistema">Sistemas &amp; Apps</button>
+        <button data-cat="automacao">Automações &amp; IA</button>
       </div>
 
-      <div class="inscope-card p-8 border-purple-500/20">
-        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
-          <i data-lucide="database" class="w-6 h-6"></i>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Infraestrutura Nuvem Protegida</h3>
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          Bancos de dados com redundância, backups periódicos e proteção contra vazamento de informações.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PORTFOLIO / CASES SHOWCASE -->
-  <section id="portfolio" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-    
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Portfólio de Projetos</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white">Cases Reais Entregues</h2>
-      </div>
-      <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
-        Clique nos projetos abaixo para visualizar a demonstração online em tempo real.
-      </p>
-    </div>
-
-    <!-- Filter Buttons -->
-    <div class="flex flex-wrap gap-2 mb-10">
-      <button data-category="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-lg shadow-indigo-500/30">
-        Todos os Projetos
-      </button>
-      <button data-category="ecommerce" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-        Delivery & WhatsApp
-      </button>
-      <button data-category="websites" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-        Websites & Landing Pages
-      </button>
-      <button data-category="systems" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-        Sistemas & Apps
-      </button>
-      <button data-category="automation" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-800/60 text-slate-400 hover:bg-slate-700">
-        Automações & IA
-      </button>
-    </div>
-
-    <!-- Projects Grid Container -->
-    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Rendered dynamically by js/main.js -->
-    </div>
-
-  </section>
-
-  <!-- ROI CALCULATOR SECTION -->
-  <section id="calculadora" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
-      <div class="lg:col-span-5">
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-2">Simulador de Economia</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">
-          Calcule seu ganho com Automação
-        </h2>
-        <p class="text-slate-400 text-base leading-relaxed mb-6">
-          O atendimento manual consume horas valiosas da sua equipe. Faça a simulação e descubra a economia de tempo estimada.
-        </p>
-
-        <div class="space-y-4">
-          <div class="p-4 rounded-xl bg-slate-900 border border-white/5 flex items-center gap-3 text-sm text-slate-300">
-            <i data-lucide="clock" class="w-5 h-5 text-indigo-400 shrink-0"></i>
-            <span>Economize cerca de <strong>4 minutos por atendimento</strong> no WhatsApp.</span>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-900 border border-white/5 flex items-center gap-3 text-sm text-slate-300">
-            <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400 shrink-0"></i>
-            <span>Aumente suas conversões diretas em até <strong>28%</strong>.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Calculator Card -->
-      <div class="lg:col-span-7 inscope-card p-8 border-indigo-500/30">
-        
-        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-          <i data-lucide="calculator" class="w-5 h-5 text-indigo-400"></i>
-          Simulador Comercial InScope
-        </h3>
-
-        <!-- Control 1 -->
-        <div class="mb-6">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-sm font-semibold text-slate-300">Atendimentos / Pedidos por Mês:</label>
-            <span id="roi-orders-val" class="text-lg font-bold text-indigo-400">300</span>
-          </div>
-          <input type="range" id="roi-orders" min="50" max="2000" step="50" value="300" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
-        </div>
-
-        <!-- Control 2 -->
-        <div class="mb-8">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-sm font-semibold text-slate-300">Ticket Médio (R$):</label>
-            <span id="roi-value-val" class="text-lg font-bold text-indigo-400">R$ 50</span>
-          </div>
-          <input type="range" id="roi-value" min="10" max="300" step="10" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
-        </div>
-
-        <!-- Result Display -->
-        <div class="p-6 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 grid grid-cols-2 gap-4 text-center mb-6">
-          <div>
-            <span class="text-xs text-slate-400 font-medium block mb-1">Tempo Salvo da Equipe</span>
-            <span id="roi-result-hours" class="text-xl sm:text-2xl font-extrabold text-emerald-400 block">20 Horas/Mês</span>
-          </div>
-          <div>
-            <span class="text-xs text-slate-400 font-medium block mb-1">Faturamento Adicional Est.</span>
-            <span id="roi-result-money" class="text-xl sm:text-2xl font-extrabold text-indigo-300 block">R$ 1.800/Mês</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/5548996116327?text=Fiz%20a%20simula%C3%A7%C3%A3o%20no%20site%20da%20InScope%20e%20quero%20automatizar%20minha%20empresa!" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center block shadow-lg transition flex items-center justify-center gap-2">
-          <img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5">
-          Quero Automatizar Minha Empresa no WhatsApp
+      <div class="case-list" id="caseList">
+        <a class="case" data-cat="delivery" href="https://wa.me/5548996116327?text=Ol%C3%A1!%20Vi%20o%20case%20do%20SMACK%20CHICKEN%20e%20quero%20um%20card%C3%A1pio%20assim." target="_blank" rel="noopener">
+          <div><div class="name">SMACK CHICKEN — Cardápio Digital</div><div class="meta">Frango crocante no Estreito · pedidos direto para o WhatsApp, sem comissão</div></div>
+          <span class="cat">Delivery &amp; WhatsApp</span>
+          <span class="arrow">→</span>
         </a>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- LEAD CONTACT FORM (COM CAMPO DE SERVIÇO PERSONALIZADO) -->
-  <section id="contato" class="container max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      
-      <div class="lg:col-span-5">
-        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">Contato & Orçamentos</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">
-          Fale com Nossos Especialistas
-        </h2>
-        <p class="text-slate-400 text-base leading-relaxed mb-8">
-          Preencha o formulário para enviar os detalhes do seu projeto diretamente para o nosso atendimento no WhatsApp com resposta rápida.
-        </p>
-
-        <div class="space-y-4 text-sm text-slate-300">
-          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
-            <img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5">
-            <span><strong>WhatsApp Oficial</strong>: (48) 99611-6327</span>
-          </div>
-          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
-            <i data-lucide="mail" class="w-5 h-5 text-purple-400"></i>
-            <span><strong>E-mail Comercial</strong>: lucasgabrielwww2218@gmail.com</span>
-          </div>
-          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-900 border border-white/5">
-            <i data-lucide="lock" class="w-5 h-5 text-emerald-400"></i>
-            <span><strong>Proteção de Dados</strong>: Criptografia SSL 256-Bit e LGPD</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Box -->
-      <div class="lg:col-span-7 inscope-card p-8">
-        <h3 class="text-2xl font-bold text-white mb-2">Solicitar Orçamento de Projeto</h3>
-        <p class="text-xs text-slate-400 mb-6 flex items-center gap-1.5">
-          <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
-          Seus dados estão protegidos sob a LGPD (Lei nº 13.709/2018).
-        </p>
-        
-        <form id="whatsapp-lead-form" class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Seu Nome *</label>
-              <input type="text" id="lead-name" required placeholder="Ex: Lucas Gabriel" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nome da Sua Empresa</label>
-              <input type="text" id="lead-company" placeholder="Ex: Sua Empresa / Loja" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Escolha o Serviço *</label>
-            <select id="lead-service" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white focus:outline-none focus:border-indigo-500 transition text-sm cursor-pointer">
-              <option value="Website ou Landing Page Profissional">Website ou Landing Page Profissional</option>
-              <option value="Cardápio Digital no WhatsApp (Food Service)">Cardápio Digital no WhatsApp (Sem Taxa)</option>
-              <option value="Bot de Atendimento Automático 24h">Bot de Atendimento Automático 24h</option>
-              <option value="Dashboard ou ERP Interno">Dashboard / Sistema de Gestão Interno</option>
-              <option value="Automação CRM Bitrix24 & APIs">Automação de CRM (Bitrix24) / Planilhas</option>
-              <option value="Serviço Personalizado">✨ Serviço Personalizado (Especificar abaixo)</option>
-            </select>
-          </div>
-
-          <!-- Dynamic Custom Service Input (Displayed when "Serviço Personalizado" is chosen) -->
-          <div id="custom-service-container" class="hidden">
-            <label class="block text-xs font-semibold text-emerald-400 mb-1.5 flex items-center gap-1">
-              <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Descreva seu Serviço Personalizado *
-            </label>
-            <input type="text" id="lead-custom-service" placeholder="Ex: Preciso de uma integração entre meu ERP atual e o WhatsApp..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-emerald-500/50 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 transition text-sm">
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Detalhes do Projeto (Opcional)</label>
-            <textarea id="lead-detail" rows="3" placeholder="Descreva brevemente o objetivo ou prazos desejados..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition text-sm resize-none"></textarea>
-          </div>
-
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2 cursor-pointer">
-            <img src="assets/favicon.png" alt="WhatsApp" class="w-5 h-5">
-            Enviar Orçamento no WhatsApp
-          </button>
-        </form>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER (EXCLUSIVELY CONTAINS CNPJ HERE) -->
-  <footer class="py-12 border-t border-white/10 bg-[#070a12] text-slate-400 text-xs">
-    <div class="container max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div>
-        <div class="flex items-center gap-2 mb-2">
-          <img src="assets/logo.jpg" alt="InScope" class="h-7 w-auto rounded bg-white p-0.5">
-          <span class="text-white font-extrabold text-sm">InScope - Serviços Tecnológicos</span>
-        </div>
-        <p class="text-slate-400 text-xs">
-          <strong>CNPJ: 68.056.263/0001-56</strong> • Todos os direitos reservados © 2026.
-        </p>
-        <div class="flex items-center gap-3 mt-2 text-[11px] text-slate-400">
-          <span class="flex items-center gap-1 text-emerald-400 font-medium"><i data-lucide="lock" class="w-3 h-3"></i> Criptografia SSL 256-Bit</span>
-          <span>•</span>
-          <span class="flex items-center gap-1 text-indigo-400 font-medium"><i data-lucide="shield-check" class="w-3 h-3"></i> LGPD Compliant</span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-6">
-        <a href="https://github.com/LucasGabrielOM" target="_blank" class="hover:text-white transition flex items-center gap-1">
-          <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        <a class="case" data-cat="site" href="https://wa.me/5548996116327?text=Ol%C3%A1!%20Quero%20um%20site%20ou%20landing%20page%20profissional." target="_blank" rel="noopener">
+          <div><div class="name">Websites &amp; Landing Pages sob medida</div><div class="meta">Páginas rápidas, otimizadas para conversão vinda do Google e Instagram</div></div>
+          <span class="cat">Websites &amp; Landing Pages</span>
+          <span class="arrow">→</span>
         </a>
-        <a href="https://www.linkedin.com/in/lucas-gabriel-de-oliveira-moreira-400769350" target="_blank" class="hover:text-white transition flex items-center gap-1">
-          <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+        <a class="case" data-cat="sistema" href="https://wa.me/5548996116327?text=Ol%C3%A1!%20Quero%20um%20dashboard%20ou%20sistema%20interno." target="_blank" rel="noopener">
+          <div><div class="name">Dashboards internos &amp; controle de estoque</div><div class="meta">Gestão de equipe em Kanban, relatórios mensais e quebra de insumos</div></div>
+          <span class="cat">Sistemas &amp; Apps</span>
+          <span class="arrow">→</span>
         </a>
-        <a href="https://www.instagram.com/lucs_g0m/" target="_blank" class="hover:text-white transition flex items-center gap-1">
-          <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+        <a class="case" data-cat="automacao" href="https://wa.me/5548996116327?text=Ol%C3%A1!%20Quero%20automatizar%20o%20atendimento%20da%20minha%20empresa." target="_blank" rel="noopener">
+          <div><div class="name">Chatbot de atendimento 24h</div><div class="meta">Triagem automática de interessados e agendamento pelo WhatsApp</div></div>
+          <span class="cat">Automações &amp; IA</span>
+          <span class="arrow">→</span>
         </a>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- FLOATING WHATSAPP BUTTON WITH OFFICIAL WHATSAPP FAVICON -->
-  <a href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-emerald-500 text-white shadow-2xl hover:bg-emerald-400 hover:scale-110 transition duration-300 flex items-center justify-center whatsapp-pulse" title="Falar no WhatsApp">
-    <img src="assets/favicon.png" alt="WhatsApp" class="w-7 h-7">
-  </a>
+  <!-- CALCULATOR -->
+  <section id="calculadora">
+    <div class="wrap calc-grid">
+      <div class="calc-copy">
+        <p class="label">Simulador de economia</p>
+        <h2 style="font-size:clamp(26px,3vw,36px);max-width:14ch;">Calcule o ganho da sua empresa com automação.</h2>
+        <p class="desc serif" style="margin-top:16px;">O atendimento manual consome horas valiosas da sua equipe. Ajuste os campos ao lado e veja a estimativa.</p>
+        <div class="point"><span class="mark"></span><p>Economize cerca de <b>4 minutos por atendimento</b> no WhatsApp.</p></div>
+        <div class="point"><span class="mark"></span><p>Aumente suas conversões diretas em até <b>28%</b>.</p></div>
+      </div>
 
-  <!-- PROJECT DETAIL MODAL -->
-  <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="bg-slate-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative" id="modal-content">
-      <!-- Loaded dynamically -->
+      <div class="calc-card">
+        <p class="label" style="margin-bottom:22px;">Simulador comercial InScope</p>
+        <div class="field">
+          <label>Atendimentos / pedidos por mês <output id="volOut">300</output></label>
+          <input type="range" id="vol" min="20" max="2000" step="10" value="300">
+        </div>
+        <div class="field">
+          <label>Ticket médio (R$) <output id="ticketOut">R$ 50</output></label>
+          <input type="range" id="ticket" min="10" max="500" step="5" value="50">
+        </div>
+        <div class="calc-results">
+          <div class="calc-result"><div class="n" id="hoursOut">20 h</div><div class="l">Tempo salvo da equipe / mês</div></div>
+          <div class="calc-result"><div class="n" id="revOut">R$ 1.800</div><div class="l">Faturamento adicional est. / mês</div></div>
+        </div>
+        <a class="cta-wa" id="calcCta" style="margin-top:26px;width:100%;justify-content:center;" href="https://wa.me/5548996116327?text=Fiz%20a%20simula%C3%A7%C3%A3o%20no%20site%20da%20InScope%20e%20quero%20automatizar%20minha%20empresa!">
+          Quero automatizar minha empresa
+        </a>
+      </div>
     </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contato" style="border-bottom:none;">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <p class="label">Contato &amp; orçamentos</p>
+        <h2 style="font-size:clamp(26px,3vw,36px);max-width:13ch;">Fale com nossos especialistas.</h2>
+        <div class="row">
+          <div class="k">WhatsApp oficial</div>
+          <div class="v"><a href="https://wa.me/5548996116327" style="text-decoration:none;">(48) 99611-6327</a></div>
+        </div>
+        <div class="row">
+          <div class="k">E-mail comercial</div>
+          <div class="v" style="font-size:15px;"><a href="mailto:lucasgabrielwww2218@gmail.com" style="text-decoration:none;">lucasgabrielwww2218@gmail.com</a></div>
+        </div>
+        <div class="row">
+          <div class="k">Proteção de dados</div>
+          <div class="v" style="font-size:15px;">Criptografia SSL 256-bit &amp; conformidade LGPD</div>
+        </div>
+      </div>
+
+      <form id="orcamentoForm">
+        <p class="fine">Preencha para enviar os detalhes do seu projeto diretamente ao nosso WhatsApp. Seus dados estão protegidos sob a LGPD (Lei nº 13.709/2018).</p>
+        <div class="form-row">
+          <div>
+            <label class="f" for="nome">Seu nome *</label>
+            <input id="nome" required placeholder="Como podemos te chamar">
+          </div>
+          <div>
+            <label class="f" for="empresa">Nome da sua empresa</label>
+            <input id="empresa" placeholder="Opcional">
+          </div>
+        </div>
+        <div>
+          <label class="f" for="servico">Escolha o serviço *</label>
+          <select id="servico" required>
+            <option value="">Selecione...</option>
+            <option>Website ou landing page profissional</option>
+            <option>Cardápio digital no WhatsApp (sem taxa)</option>
+            <option>Bot de atendimento automático 24h</option>
+            <option>Dashboard / sistema de gestão interno</option>
+            <option>Automação de CRM (Bitrix24) / planilhas</option>
+            <option>Serviço personalizado (especificar abaixo)</option>
+          </select>
+        </div>
+        <div>
+          <label class="f" for="detalhes">Detalhes do projeto (opcional)</label>
+          <textarea id="detalhes" placeholder="Conte um pouco sobre o que você precisa"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.8 14.03c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.05.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.25.1 1.6.76 1.87.9.27.14.46.2.52.32.07.11.07.65-.17 1.33Z"/></svg>
+          Enviar orçamento no WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="word">InScope</span>
+      <span class="foot-legal">— Serviços Tecnológicos</span>
+    </div>
+    <div class="foot-social">
+      <a href="https://github.com/LucasGabrielOM" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/lucas-gabriel-de-oliveira-moreira-400769350" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/lucs_g0m/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="foot-legal">CNPJ 68.056.263/0001-56 · Todos os direitos reservados © 2026</div>
   </div>
+</footer>
 
-  <!-- Scripts -->
-  <script src="js/projects.js"></script>
-  <script src="js/main.js"></script>
+<a class="wa-float" href="https://wa.me/5548996116327?text=Ol%C3%A1%20InScope!%20Gostaria%20de%20um%20or%C3%A7amento." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.8 14.03c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.05.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.25.1 1.6.76 1.87.9.27.14.46.2.52.32.07.11.07.65-.17 1.33Z"/></svg>
+</a>
+
+<script>
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // portfolio filter
+  const filters = document.getElementById('filters');
+  const cases = document.querySelectorAll('.case');
+  filters.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    cases.forEach(c => {
+      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'grid' : 'none';
+    });
+  });
+
+  // ROI calculator
+  const vol = document.getElementById('vol');
+  const ticket = document.getElementById('ticket');
+  const volOut = document.getElementById('volOut');
+  const ticketOut = document.getElementById('ticketOut');
+  const hoursOut = document.getElementById('hoursOut');
+  const revOut = document.getElementById('revOut');
+
+  function fmtBRL(n){
+    return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  }
+  function updateCalc(){
+    const v = parseInt(vol.value, 10);
+    const t = parseInt(ticket.value, 10);
+    volOut.textContent = v.toLocaleString('pt-BR');
+    ticketOut.textContent = fmtBRL(t);
+    const hoursSaved = (v * 4) / 60; // 4 min per interaction -> hours
+    const extraRevenue = v * t * 0.12; // ~12% estimated uplift on volume x ticket
+    hoursOut.textContent = Math.round(hoursSaved) + ' h';
+    revOut.textContent = fmtBRL(extraRevenue);
+  }
+  vol.addEventListener('input', updateCalc);
+  ticket.addEventListener('input', updateCalc);
+  updateCalc();
+
+  // contact form -> whatsapp
+  const form = document.getElementById('orcamentoForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    const empresa = document.getElementById('empresa').value.trim();
+    const servico = document.getElementById('servico').value;
+    const detalhes = document.getElementById('detalhes').value.trim();
+    let msg = `Olá InScope! Meu nome é ${nome}.`;
+    if (empresa) msg += ` Empresa: ${empresa}.`;
+    msg += ` Tenho interesse em: ${servico}.`;
+    if (detalhes) msg += ` Detalhes: ${detalhes}`;
+    window.open('https://wa.me/5548996116327?text=' + encodeURIComponent(msg), '_blank');
+  });
+
+  // reveal on scroll (single orchestrated section)
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
