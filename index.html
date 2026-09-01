@@ -258,10 +258,11 @@
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
   label.f{font-size:13.5px;font-weight:600;display:block;margin-bottom:8px;}
   input,textarea{
-    width:100%;padding:13px 14px;border:1px solid var(--line-strong);background:var(--paper-raise);
-    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border-radius:var(--radius);
+    width:100%;padding:13px 20px;border:1px solid var(--line-strong);background:var(--paper-raise);
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border-radius:999px;
     transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
   }
+  textarea{border-radius:24px;}
   input:hover,textarea:hover{border-color:var(--muted);}
   input:focus,textarea:focus{
     outline:none;border-color:var(--accent);background:var(--white);
