@@ -163,12 +163,27 @@
   /* ---------- services ---------- */
   .service-list{border-top:1px solid var(--line);}
   .service{
-    display:grid;grid-template-columns:2fr 3fr;gap:40px;
+    display:grid;grid-template-columns:2fr 3fr auto;gap:40px;align-items:center;
     padding:34px 0;border-bottom:1px solid var(--line);
+    text-decoration:none;color:inherit;position:relative;
+    transition:background .25s ease, padding .25s ease, margin .25s ease;
   }
-  .service h3{font-size:22px;font-weight:700;}
+  .service:hover{background:var(--paper-raise);padding-left:16px;padding-right:16px;margin:0 -16px;}
+  .service:hover .idx{color:var(--accent);}
+  .service:hover .arrow{opacity:1;transform:translateX(4px);color:var(--accent);}
+  .service h3{font-size:22px;font-weight:700;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .service p{color:var(--muted);margin:10px 0 0;max-width:56ch;}
-  .service .idx{font-family:'Source Serif 4',serif;font-style:italic;color:var(--line-strong);font-size:14px;display:block;margin-bottom:8px;}
+  .service .idx{font-family:'Source Serif 4',serif;font-style:italic;color:var(--line-strong);font-size:14px;display:block;margin-bottom:8px;transition:color .25s ease;}
+  .service .arrow{font-size:20px;color:var(--line-strong);opacity:0;justify-self:end;transition:opacity .25s ease,transform .25s ease,color .25s ease;}
+  .hot{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Inter',sans-serif;font-style:normal;font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;
+    color:var(--accent-dark);border:1px solid var(--accent);border-radius:999px;
+    padding:4px 10px 4px 8px;vertical-align:middle;
+  }
+  .hot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse-dot 1.8s ease-in-out infinite;}
+  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.65);}}
 
   /* ---------- security ---------- */
   .sec-alt{background:var(--ink);color:var(--paper);}
@@ -189,10 +204,19 @@
   .filters button.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
   .case-list{display:flex;flex-direction:column;}
   .case{
-    display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;
+    display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;
     padding:26px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);
+    transition:background .25s ease, padding .25s ease, margin .25s ease;
   }
   .case:last-child{border-bottom:1px solid var(--line);}
+  .case:hover{background:var(--paper-raise);padding-left:16px;padding-right:16px;margin:0 -16px;}
+  .case-icon{
+    width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--muted);
+    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+  }
+  .case-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .case:hover .case-icon{border-color:var(--accent);color:var(--accent);transform:scale(1.08) rotate(-3deg);}
   .case .name{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;}
   .case .meta{color:var(--muted);font-size:14px;margin-top:4px;}
   .case .cat{
@@ -264,12 +288,20 @@
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
+  .service:nth-of-type(1),.case:nth-of-type(1),.sec-item:nth-of-type(1),.stat:nth-of-type(1){transition-delay:.03s;}
+  .service:nth-of-type(2),.case:nth-of-type(2),.sec-item:nth-of-type(2),.stat:nth-of-type(2){transition-delay:.1s;}
+  .service:nth-of-type(3),.case:nth-of-type(3),.sec-item:nth-of-type(3),.stat:nth-of-type(3){transition-delay:.17s;}
+  .service:nth-of-type(4),.case:nth-of-type(4){transition-delay:.24s;}
+  .service:nth-of-type(5){transition-delay:.31s;}
+  .service:nth-of-type(6){transition-delay:.38s;}
 
   @media (max-width:960px){
     .hero-grid,.calc-grid,.contact-grid,.section-head{grid-template-columns:1fr;}
     .hero-side{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:28px;}
     .sec-grid{grid-template-columns:1fr;}
     .service{grid-template-columns:1fr;gap:10px;}
+    .service .arrow{display:none;}
+    .service:hover{padding-left:0;padding-right:0;margin:0;}
     .form-row{grid-template-columns:1fr;}
   }
   @media (max-width:760px){
@@ -336,6 +368,8 @@
     .wa-float svg{width:24px;height:24px;}
     .case{grid-template-columns:1fr;gap:8px;}
     .case .arrow{display:none;}
+    .case-icon{display:none;}
+    .case:hover{padding-left:0;padding-right:0;margin:0;}
     section{padding:48px 0;}
     .wrap{padding:0 20px;}
   }
@@ -357,17 +391,15 @@
   }
 
   .pill-nav {
-    background: rgba(247, 247, 245, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: var(--paper-raise);
+    border: 1px solid var(--line);
     border-radius: 999px;
     height: 54px;
     padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
   }
   .pill-nav .brand {
@@ -636,9 +668,9 @@
       </div>
       <div class="hero-side">
         <p class="domain">InScope Tech · SSL ativo · conforme LGPD</p>
-        <div class="stat"><div class="num">+28%</div><div class="desc">Crescimento estimado em vendas com sites e cardápios de alta conversão</div></div>
-        <div class="stat"><div class="num">+40%</div><div class="desc">Agilidade no atendimento com automação de comandas no WhatsApp</div></div>
-        <div class="stat"><div class="num">256-bit</div><div class="desc">Criptografia de dados em todas as aplicações entregues</div></div>
+        <div class="stat reveal"><div class="num" data-count-to="28" data-prefix="+" data-suffix="%">+28%</div><div class="desc">Crescimento estimado em vendas com sites e cardápios de alta conversão</div></div>
+        <div class="stat reveal"><div class="num" data-count-to="40" data-prefix="+" data-suffix="%">+40%</div><div class="desc">Agilidade no atendimento com automação de comandas no WhatsApp</div></div>
+        <div class="stat reveal"><div class="num">256-bit</div><div class="desc">Criptografia de dados em todas as aplicações entregues</div></div>
       </div>
     </div>
   </section>
@@ -662,31 +694,37 @@
         <p class="desc serif">Cada projeto nasce de um gargalo real — atendimento lento, planilha manual, cardápio sem sistema. Resolvemos o problema, não só entregamos código.</p>
       </div>
 
-      <div class="service-list reveal">
-        <div class="service">
-          <div><span class="idx serif-i">01</span><h3>Websites &amp; Landing Pages</h3></div>
+      <div class="service-list">
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20site%20ou%20landing%20page%20profissional." target="_blank" rel="noopener">
+          <div><span class="idx serif-i">01</span><h3>Websites &amp; Landing Pages <span class="hot">Em alta</span></h3></div>
           <p>Páginas ultra-rápidas com design exclusivo, pensadas para transformar quem chega pelo Google ou Instagram em cliente ativo — não apenas visitante.</p>
-        </div>
-        <div class="service">
+          <span class="arrow">→</span>
+        </a>
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20card%C3%A1pio%20digital%20para%20pedidos%20pelo%20WhatsApp%20sem%20taxa%20por%20pedido." target="_blank" rel="noopener">
           <div><span class="idx serif-i">02</span><h3>Cardápios Web &amp; Delivery</h3></div>
           <p>Sistema próprio para restaurantes e food service. O cliente pede pelo site e a comanda chega pronta no seu WhatsApp — sem comissão por pedido.</p>
-        </div>
-        <div class="service">
-          <div><span class="idx serif-i">03</span><h3>Automações &amp; Chatbots 24h</h3></div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20automatizar%20o%20atendimento%20da%20minha%20empresa%20com%20bots%20e%20IA." target="_blank" rel="noopener">
+          <div><span class="idx serif-i">03</span><h3>Automações &amp; Chatbots 24h <span class="hot">Em alta</span></h3></div>
           <p>Respostas automáticas no WhatsApp para as perguntas mais frequentes, triagem de interessados e agendamento de horários — mesmo fora do expediente.</p>
-        </div>
-        <div class="service">
+          <span class="arrow">→</span>
+        </a>
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20dashboard%20ou%20sistema%20interno." target="_blank" rel="noopener">
           <div><span class="idx serif-i">04</span><h3>Dashboards Internos &amp; ERPs</h3></div>
           <p>Sistemas web para controle de estoque, quebra de insumos, relatório mensal de vendas e gestão de equipe organizada em quadro Kanban.</p>
-        </div>
-        <div class="service">
+          <span class="arrow">→</span>
+        </a>
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20integrar%20meu%20CRM%20Bitrix24%20com%20o%20site%20e%20planilhas%20da%20minha%20empresa." target="_blank" rel="noopener">
           <div><span class="idx serif-i">05</span><h3>Integrações CRM &amp; Bitrix24</h3></div>
           <p>Conexão automatizada entre o seu site, formulários, planilhas do Google e o CRM Bitrix24 — sem digitação manual entre sistemas.</p>
-        </div>
-        <div class="service">
+          <span class="arrow">→</span>
+        </a>
+        <a class="service reveal" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Tenho%20um%20projeto%20sob%20medida%20fora%20do%20padr%C3%A3o%20para%20or%C3%A7ar." target="_blank" rel="noopener">
           <div><span class="idx serif-i">06</span><h3>Projetos sob demanda</h3></div>
           <p>Quando a necessidade foge do padrão, desenvolvemos exatamente para os requisitos da sua empresa ou infraestrutura existente.</p>
-        </div>
+          <span class="arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -702,15 +740,15 @@
         <p class="desc serif">Todo projeto da InScope nasce com segurança da informação como requisito — não como extra.</p>
       </div>
       <div class="sec-grid">
-        <div class="sec-item">
+        <div class="sec-item reveal">
           <h3>SSL 256-bit (HTTPS)</h3>
           <p>Navegação criptografada de ponta a ponta, com o cadeado de segurança ativo no navegador dos seus clientes.</p>
         </div>
-        <div class="sec-item">
+        <div class="sec-item reveal">
           <h3>Conformidade com a LGPD</h3>
           <p>Aplicações construídas em observância à Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
         </div>
-        <div class="sec-item">
+        <div class="sec-item reveal">
           <h3>Infraestrutura em nuvem protegida</h3>
           <p>Bancos de dados com redundância, backups periódicos e proteção contra vazamento de informações.</p>
         </div>
@@ -737,22 +775,26 @@
       </div>
 
       <div class="case-list" id="caseList">
-        <a class="case" data-cat="delivery" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Vi%20o%20case%20do%20de%20Card%C3%A1pio%20Digital%20e%20quero%20um%20card%C3%A1pio%20assim." target="_blank" rel="noopener">
+        <a class="case reveal" data-cat="delivery" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Vi%20o%20case%20do%20de%20Card%C3%A1pio%20Digital%20e%20quero%20um%20card%C3%A1pio%20assim." target="_blank" rel="noopener">
+          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1.2 11.5a1 1 0 0 1-1 .5H8.2a1 1 0 0 1-1-.9L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
           <div><div class="name">Cardápio Digital & Delivery Web</div><div class="meta">Restaurantes e Food Service · pedidos direto para o WhatsApp, sem comissão</div></div>
           <span class="cat">Delivery &amp; WhatsApp</span>
           <span class="arrow">→</span>
         </a>
-        <a class="case" data-cat="site" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20site%20ou%20landing%20page%20profissional." target="_blank" rel="noopener">
+        <a class="case reveal" data-cat="site" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20site%20ou%20landing%20page%20profissional." target="_blank" rel="noopener">
+          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.2"/><path d="M3 9.2h18"/><path d="M6.2 7.1h.01M9 7.1h.01"/></svg></span>
           <div><div class="name">Websites &amp; Landing Pages sob medida</div><div class="meta">Páginas rápidas, otimizadas para conversão vinda do Google e Instagram</div></div>
           <span class="cat">Websites &amp; Landing Pages</span>
           <span class="arrow">→</span>
         </a>
-        <a class="case" data-cat="sistema" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20dashboard%20ou%20sistema%20interno." target="_blank" rel="noopener">
+        <a class="case reveal" data-cat="sistema" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20dashboard%20ou%20sistema%20interno." target="_blank" rel="noopener">
+          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="6" height="16" rx="1"/><rect x="10.5" y="4" width="6" height="10" rx="1"/><rect x="18" y="4" width="3" height="13" rx="1"/></svg></span>
           <div><div class="name">Dashboards internos &amp; controle de estoque</div><div class="meta">Gestão de equipe em Kanban, relatórios mensais e quebra de insumos</div></div>
           <span class="cat">Sistemas &amp; Apps</span>
           <span class="arrow">→</span>
         </a>
-        <a class="case" data-cat="automacao" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20automatizar%20o%20atendimento%20da%20minha%20empresa." target="_blank" rel="noopener">
+        <a class="case reveal" data-cat="automacao" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20automatizar%20o%20atendimento%20da%20minha%20empresa." target="_blank" rel="noopener">
+          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span>
           <div><div class="name">Chatbot de atendimento 24h</div><div class="meta">Triagem automática de interessados e agendamento pelo WhatsApp</div></div>
           <span class="cat">Automações &amp; IA</span>
           <span class="arrow">→</span>
@@ -955,10 +997,37 @@
     window.open('https://wa.me/5548935005396?text=' + encodeURIComponent(msg), '_blank');
   });
 
-  // reveal on scroll (single orchestrated section)
+  // reveal on scroll (staggered per-item via CSS transition-delay)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el) {
+    const to = parseInt(el.dataset.countTo, 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    if (prefersReducedMotion || !Number.isFinite(to)) {
+      el.textContent = prefix + to + suffix;
+      return;
+    }
+    const duration = 900;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(to * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      const counter = en.target.querySelector('[data-count-to]');
+      if (counter) animateCount(counter);
+      io.unobserve(en.target);
+    });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 </script>
