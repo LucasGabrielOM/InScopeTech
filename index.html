@@ -202,29 +202,43 @@
     border-radius:999px;cursor:pointer;
   }
   .filters button.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
-  .case-list{display:flex;flex-direction:column;}
+  .case-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;}
   .case{
-    display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;
-    padding:26px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);
-    transition:background .25s ease, padding .25s ease, margin .25s ease;
+    display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);
+    border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  .case:last-child{border-bottom:1px solid var(--line);}
-  .case:hover{background:var(--paper-raise);padding-left:16px;padding-right:16px;margin:0 -16px;}
-  .case-icon{
-    width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;
-    border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--muted);
-    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+  .case:hover{transform:translateY(-4px);box-shadow:0 20px 44px -18px rgba(0,0,0,.22);border-color:var(--line-strong);}
+  .case-shot{background:var(--paper-raise);}
+  .case-browser-bar{
+    display:flex;align-items:center;gap:6px;padding:10px 12px;
+    background:var(--paper-raise);border-bottom:1px solid var(--line);
   }
-  .case-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-  .case:hover .case-icon{border-color:var(--accent);color:var(--accent);transform:scale(1.08) rotate(-3deg);}
-  .case .name{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;}
-  .case .meta{color:var(--muted);font-size:14px;margin-top:4px;}
+  .case-browser-bar .dot{width:8px;height:8px;border-radius:50%;background:var(--line-strong);flex:none;}
+  .case-url{
+    margin-left:6px;font-size:11px;color:var(--muted);font-family:'Inter',sans-serif;
+    background:var(--white);border:1px solid var(--line);border-radius:999px;padding:3px 10px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;
+  }
+  .case-shot img{
+    display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
+    transition:transform .4s ease;
+  }
+  .case:hover .case-shot img{transform:scale(1.045);}
+  .case-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .case-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .case .name{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;line-height:1.25;}
+  .case .meta{color:var(--muted);font-size:14px;flex:1;}
   .case .cat{
-    font-size:12.5px;color:var(--accent-dark);border:1px solid var(--accent);border-radius:999px;padding:5px 12px;
-    white-space:nowrap;
+    font-size:11.5px;color:var(--accent-dark);border:1px solid var(--accent);border-radius:999px;padding:4px 10px;
+    white-space:nowrap;flex:none;
   }
-  .case .arrow{font-size:20px;color:var(--line-strong);transition:transform .15s ease;}
-  .case:hover .arrow{transform:translateX(4px);color:var(--accent);}
+  .case-cta{
+    display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--accent-dark);
+    margin-top:auto;
+  }
+  .case .arrow{font-size:15px;transition:transform .2s ease;}
+  .case:hover .arrow{transform:translateX(4px);}
 
   /* ---------- calculator ---------- */
   .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
@@ -338,7 +352,7 @@
   .service:nth-of-type(2),.case:nth-of-type(2),.sec-item:nth-of-type(2),.stat:nth-of-type(2){transition-delay:.1s;}
   .service:nth-of-type(3),.case:nth-of-type(3),.sec-item:nth-of-type(3),.stat:nth-of-type(3){transition-delay:.17s;}
   .service:nth-of-type(4),.case:nth-of-type(4){transition-delay:.24s;}
-  .service:nth-of-type(5){transition-delay:.31s;}
+  .service:nth-of-type(5),.case:nth-of-type(5){transition-delay:.31s;}
   .service:nth-of-type(6){transition-delay:.38s;}
 
   @media (max-width:960px){
@@ -412,10 +426,7 @@
     .hero-side{margin-top:32px;border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:24px;}
     .wa-float{bottom:20px;right:20px;width:50px;height:50px;z-index:99;box-shadow:0 4px 18px rgba(0,0,0,0.3);}
     .wa-float svg{width:24px;height:24px;}
-    .case{grid-template-columns:1fr;gap:8px;}
-    .case .arrow{display:none;}
-    .case-icon{display:none;}
-    .case:hover{padding-left:0;padding-right:0;margin:0;}
+    .case-list{grid-template-columns:1fr;gap:20px;}
     section{padding:48px 0;}
     .wrap{padding:0 20px;}
   }
@@ -821,29 +832,60 @@
       </div>
 
       <div class="case-list" id="caseList">
-        <a class="case reveal" data-cat="delivery" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Vi%20o%20case%20do%20de%20Card%C3%A1pio%20Digital%20e%20quero%20um%20card%C3%A1pio%20assim." target="_blank" rel="noopener">
-          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1.2 11.5a1 1 0 0 1-1 .5H8.2a1 1 0 0 1-1-.9L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
-          <div><div class="name">Cardápio Digital & Delivery Web</div><div class="meta">Restaurantes e Food Service · pedidos direto para o WhatsApp, sem comissão</div></div>
-          <span class="cat">Delivery &amp; WhatsApp</span>
-          <span class="arrow">→</span>
+        <a class="case reveal" data-cat="delivery" href="https://smack-chicken.vercel.app/" target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="case-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="case-url">smack-chicken.vercel.app</span></div>
+            <img src="assets/portfolio/smackchicken.jpg" alt="Site do Smack Chicken, delivery de frango crocante" loading="lazy">
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">Smack Chicken</div><span class="cat">Delivery &amp; WhatsApp</span></div>
+            <div class="meta">Delivery de frango crocante com cardápio direto pro iFood e visual que dá fome.</div>
+            <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
         </a>
-        <a class="case reveal" data-cat="site" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20site%20ou%20landing%20page%20profissional." target="_blank" rel="noopener">
-          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.2"/><path d="M3 9.2h18"/><path d="M6.2 7.1h.01M9 7.1h.01"/></svg></span>
-          <div><div class="name">Websites &amp; Landing Pages sob medida</div><div class="meta">Páginas rápidas, otimizadas para conversão vinda do Google e Instagram</div></div>
-          <span class="cat">Websites &amp; Landing Pages</span>
-          <span class="arrow">→</span>
+        <a class="case reveal" data-cat="site" href="https://lucasgabrielom.github.io/danzauu-tattoo-web/" target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="case-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="case-url">lucasgabrielom.github.io/danzauu-tattoo-web</span></div>
+            <img src="assets/portfolio/danzauu.jpg" alt="Site do estúdio DAN Tattoo" loading="lazy">
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">DAN Tattoo Studio</div><span class="cat">Websites &amp; Landing Pages</span></div>
+            <div class="meta">Landing page autoral para tatuador, com agenda aberta e portfólio visual de alto impacto.</div>
+            <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
         </a>
-        <a class="case reveal" data-cat="sistema" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20dashboard%20ou%20sistema%20interno." target="_blank" rel="noopener">
-          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="6" height="16" rx="1"/><rect x="10.5" y="4" width="6" height="10" rx="1"/><rect x="18" y="4" width="3" height="13" rx="1"/></svg></span>
-          <div><div class="name">Dashboards internos &amp; controle de estoque</div><div class="meta">Gestão de equipe em Kanban, relatórios mensais e quebra de insumos</div></div>
-          <span class="cat">Sistemas &amp; Apps</span>
-          <span class="arrow">→</span>
+        <a class="case reveal" data-cat="site" href="https://lucasgabrielom.github.io/gatoffee-catcafe/" target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="case-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="case-url">lucasgabrielom.github.io/gatoffee-catcafe</span></div>
+            <img src="assets/portfolio/gatoffee.jpg" alt="Site do Gatoffee Cat Café" loading="lazy">
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">Gatoffee Cat Café</div><span class="cat">Websites &amp; Landing Pages</span></div>
+            <div class="meta">Site institucional do 1º cat café de Santa Catarina, com agendamento de visitas e adoção.</div>
+            <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
         </a>
-        <a class="case reveal" data-cat="automacao" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20automatizar%20o%20atendimento%20da%20minha%20empresa." target="_blank" rel="noopener">
-          <span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span>
-          <div><div class="name">Chatbot de atendimento 24h</div><div class="meta">Triagem automática de interessados e agendamento pelo WhatsApp</div></div>
-          <span class="cat">Automações &amp; IA</span>
-          <span class="arrow">→</span>
+        <a class="case reveal" data-cat="automacao" href="https://lucasgabrielom.github.io/rollix-portfolio/" target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="case-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="case-url">lucasgabrielom.github.io/rollix-portfolio</span></div>
+            <img src="assets/portfolio/rollix.jpg" alt="Dashboard de produto da plataforma Rollix" loading="lazy">
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">Rollix</div><span class="cat">Automações &amp; IA</span></div>
+            <div class="meta">Plataforma com dashboard de IA mostrando processos automatizados e economia gerada em tempo real.</div>
+            <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a class="case reveal" data-cat="sistema" href="https://b2b-technographics-prospector.onrender.com/login?next=/dashboard" target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="case-browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="case-url">b2b-technographics-prospector.onrender.com</span></div>
+            <img src="assets/portfolio/b2b.jpg" alt="Tela de acesso do sistema LeadPilot, de prospecção B2B" loading="lazy">
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">LeadPilot</div><span class="cat">Sistemas &amp; Apps</span></div>
+            <div class="meta">Sistema de inteligência comercial para qualificar e organizar leads B2B em uma rotina só.</div>
+            <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
         </a>
       </div>
     </div>
@@ -1032,7 +1074,7 @@
     btn.classList.add('active');
     const cat = btn.dataset.cat;
     cases.forEach(c => {
-      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'grid' : 'none';
+      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
     });
   });
 
