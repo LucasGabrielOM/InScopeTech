@@ -95,7 +95,7 @@
     background:var(--accent);color:#fff;
     padding:11px 20px;text-decoration:none;
     font-size:14px;font-weight:600;
-    border-radius:var(--radius);
+    border-radius:999px;
     white-space:nowrap;
   }
   .cta-wa:hover{background:var(--accent-dark);}
@@ -129,7 +129,7 @@
   .btn-outline{
     display:inline-flex;align-items:center;gap:8px;
     border:1px solid var(--ink);color:var(--ink);text-decoration:none;
-    padding:12px 20px;font-size:14px;font-weight:600;border-radius:var(--radius);
+    padding:12px 20px;font-size:14px;font-weight:600;border-radius:999px;
   }
   .btn-outline:hover{background:var(--ink);color:var(--paper);}
   .hero-side{border-left:1px solid var(--line);padding-left:36px;}
@@ -252,21 +252,66 @@
   .contact-info .row:first-child{border-top:none;padding-top:0;}
   .contact-info .k{font-size:12.5px;color:var(--muted);text-transform:none;}
   .contact-info .v{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin-top:4px;}
-  form{display:grid;gap:18px;}
+  form{
+    display:grid;gap:20px;background:var(--white);border:1px solid var(--line);padding:32px;
+  }
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
   label.f{font-size:13.5px;font-weight:600;display:block;margin-bottom:8px;}
-  input,select,textarea{
-    width:100%;padding:13px 14px;border:1px solid var(--line-strong);background:var(--white);
+  input,textarea{
+    width:100%;padding:13px 14px;border:1px solid var(--line-strong);background:var(--paper-raise);
     font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border-radius:var(--radius);
+    transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  input:hover,textarea:hover{border-color:var(--muted);}
+  input:focus,textarea:focus{
+    outline:none;border-color:var(--accent);background:var(--white);
+    box-shadow:0 0 0 3px var(--accent-ink);
   }
   textarea{resize:vertical;min-height:96px;}
   .submit-btn{
     justify-self:start;display:inline-flex;align-items:center;gap:10px;
     background:var(--accent);color:#fff;border:none;padding:14px 26px;font-size:15px;font-weight:600;
-    border-radius:var(--radius);cursor:pointer;font-family:'Inter',sans-serif;
+    border-radius:999px;cursor:pointer;font-family:'Inter',sans-serif;
+    transition:background .2s ease, transform .15s ease, box-shadow .2s ease;
   }
-  .submit-btn:hover{background:var(--accent-dark);}
+  .submit-btn:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 8px 20px -6px rgba(31,64,56,.45);}
+  .submit-btn:active{transform:translateY(0);}
   .fine{font-size:12.5px;color:var(--muted);margin-top:-4px;}
+
+  /* ---------- custom select ---------- */
+  .cs{position:relative;}
+  .cs-native{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .cs-trigger{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:13px 20px;border:1px solid var(--line-strong);background:var(--paper-raise);
+    border-radius:999px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    cursor:pointer;text-align:left;transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .cs-trigger:hover{border-color:var(--muted);}
+  .cs-trigger .cs-value.placeholder{color:#8a877e;}
+  .cs-trigger .cs-chevron{flex:none;width:16px;height:16px;stroke:var(--muted);transition:transform .2s ease;}
+  .cs.open .cs-trigger{border-color:var(--accent);background:var(--white);box-shadow:0 0 0 3px var(--accent-ink);}
+  .cs.open .cs-trigger .cs-chevron{transform:rotate(180deg);}
+  .cs.invalid .cs-trigger{border-color:#b3413a;}
+  .cs-error{display:none;color:#b3413a;font-size:12.5px;margin-top:6px;}
+  .cs.invalid .cs-error{display:block;}
+  .cs-panel{
+    position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:20;
+    background:var(--white);border:1px solid var(--line);border-radius:18px;
+    box-shadow:0 16px 40px -12px rgba(0,0,0,.22);padding:8px;
+    max-height:320px;overflow-y:auto;
+  }
+  .cs-panel[hidden]{display:none;}
+  .cs-option{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:11px 14px;border-radius:12px;cursor:pointer;
+  }
+  .cs-option:hover,.cs-option.active{background:var(--accent-ink);}
+  .cs-opt-title{font-family:'Archivo',sans-serif;font-weight:700;font-size:14.5px;color:var(--ink);display:block;}
+  .cs-opt-desc{font-family:'Inter',sans-serif;font-size:12.5px;color:var(--muted);margin-top:2px;display:block;}
+  .cs-check{flex:none;width:16px;height:16px;stroke:var(--accent);opacity:0;transition:opacity .15s ease;}
+  .cs-option[aria-selected="true"] .cs-check{opacity:1;}
+  .cs-option[aria-selected="true"] .cs-opt-title{color:var(--accent-dark);}
 
   /* ---------- footer ---------- */
   footer{padding:48px 0;}
@@ -342,7 +387,7 @@
       margin-top:12px;
       background:var(--accent);
       color:#fff;
-      border-radius:var(--radius);
+      border-radius:999px;
     }
     .hero{padding:44px 0 48px;}
     .hero h1{font-size:clamp(30px,7.5vw,44px);line-height:1.08;max-width:100%;}
@@ -361,7 +406,7 @@
       padding:14px 20px;
       font-size:15px;
       font-weight:700;
-      border-radius:6px;
+      border-radius:999px;
     }
     .hero-side{margin-top:32px;border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:24px;}
     .wa-float{bottom:20px;right:20px;width:50px;height:50px;z-index:99;box-shadow:0 4px 18px rgba(0,0,0,0.3);}
@@ -563,8 +608,8 @@
     font-weight: 700;
     color: var(--ink);
     text-decoration: none;
-    padding: 10px 8px;
-    border-radius: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
     transition: background 0.2s ease;
   }
   .sheet-link:hover {
@@ -583,7 +628,7 @@
     background: #2f5d50;
     color: #fff;
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 999px;
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
@@ -864,16 +909,49 @@
           </div>
         </div>
         <div>
-          <label class="f" for="servico">Escolha o serviço *</label>
-          <select id="servico" required>
-            <option value="">Selecione...</option>
-            <option>Website ou landing page profissional</option>
-            <option>Cardápio digital no WhatsApp (sem taxa)</option>
-            <option>Bot de atendimento automático 24h</option>
-            <option>Dashboard / sistema de gestão interno</option>
-            <option>Automação de CRM (Bitrix24) / planilhas</option>
-            <option>Serviço personalizado (especificar abaixo)</option>
-          </select>
+          <label class="f" for="csTrigger">Escolha o serviço *</label>
+          <div class="cs" id="cs">
+            <button type="button" class="cs-trigger" id="csTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="cs-value placeholder" id="csValue">Selecione...</span>
+              <svg class="cs-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="cs-panel" id="csPanel" role="listbox" hidden>
+              <div class="cs-option" role="option" data-value="Website ou landing page profissional" tabindex="0">
+                <div><span class="cs-opt-title">Website ou landing page profissional</span><span class="cs-opt-desc">Páginas rápidas focadas em conversão</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="cs-option" role="option" data-value="Cardápio digital no WhatsApp (sem taxa)" tabindex="0">
+                <div><span class="cs-opt-title">Cardápio digital no WhatsApp (sem taxa)</span><span class="cs-opt-desc">Pedidos direto pro WhatsApp, sem comissão</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="cs-option" role="option" data-value="Bot de atendimento automático 24h" tabindex="0">
+                <div><span class="cs-opt-title">Bot de atendimento automático 24h</span><span class="cs-opt-desc">Respostas automáticas e triagem 24h</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="cs-option" role="option" data-value="Dashboard / sistema de gestão interno" tabindex="0">
+                <div><span class="cs-opt-title">Dashboard / sistema de gestão interno</span><span class="cs-opt-desc">Controle de estoque, equipe e vendas</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="cs-option" role="option" data-value="Automação de CRM (Bitrix24) / planilhas" tabindex="0">
+                <div><span class="cs-opt-title">Automação de CRM (Bitrix24) / planilhas</span><span class="cs-opt-desc">Integração automática entre sistemas</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="cs-option" role="option" data-value="Serviço personalizado (especificar abaixo)" tabindex="0">
+                <div><span class="cs-opt-title">Serviço personalizado (especificar abaixo)</span><span class="cs-opt-desc">Fora do padrão? Descreva os detalhes</span></div>
+                <svg class="cs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <select id="servico" class="cs-native" tabindex="-1" aria-hidden="true">
+              <option value="">Selecione...</option>
+              <option>Website ou landing page profissional</option>
+              <option>Cardápio digital no WhatsApp (sem taxa)</option>
+              <option>Bot de atendimento automático 24h</option>
+              <option>Dashboard / sistema de gestão interno</option>
+              <option>Automação de CRM (Bitrix24) / planilhas</option>
+              <option>Serviço personalizado (especificar abaixo)</option>
+            </select>
+            <p class="cs-error">Selecione um serviço para continuar.</p>
+          </div>
         </div>
         <div>
           <label class="f" for="detalhes">Detalhes do projeto (opcional)</label>
@@ -982,6 +1060,60 @@
   ticket.addEventListener('input', updateCalc);
   updateCalc();
 
+  // custom dropdown (Escolha o serviço)
+  const csWrap = document.getElementById('cs');
+  const csTrigger = document.getElementById('csTrigger');
+  const csValue = document.getElementById('csValue');
+  const csPanel = document.getElementById('csPanel');
+  const csNative = document.getElementById('servico');
+  const csOptions = Array.from(csPanel.querySelectorAll('.cs-option'));
+
+  function csOpen() {
+    csWrap.classList.add('open');
+    csPanel.hidden = false;
+    csTrigger.setAttribute('aria-expanded', 'true');
+  }
+  function csClose() {
+    csWrap.classList.remove('open');
+    csPanel.hidden = true;
+    csTrigger.setAttribute('aria-expanded', 'false');
+  }
+  function csSelect(option) {
+    csOptions.forEach(o => o.setAttribute('aria-selected', 'false'));
+    option.setAttribute('aria-selected', 'true');
+    csValue.textContent = option.dataset.value;
+    csValue.classList.remove('placeholder');
+    csNative.value = option.dataset.value;
+    csWrap.classList.remove('invalid');
+    csClose();
+  }
+
+  csTrigger.addEventListener('click', () => {
+    csWrap.classList.contains('open') ? csClose() : csOpen();
+  });
+  csTrigger.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      csOpen();
+      const selected = csOptions.find(o => o.getAttribute('aria-selected') === 'true');
+      (selected || csOptions[0]).focus();
+    } else if (e.key === 'Escape') {
+      csClose();
+    }
+  });
+  csOptions.forEach((opt, i) => {
+    opt.addEventListener('click', () => csSelect(opt));
+    opt.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); csSelect(opt); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); (csOptions[i + 1] || csOptions[0]).focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); (csOptions[i - 1] || csOptions[csOptions.length - 1]).focus(); }
+      if (e.key === 'Escape') { csClose(); csTrigger.focus(); }
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!csWrap.contains(e.target)) csClose();
+  });
+
   // contact form -> whatsapp
   const form = document.getElementById('orcamentoForm');
   form.addEventListener('submit', (e) => {
@@ -990,6 +1122,12 @@
     const empresa = document.getElementById('empresa').value.trim();
     const servico = document.getElementById('servico').value;
     const detalhes = document.getElementById('detalhes').value.trim();
+    if (!servico) {
+      csWrap.classList.add('invalid');
+      csTrigger.focus();
+      csTrigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     let msg = `Olá InScope! Meu nome é ${nome}.`;
     if (empresa) msg += ` Empresa: ${empresa}.`;
     msg += ` Tenho interesse em: ${servico}.`;
