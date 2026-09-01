@@ -240,6 +240,39 @@
   .case .arrow{font-size:15px;transition:transform .2s ease;}
   .case:hover .arrow{transform:translateX(4px);}
 
+  /* ---------- whatsapp bot mockup ---------- */
+  .wa-mockup{
+    width:100%;aspect-ratio:16/10;display:flex;flex-direction:column;
+    background:#e7e0d3;transition:transform .4s ease;
+  }
+  .case:hover .wa-mockup{transform:scale(1.03);}
+  .wa-head{
+    display:flex;align-items:center;gap:10px;padding:10px 14px;
+    background:var(--accent-dark);color:#fff;flex:none;
+  }
+  .wa-avatar{
+    width:30px;height:30px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;
+  }
+  .wa-head-info{display:flex;flex-direction:column;line-height:1.25;}
+  .wa-name{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;}
+  .wa-status{font-size:10px;color:#b9d0c9;}
+  .wa-body{
+    flex:1;padding:14px;display:flex;flex-direction:column;gap:7px;
+    overflow:hidden;justify-content:flex-end;
+  }
+  .wa-bubble{
+    max-width:80%;padding:7px 10px;border-radius:12px;font-size:12px;line-height:1.4;color:#111;
+  }
+  .wa-bubble.in{align-self:flex-end;background:#d9fdd3;border-bottom-right-radius:3px;}
+  .wa-bubble.out{align-self:flex-start;background:#fff;border-bottom-left-radius:3px;box-shadow:0 1px 1px rgba(0,0,0,.06);}
+  .wa-bubble .wa-time{display:block;text-align:right;font-size:9.5px;color:#8a8a8a;margin-top:3px;}
+  .wa-typing{display:inline-flex;gap:3px;padding:3px 2px;}
+  .wa-typing span{width:5px;height:5px;border-radius:50%;background:#9aa39a;animation:wa-blink 1.2s infinite;}
+  .wa-typing span:nth-child(2){animation-delay:.2s;}
+  .wa-typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes wa-blink{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-2px);}}
+
   /* ---------- calculator ---------- */
   .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
   .calc-copy .point{display:flex;gap:14px;margin-top:22px;}
@@ -354,6 +387,7 @@
   .service:nth-of-type(4),.case:nth-of-type(4){transition-delay:.24s;}
   .service:nth-of-type(5),.case:nth-of-type(5){transition-delay:.31s;}
   .service:nth-of-type(6),.case:nth-of-type(6){transition-delay:.38s;}
+  .case:nth-of-type(7){transition-delay:.45s;}
 
   @media (max-width:960px){
     .hero-grid,.calc-grid,.contact-grid,.section-head{grid-template-columns:1fr;}
@@ -874,6 +908,27 @@
             <div class="case-top"><div class="name">Gatoffee Cat Café</div><span class="cat">Websites &amp; Landing Pages</span></div>
             <div class="meta">Site institucional do 1º cat café de Santa Catarina, com agendamento de visitas e adoção.</div>
             <span class="case-cta">Ver site ao vivo <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a class="case reveal" data-cat="automacao" href="https://wa.me/5548935005396?text=Ol%C3%A1!%20Quero%20um%20bot%20de%20atendimento%20com%20IA%20para%20minha%20empresa." target="_blank" rel="noopener">
+          <div class="case-shot">
+            <div class="wa-mockup">
+              <div class="wa-head">
+                <span class="wa-avatar">🤖</span>
+                <div class="wa-head-info"><span class="wa-name">Atendimento InScope</span><span class="wa-status">online</span></div>
+              </div>
+              <div class="wa-body">
+                <div class="wa-bubble in">Oi, vocês estão abertos?</div>
+                <div class="wa-bubble out">Oi! 👋 Até às 23h hoje. Posso ajudar com pedidos, dúvidas ou agendar um horário — o que você precisa?<span class="wa-time">09:14 ✓✓</span></div>
+                <div class="wa-bubble in">Quero fazer um pedido</div>
+                <div class="wa-bubble out"><span class="wa-typing"><span></span><span></span><span></span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-top"><div class="name">Bot de Atendimento com IA</div><span class="cat">Automações &amp; IA</span></div>
+            <div class="meta">Simulação de bot que responde pedidos, tira dúvidas e organiza a agenda no WhatsApp — 24h, sem esperar atendente.</div>
+            <span class="case-cta">Quero um bot assim <span class="arrow">→</span></span>
           </div>
         </a>
         <a class="case reveal" data-cat="automacao" href="https://lucasgabrielom.github.io/rollix-portfolio/" target="_blank" rel="noopener">
