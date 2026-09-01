@@ -1,15 +1,15 @@
 const projectsData = [
   {
-    id: "smack-chicken",
-    title: "SMACK CHICKEN — Frango crocante no Estreito",
+    id: "cardapio-digital",
+    title: "Cardápio Digital & Delivery Web",
     category: "ecommerce",
     categoryName: "Delivery & WhatsApp",
     shortDesc: "Landing page de alta conversão e ecossistema de pedidos com cardápio web, controle de caixa (PDV) e painel de cozinha.",
-    fullDesc: "Desenvolvimento da landing page de alta conversão e solução de food service do SMACK CHICKEN (Estreito). Permite pedidos instantâneos pelo site com integração direta para a cozinha em tempo real, controle de caixa e dashboard operacional.",
+    fullDesc: "Desenvolvimento da landing page de alta conversão e solução de food service para restaurantes e delivery. Permite pedidos instantâneos pelo site com integração direta para a cozinha em tempo real, controle de caixa e dashboard operacional.",
     techs: ["React", "Node.js", "Tailwind CSS", "WebSockets", "Vercel"],
     metrics: "+40% de velocidade nos pedidos | Zero taxas de delivery",
-    demo: "https://smack-chicken.vercel.app/",
-    github: "https://github.com/LucasGabrielOM/smack-chicken-painel-oficial",
+    demo: "https://cardapio-digital.vercel.app/",
+    github: "https://github.com/LucasGabrielOM/cardapio-digital-painel-oficial",
     badge: "Caso de Sucesso",
     icon: "utensils"
   },

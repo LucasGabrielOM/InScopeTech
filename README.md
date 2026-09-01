@@ -39,7 +39,7 @@ Você pode hospedar este site gratuitamente de 2 formas:
 
 ## 🛠️ Recursos Incluídos no Site:
 - **Badge CNPJ & Credibilidade Corporativa**.
-- **Showcase dos Seus Projects Reais** (*Smack Chicken*, *BurgerHouse*, *CorteCerto*, *TAH Imóveis*, *Automação PNCP*, *B2B Prospector*).
+- **Showcase dos Seus Projects Reais** (*Cardápio Digital Delivery*, *BurgerHouse*, *CorteCerto*, *TAH Imóveis*, *Automação PNCP*, *B2B Prospector*).
 - **Filtro Dinâmico de Categorias & Modal com Métricas Reais**.
 - **Calculadora Interativa de ROI & Economia de Tempo para Empresas**.
 - **Formulário de Orçamento com Integração Direta ao WhatsApp**.

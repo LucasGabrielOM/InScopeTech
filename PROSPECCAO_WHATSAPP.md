@@ -53,7 +53,7 @@ Se você for utilizar ferramentas de disparo em massa (WhatsDash, Evolution API,
 *(Aguarde o cliente responder)*
 
 **Mensagem 2 (Apresentação do site/cardápio):**
-> "Legal! Pergunto porque nós da **InScope - Serviços Tecnológicos** desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real, como o do SMACK CHICKEN) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
+> "Legal! Pergunto porque nós da **InScope - Serviços Tecnológicos** desenvolvemos cardápios digitais próprios (com painel de cozinha em tempo real, com painel em tempo real) onde o cliente pede direto no seu WhatsApp e você **não paga nenhuma taxa por pedido**. 
 > 
 > Montei um modelo de demonstração para empresas da região. Se quiser dar uma olhada no nosso site oficial: **https://lucasgabrielom.github.io**. Conseguimos rodar o seu cardápio essa semana. Posso te enviar um vídeo rápido de 1 minuto de como funciona?"
 
