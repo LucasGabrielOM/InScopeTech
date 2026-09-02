@@ -495,8 +495,9 @@
   }
   .pill-nav .brand {
     display: flex;
-    align-items: baseline;
-    gap: 6px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
     text-decoration: none;
     color: var(--ink);
     white-space: nowrap;
@@ -505,19 +506,16 @@
   .pill-nav .brand .word {
     font-family: 'Archivo', sans-serif;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 19px;
     letter-spacing: -0.02em;
     line-height: 1;
   }
   .pill-nav .brand .tag {
     font-family: 'Source Serif 4', serif;
     font-style: italic;
-    font-size: 12.5px;
+    font-size: 11.5px;
     color: var(--muted);
     line-height: 1;
-  }
-  @media (max-width: 600px) {
-    .pill-nav .brand .tag { display: none; }
   }
 
   .pill-links {
@@ -698,7 +696,7 @@
   <div class="pill-nav">
     <a href="#top" class="brand">
       <span class="word">InScope</span>
-      <span class="tag">Serviços Tecnológicos</span>
+      <span class="tag">Tech</span>
     </a>
 
     <nav class="pill-links" id="navLinks">
