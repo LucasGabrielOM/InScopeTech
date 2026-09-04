@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R. Ostrowski — Protótipo</title>
+<meta name="description" content="Protótipo de melhorias para reostrowski.com — portfólio por estilos, galeria, orçamento organizado pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    --ink:#333;
+    --ink-2:#444;
+    --muted:#888;
+    --muted-2:#999;
+    --line:#eee;
+    --soft:#f0f0f0;
+    --font-display:"Switzer","Inter Tight",Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-body:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --gutter:clamp(20px,3vw,40px);
+    --gap:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--white);
+    color:var(--black);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  ::selection{background:var(--black);color:var(--white)}
+
+  .wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
+  .display{font-family:var(--font-display);text-transform:uppercase;font-weight:400;line-height:1.05}
+  .eyebrow{
+    font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--black)}
+  .h2{font-size:clamp(28px,3.4vw,36px)}
+  .lead{font-size:20px;font-weight:500;letter-spacing:-.5px;color:var(--muted);line-height:1.35}
+
+  /* Buttons — exactly as the current site: black, square, white text, arrow */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:14px;
+    background:var(--black);color:var(--white);
+    font-family:var(--font-display);font-size:14px;font-weight:500;letter-spacing:.01em;
+    padding:14px 22px;border:2px solid var(--black);border-radius:0;
+    transition:background .2s,color .2s,transform .2s;
+    white-space:nowrap;
+  }
+  .btn svg{width:26px;height:9px;flex:none;transition:transform .25s}
+  .btn:hover{background:var(--white);color:var(--black)}
+  .btn:hover svg{transform:translateX(5px)}
+  .btn.big{font-size:16px;padding:20px 30px}
+  .btn.full{width:100%}
+
+  /* Prototype notice bar */
+  .proto{
+    background:var(--soft);color:var(--ink);font-size:12px;
+    display:flex;align-items:center;justify-content:center;gap:18px;padding:8px calc(var(--gutter) + 24px) 8px var(--gutter);
+    position:relative;text-align:center;
+  }
+  .proto strong{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .proto button{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:16px;line-height:1;padding:4px 8px;color:var(--muted)}
+  .proto button:hover{color:var(--black)}
+
+  /* Nav */
+  .nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding-top:14px;padding-bottom:14px;
+  }
+  .logo{
+    background:var(--black);color:var(--white);
+    font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.06em;line-height:1;
+    padding:8px 10px 6px;display:inline-flex;flex-direction:column;align-items:flex-start;
+  }
+  .logo span{display:block;height:2px;width:100%;background:var(--white);margin-top:3px}
+  .menu{display:flex;align-items:center;gap:32px;font-size:14px;font-weight:500}
+  .menu a{position:relative;color:var(--ink)}
+  .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--black);transition:right .25s}
+  .menu a:hover::after{right:0}
+  .nav-right{display:flex;align-items:center;gap:20px}
+  .nav-right .ig{font-size:14px;font-weight:500;color:var(--ink)}
+  /* Language switch — same square, mono language as the site */
+  .lang{display:inline-flex;border:1px solid var(--black);font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:.06em}
+  .lang button{padding:7px 10px;color:var(--muted);transition:background .15s,color .15s}
+  .lang button + button{border-left:1px solid var(--black)}
+  .lang button.on{background:var(--black);color:var(--white)}
+  .lang button:not(.on):hover{color:var(--black)}
+  .burger{display:none;width:40px;height:40px;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .burger i{display:block;width:22px;height:2px;background:var(--black)}
+  .mobile-menu{display:none;border-bottom:1px solid var(--line);background:var(--white)}
+  .mobile-menu a{display:block;padding:16px var(--gutter);border-top:1px solid var(--line);font-family:var(--font-display);text-transform:uppercase;font-weight:500}
+  .mobile-menu .mm-lang{display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .mobile-menu.open{display:block}
+
+  /* Hero */
+  .hero{padding-top:clamp(28px,4vw,56px)}
+  .hero-text{display:grid;grid-template-columns:1fr minmax(240px,300px);gap:32px;align-items:end;padding-bottom:36px}
+  .hero h1{
+    font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+    font-size:clamp(64px,12vw,156px);letter-spacing:-.02em;line-height:.92;
+  }
+  .hero-text p{font-size:14px;color:var(--ink);max-width:260px;padding-bottom:8px}
+  .bento{display:grid;grid-template-columns:3fr 1fr;gap:var(--gap)}
+  .bento .main{position:relative;overflow:hidden;background:var(--soft);aspect-ratio:3/2}
+  .bento .main img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .bento .main .tag{
+    position:absolute;left:20px;bottom:20px;background:var(--white);padding:8px 12px;
+    font-family:var(--font-display);text-transform:uppercase;font-size:12px;font-weight:700;letter-spacing:.06em
+  }
+  .bento .side{display:grid;grid-template-rows:1fr 1fr;gap:var(--gap)}
+  .card-black{
+    background:var(--black);color:var(--white);padding:22px;display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;transition:transform .25s
+  }
+  .card-black:hover{transform:translateY(-3px)}
+  .card-black .star{width:26px;height:26px}
+  .card-black h3{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(16px,1.5vw,20px);font-weight:400;line-height:1.15;margin-top:auto}
+  .card-black p{font-size:13px;color:#bbb;margin-top:10px}
+  .card-black .arrow{position:absolute;right:20px;top:22px;width:26px}
+  .card-white{
+    border:1px solid var(--black);padding:22px;display:flex;flex-direction:column;gap:14px;background:var(--white);
+  }
+  .card-white .kpi{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1}
+  .card-white small{font-size:13px;color:var(--muted);line-height:1.4}
+  .avatars{display:flex;align-items:center;gap:8px;margin-top:auto}
+  .avatars .a{width:30px;height:30px;border-radius:50%;background:var(--soft);border:2px solid var(--white);margin-left:-10px;overflow:hidden}
+  .avatars .a:first-child{margin-left:0}
+  .avatars .a img{width:100%;height:100%;object-fit:cover}
+  .avatars span{font-size:12px;color:var(--ink);font-weight:500;margin-left:6px}
+
+  /* Trust strip */
+  .strip{
+    margin-top:var(--gap);border-top:1px solid var(--black);border-bottom:1px solid var(--black);
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .strip div{padding:18px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+  .strip div:last-child{border-right:0}
+  .strip b{font-family:var(--font-display);text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.02em}
+  .strip span{font-size:13px;color:var(--muted)}
+
+  /* Section spacing */
+  section{padding-top:clamp(64px,8vw,110px)}
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:36px}
+  .sec-head .h2{margin-top:16px}
+  .sec-head .lead{max-width:460px;justify-self:end}
+
+  /* Portfolio by style */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .chip{
+    font-family:var(--font-display);text-transform:uppercase;font-size:12px;font-weight:600;letter-spacing:.05em;
+    padding:10px 16px;border:1px solid var(--black);background:var(--white);color:var(--black);
+    transition:background .15s,color .15s
+  }
+  .chip:hover{background:var(--soft)}
+  .chip.active{background:var(--black);color:var(--white)}
+  .chip small{font-weight:400;color:var(--muted);margin-left:6px}
+  .chip.active small{color:#bbb}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+  .work{position:relative;overflow:hidden;background:var(--soft);aspect-ratio:2/3;cursor:pointer}
+  .work img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .work:hover img{transform:scale(1.04)}
+  .work .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:14px;
+    background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,0));color:var(--white);
+    display:flex;justify-content:space-between;align-items:flex-end;gap:8px;
+    opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s
+  }
+  .work:hover .cap{opacity:1;transform:none}
+  .work .cap b{font-family:var(--font-display);text-transform:uppercase;font-size:12px;font-weight:700;letter-spacing:.05em}
+  .work .cap span{font-size:12px;color:#ddd}
+  .work.hide{display:none}
+  .grid-cta{margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .grid-cta p{color:var(--muted);font-size:14px}
+
+  /* Featured gallery — 3 real works */
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+  .feat article{display:flex;flex-direction:column;gap:14px}
+  .feat .ph{overflow:hidden;background:var(--soft);aspect-ratio:4/5}
+  .feat .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .feat article:hover .ph img{transform:scale(1.03)}
+  .feat .num{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:.04em}
+  .feat h3{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:22px;line-height:1.1}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat .meta{display:flex;gap:8px;flex-wrap:wrap}
+  .feat .meta span{font-size:11px;font-family:var(--font-display);text-transform:uppercase;letter-spacing:.06em;font-weight:600;border:1px solid var(--line);padding:5px 8px;color:var(--ink)}
+  .feat a.link{font-size:13px;font-weight:600;display:inline-flex;gap:8px;align-items:center;margin-top:auto}
+  .feat a.link svg{width:22px;height:8px}
+
+  /* About */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+  .about .copy{display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding-right:clamp(0px,4vw,64px)}
+  .about h2.name{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:25px;margin-top:20px}
+  .about .copy p{color:var(--ink-2);font-size:15px;line-height:1.65;margin-top:14px}
+  .about .copy .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .about .copy .cta-row a.ig{font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;padding:14px 4px}
+  .about .img{overflow:hidden;background:var(--soft);aspect-ratio:4/5}
+  .about .img img{width:100%;height:100%;object-fit:cover}
+
+  /* Accomplishments */
+  .acc{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap) 64px}
+  .acc .head .h2{margin-top:16px}
+  .acc ol{list-style:none}
+  .acc li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:24px 0;border-top:1px solid var(--black);align-items:start}
+  .acc li:last-child{border-bottom:1px solid var(--black)}
+  .acc li b{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:.02em;padding-top:8px}
+  .acc li h3{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:clamp(22px,2.6vw,32px);line-height:1.1}
+  .acc li p{color:var(--muted);font-size:14px;margin-top:6px}
+
+  /* Values */
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px}
+  .values div{border-top:2px solid var(--black);padding-top:18px}
+  .values h3{font-family:var(--font-body);font-weight:700;font-size:24px;letter-spacing:-.8px;color:var(--ink)}
+  .values p{font-size:18px;font-weight:500;letter-spacing:-.4px;color:var(--muted);line-height:1.35;margin-top:10px}
+
+  /* Quote form — compact */
+  .quote{background:var(--soft);margin-top:clamp(64px,8vw,110px);padding-bottom:clamp(64px,8vw,110px)}
+  .quote-grid{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.5fr);gap:clamp(24px,4vw,64px)}
+  .quote .intro{position:sticky;top:96px;align-self:start}
+  .quote .intro .h2{margin-top:16px}
+  .quote .intro p{color:var(--ink-2);margin-top:16px;max-width:400px}
+  .steps{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+  .steps li{display:flex;gap:14px;align-items:flex-start;font-size:14px;color:var(--ink)}
+  .steps li b{font-family:var(--font-display);flex:none;width:28px;height:28px;border:1px solid var(--black);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .steps li span small{display:block;color:var(--muted);font-size:13px}
+  .form{background:var(--white);border:1px solid var(--black);padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:18px}
+  .field label,.field .lbl{display:block;font-family:var(--font-display);text-transform:uppercase;font-size:11px;font-weight:700;letter-spacing:.06em;margin-bottom:8px}
+  .field label em,.field .lbl em{font-style:normal;color:var(--muted);font-weight:500;letter-spacing:0;text-transform:none;margin-left:6px}
+  .field input[type=text],.field input[type=date],.field textarea,.field select{
+    width:100%;border:1px solid #cfcfcf;border-radius:0;background:var(--white);padding:12px 12px;
+    font:inherit;font-size:14px;color:var(--black);outline:none;transition:border-color .15s;height:44px
+  }
+  .field select{
+    appearance:none;-webkit-appearance:none;padding-right:36px;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center;background-size:12px 8px
+  }
+  .field select:invalid,.field select.empty{color:var(--muted)}
+  .field select option{color:var(--black)}
+  .field textarea{min-height:92px;height:auto;resize:vertical}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--black)}
+  .field .help{font-size:12px;color:var(--muted);margin-top:6px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  /* compact reference picker */
+  .pick{position:relative;display:flex;align-items:center;gap:10px;height:44px;border:1px dashed #bdbdbd;padding:0 12px;color:var(--ink);font-size:13px;cursor:pointer;transition:border-color .15s,background .15s}
+  .pick:hover,.pick.over{border-color:var(--black);background:#fafafa}
+  .pick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+  .pick svg{width:18px;height:18px;flex:none}
+  .pick .cnt{margin-left:auto;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--muted)}
+  .thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .thumbs:empty{display:none}
+  .thumb{position:relative;width:56px;height:56px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb button{position:absolute;top:2px;right:2px;width:18px;height:18px;background:var(--black);color:var(--white);font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center}
+  .submit{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:10px}
+  .submit .note{font-size:12px;color:var(--muted);text-align:center}
+  .err{border-color:#000 !important;box-shadow:inset 0 0 0 1px #000}
+  .msg{font-size:13px;color:var(--black);display:none}
+  .msg.show{display:block}
+
+  /* Final CTA */
+  .final{background:var(--black);color:var(--white);margin-top:clamp(64px,8vw,110px);padding:clamp(64px,8vw,110px) var(--gutter)}
+  .final-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+  .final .eyebrow::before{background:var(--white)}
+  .final h2{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:clamp(28px,3.4vw,36px);line-height:1.1;margin-top:20px}
+  .final p{color:#bbb;font-size:15px;margin-top:16px;max-width:460px}
+  .final .btn{background:var(--white);color:var(--black);border-color:var(--white)}
+  .final .btn:hover{background:var(--black);color:var(--white)}
+  .final .actions{display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+  .final .actions a.sec{color:#bbb;font-size:14px;display:inline-flex;gap:8px;align-items:center}
+  .final .actions a.sec:hover{color:var(--white)}
+
+  /* Footer */
+  footer{padding:36px var(--gutter) 96px;display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;font-size:13px;color:var(--ink)}
+  footer .brand{font-family:var(--font-display);text-transform:uppercase;font-weight:600;font-size:16px;letter-spacing:-.02em}
+  footer nav{display:flex;gap:24px}
+  footer nav a:hover{text-decoration:underline}
+  footer .copy{color:var(--muted)}
+  footer .copy b{color:var(--ink);font-weight:500}
+
+  /* Floating WhatsApp */
+  .wa-float{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    display:inline-flex;align-items:center;gap:10px;background:var(--black);color:var(--white);
+    padding:12px 16px 12px 14px;border:2px solid var(--black);
+    font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .2s,background .2s,color .2s
+  }
+  .wa-float:hover{background:var(--white);color:var(--black);transform:translateY(-2px)}
+  .wa-float svg{width:22px;height:22px;flex:none}
+  .wa-float .dot{width:8px;height:8px;border-radius:50%;background:#25d366;position:absolute;top:-4px;right:-4px;border:2px solid var(--white)}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+  .lb.open{display:flex}
+  .lb img{max-width:min(92vw,900px);max-height:88vh;object-fit:contain}
+  .lb button{position:absolute;top:18px;right:20px;color:var(--white);font-size:28px;line-height:1;padding:8px}
+  .lb .lb-cap{position:absolute;left:24px;bottom:22px;color:var(--white);font-family:var(--font-display);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+
+  /* Reveal: visible at rest, only below-the-fold sections animate in */
+  .rv{transition:opacity .7s ease,transform .7s ease}
+  .rv.pending{opacity:0;transform:translateY(16px)}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rv,.rv.pending{opacity:1;transform:none;transition:none}
+    .work img,.feat .ph img,.btn svg{transition:none}
+  }
+  :focus-visible{outline:2px solid var(--black);outline-offset:2px}
+
+  @media (max-width:1024px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .bento{grid-template-columns:2fr 1fr}
+  }
+  @media (max-width:820px){
+    .menu{display:none}
+    .burger{display:flex}
+    .nav-right .ig,.nav-right .lang{display:none}
+    .hero-text{grid-template-columns:1fr;gap:16px}
+    .bento{grid-template-columns:1fr}
+    .bento .side{grid-template-rows:none;grid-template-columns:1fr 1fr}
+    .strip{grid-template-columns:1fr 1fr}
+    .strip div:nth-child(2){border-right:0}
+    .strip div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .sec-head{grid-template-columns:1fr;gap:12px}
+    .sec-head .lead{justify-self:start}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .feat{grid-template-columns:1fr}
+    .feat .ph{aspect-ratio:4/3}
+    .about{grid-template-columns:1fr}
+    .about .img{order:-1;aspect-ratio:4/3}
+    .acc{grid-template-columns:1fr}
+    .values{grid-template-columns:1fr}
+    .quote-grid{grid-template-columns:1fr}
+    .quote .intro{position:static}
+    .final-grid{grid-template-columns:1fr;gap:28px}
+    .final .actions{align-items:flex-start}
+    footer{grid-template-columns:1fr;gap:12px}
+    .wa-float{right:14px;bottom:14px}
+    .work .cap{opacity:1;transform:none}
+  }
+  @media (max-width:560px){
+    .two{grid-template-columns:1fr}
+  }
+  @media (max-width:480px){
+    .bento .side{grid-template-columns:1fr}
+    .wa-float .lbl{display:none}
+    .wa-float{padding:14px}
+    .nav .btn{padding:12px 14px}
+    .nav .btn svg{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Prototype notice -->
+<div class="proto" id="proto">
+  <span><strong data-i18n="proto.tag">Protótipo</strong> &nbsp;·&nbsp; <span data-i18n="proto.text">Proposta de melhorias para reostrowski.com com foco em conversão. Fotos e textos são do site atual; legendas e números de exemplo são editáveis.</span></span>
+  <button aria-label="Fechar" onclick="document.getElementById('proto').remove()">×</button>
+</div>
+
+<!-- NAV -->
+<header class="nav wrap">
+  <a href="#top" class="logo" aria-label="R. Ostrowski">RO<span></span></a>
+  <nav class="menu" aria-label="Principal">
+    <a href="#portfolio" data-i18n="nav.portfolio">Portfólio</a>
+    <a href="#galeria" data-i18n="nav.works">Trabalhos</a>
+    <a href="#sobre" data-i18n="nav.about">Sobre</a>
+  </nav>
+  <div class="nav-right">
+    <a class="ig" href="https://instagram.com/reostrowski" target="_blank" rel="noopener">Instagram</a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn" href="#orcamento"><span data-i18n="nav.cta">Pedir orçamento</span>
+      <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+    </a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mm">
+  <a href="#portfolio" onclick="mm.classList.remove('open')" data-i18n="nav.portfolio">Portfólio</a>
+  <a href="#galeria" onclick="mm.classList.remove('open')" data-i18n="nav.works">Trabalhos</a>
+  <a href="#sobre" onclick="mm.classList.remove('open')" data-i18n="nav.about">Sobre</a>
+  <a href="https://instagram.com/reostrowski" target="_blank" rel="noopener">Instagram</a>
+  <div class="mm-lang"><span data-i18n="nav.lang">Idioma</span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap" style="padding-top:clamp(28px,4vw,56px)">
+    <div class="hero-text">
+      <h1>R.STRWSK</h1>
+      <p data-i18n="hero.welcome">Bem-vindo, colecionadores de expressão atemporal e apreciadores da criação refinada.</p>
+    </div>
+
+    <div class="bento">
+      <a class="main" href="#galeria" aria-label="Ver trabalhos">
+        <img src="https://framerusercontent.com/images/WSSsL5Jv1uTRoO7GW9BSYkXOk.jpg?scale-down-to=2048" alt="Tatuagem micro-realista no antebraço" loading="eager">
+        <span class="tag" data-i18n="hero.tag">Micro-realismo · Antebraço</span>
+      </a>
+      <div class="side">
+        <a class="card-black" href="#orcamento">
+          <svg class="star" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M31.9 16C26.9 14.4 22.9 8.1 21.9 0c-.7 5.7-3 10.6-6 13.5C13 10.6 10.7 5.7 10 0 9 8.1 5 14.4 0 16c5 1.6 9 8 10 16 .7-5.7 3-10.6 6-13.5 3 2.9 5.2 7.8 6 13.5 1-8 5-14.4 10-16z"/></svg>
+          <svg class="arrow" viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+          <h3 data-i18n="hero.card.title">Clique aqui para o seu orçamento</h3>
+          <p data-i18n="hero.card.text">Descreva sua ideia em 2 minutos e receba a resposta pelo WhatsApp.</p>
+        </a>
+        <div class="card-white">
+          <div class="kpi">7+</div>
+          <small data-i18n="hero.kpi">anos criando peças exclusivas para clientes do mundo todo. Sem repetição, sem templates.</small>
+          <div class="avatars" aria-hidden="true">
+            <div class="a"><img src="https://framerusercontent.com/images/aNg43cg3acNRkshKvw2F0zpQ318.jpg?scale-down-to=512" alt=""></div>
+            <div class="a"><img src="https://framerusercontent.com/images/xAho4SES4jqAxbilSaEOl8PJQM.jpg?scale-down-to=512" alt=""></div>
+            <div class="a"><img src="https://framerusercontent.com/images/MAs0V5PCNdj26HBQup9HZfxAGM0.jpg?scale-down-to=512" alt=""></div>
+            <span data-i18n="hero.agenda">Agenda aberta · Florianópolis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div><b data-i18n="strip.1.t">Artista premiado &amp; jurado</b><span data-i18n="strip.1.s">Reconhecido em convenções</span></div>
+      <div><b data-i18n="strip.2.t">Técnica única</b><span data-i18n="strip.2.s">Realismo + intervenções gráficas</span></div>
+      <div><b data-i18n="strip.3.t">Cicatrização perfeita</b><span data-i18n="strip.3.s">Contraste e nitidez após anos</span></div>
+      <div><b data-i18n="strip.4.t">Resposta rápida</b><span data-i18n="strip.4.s">Orçamento organizado pelo WhatsApp</span></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO BY STYLE -->
+  <section class="wrap" id="portfolio">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow" data-i18n="pf.eyebrow">Portfólio</div>
+        <h2 class="display h2" data-i18n="pf.title">Explore por estilo</h2>
+      </div>
+      <p class="lead" data-i18n="pf.lead">Encontre a linguagem que conversa com a sua ideia. Cada estilo tem sua própria lógica de composição, contraste e cicatrização.</p>
+    </div>
+
+    <div class="filters rv" role="tablist" aria-label="Filtrar por estilo">
+      <button class="chip active" data-f="all" role="tab" aria-selected="true"><span data-i18n="pf.all">Todos</span> <small>8</small></button>
+      <button class="chip" data-f="micro" role="tab"><span data-i18n="style.micro">Micro-realismo</span> <small>3</small></button>
+      <button class="chip" data-f="geo" role="tab"><span data-i18n="style.geo">Realismo + Geométrico</span> <small>2</small></button>
+      <button class="chip" data-f="graf" role="tab"><span data-i18n="style.graf">Gráfico + Lettering</span> <small>3</small></button>
+    </div>
+
+    <div class="grid rv" id="grid">
+      <figure class="work" data-c="micro" data-full="https://framerusercontent.com/images/WSSsL5Jv1uTRoO7GW9BSYkXOk.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/WSSsL5Jv1uTRoO7GW9BSYkXOk.jpg?scale-down-to=1024" alt="Figura clássica em micro-realismo no antebraço" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.micro">Micro-realismo</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="graf" data-full="https://framerusercontent.com/images/MAs0V5PCNdj26HBQup9HZfxAGM0.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/MAs0V5PCNdj26HBQup9HZfxAGM0.jpg?scale-down-to=1024" alt="Busto clássico em realismo com intervenções gráficas" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.graf">Gráfico + Lettering</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="geo" data-full="https://framerusercontent.com/images/Bm26kioHvQqrwRA2FDisqHfnqU.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/Bm26kioHvQqrwRA2FDisqHfnqU.jpg?scale-down-to=1024" alt="Personagem em realismo com composição geométrica" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.geo">Realismo + Geométrico</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="micro" data-full="https://framerusercontent.com/images/xAho4SES4jqAxbilSaEOl8PJQM.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/xAho4SES4jqAxbilSaEOl8PJQM.jpg?scale-down-to=1024" alt="Figura alada em micro-realismo no peito" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.micro">Micro-realismo</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="graf" data-full="https://framerusercontent.com/images/YvzjkbrREBzZxQo4vCJ1OVkar2E.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/YvzjkbrREBzZxQo4vCJ1OVkar2E.jpg?scale-down-to=1024" alt="Lettering com busto em realismo" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.graf">Gráfico + Lettering</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="geo" data-full="https://framerusercontent.com/images/aNg43cg3acNRkshKvw2F0zpQ318.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/aNg43cg3acNRkshKvw2F0zpQ318.jpg?scale-down-to=1024" alt="Personagem em realismo no antebraço" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.geo">Realismo + Geométrico</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="micro" data-full="https://framerusercontent.com/images/gRSPTi2yhFTfbAtbX6iBkVX55aQ.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/gRSPTi2yhFTfbAtbX6iBkVX55aQ.jpg?scale-down-to=1024" alt="Figura alada em micro-realismo, detalhe" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.micro">Micro-realismo</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+      <figure class="work" data-c="graf" data-full="https://framerusercontent.com/images/Du5aAMjIBS2QbkoDlbe8LYoWVgI.jpg?scale-down-to=2048">
+        <img src="https://framerusercontent.com/images/Du5aAMjIBS2QbkoDlbe8LYoWVgI.jpg?scale-down-to=1024" alt="Lettering com busto em realismo, detalhe" loading="lazy">
+        <figcaption class="cap"><b data-i18n="style.graf">Gráfico + Lettering</b><span data-i18n="pf.view">Ver ampliado</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="grid-cta rv">
+      <p data-i18n="pf.ctaHelp">Gostou de algum estilo? Ele já vai selecionado no formulário de orçamento.</p>
+      <a class="btn" href="#orcamento" id="cta-style"><span id="cta-style-text" data-i18n="pf.ctaBtn">Quero algo nesse estilo</span>
+        <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- GALLERY: 3 REAL WORKS -->
+  <section class="wrap" id="galeria">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow" data-i18n="gl.eyebrow">Trabalhos</div>
+        <h2 class="display h2" data-i18n="gl.title">Três peças, três histórias</h2>
+      </div>
+      <p class="lead" data-i18n="gl.lead">Composições exclusivas, criadas do zero para cada cliente. O que você vê aqui é resultado real na pele.</p>
+    </div>
+    <div class="feat rv">
+      <article>
+        <div class="ph work" data-full="https://framerusercontent.com/images/WSSsL5Jv1uTRoO7GW9BSYkXOk.jpg?scale-down-to=2048"><img src="https://framerusercontent.com/images/WSSsL5Jv1uTRoO7GW9BSYkXOk.jpg?scale-down-to=1024" alt="Figura clássica em micro-realismo no antebraço" loading="lazy"></div>
+        <div class="num">01</div>
+        <h3 data-i18n="gl.1.t">Figura clássica</h3>
+        <div class="meta"><span data-i18n="style.micro">Micro-realismo</span><span data-i18n="place.forearm">Antebraço</span></div>
+        <p data-i18n="gl.1.p">Referência de pintura renascentista traduzida para a pele com sombreado suave e drapeado em movimento.</p>
+        <a class="link" href="#orcamento"><span data-i18n="gl.link">Quero algo assim</span> <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg></a>
+      </article>
+      <article>
+        <div class="ph work" data-full="https://framerusercontent.com/images/Bm26kioHvQqrwRA2FDisqHfnqU.jpg?scale-down-to=2048"><img src="https://framerusercontent.com/images/Bm26kioHvQqrwRA2FDisqHfnqU.jpg?scale-down-to=1024" alt="Personagem em realismo com composição geométrica no antebraço" loading="lazy"></div>
+        <div class="num">02</div>
+        <h3 data-i18n="gl.2.t">Realismo &amp; geometria</h3>
+        <div class="meta"><span data-i18n="style.geo">Realismo + Geométrico</span><span data-i18n="place.forearm">Antebraço</span></div>
+        <p data-i18n="gl.2.p">Personagem em realismo cortado por uma composição geométrica com a mão em destaque. Ritmo e leitura limpa mesmo em área pequena.</p>
+        <a class="link" href="#orcamento"><span data-i18n="gl.link">Quero algo assim</span> <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg></a>
+      </article>
+      <article>
+        <div class="ph work" data-full="https://framerusercontent.com/images/MAs0V5PCNdj26HBQup9HZfxAGM0.jpg?scale-down-to=2048"><img src="https://framerusercontent.com/images/MAs0V5PCNdj26HBQup9HZfxAGM0.jpg?scale-down-to=1024" alt="Busto clássico em realismo com intervenções gráficas" loading="lazy"></div>
+        <div class="num">03</div>
+        <h3 data-i18n="gl.3.t">Busto &amp; intervenção</h3>
+        <div class="meta"><span data-i18n="style.graf">Gráfico + Lettering</span><span data-i18n="place.arm">Braço</span></div>
+        <p data-i18n="gl.3.p">Escultura clássica em realismo interrompida por traços gráficos: a assinatura do Renato, contraste pensado para durar após a cicatrização.</p>
+        <a class="link" href="#orcamento"><span data-i18n="gl.link">Quero algo assim</span> <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="wrap" id="sobre">
+    <div class="about rv">
+      <div class="copy">
+        <div>
+          <div class="eyebrow" data-i18n="ab.eyebrow">A pessoa por trás da permanência</div>
+          <h2 class="name">Renato Ostrowski</h2>
+          <p data-i18n="ab.p1">Renato é um tatuador brasileiro especializado em tatuagens micro-realistas. Com mais de 7 anos de experiência, desenvolveu um estilo único que combina realismo com elementos geométricos e outras intervenções gráficas. Seu trabalho é conhecido pelo resultado limpo e impressionante, especialmente após a cicatrização.</p>
+          <p data-i18n="ab.p2">Já atendeu clientes de várias partes do mundo, e cada novo projeto é uma oportunidade de expandir limites criativos e construir algo verdadeiramente original e impactante.</p>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="#orcamento"><span data-i18n="ab.btn">Falar com o Renato</span>
+            <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+          </a>
+          <a class="ig" href="https://instagram.com/reostrowski" target="_blank" rel="noopener">@reostrowski ↗</a>
+        </div>
+      </div>
+      <div class="img"><img src="https://framerusercontent.com/images/OnP0YWaBN8ktyAYnUZxkCvVpR84.jpg?scale-down-to=2048" alt="Renato Ostrowski" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ACCOMPLISHMENTS -->
+  <section class="wrap">
+    <div class="acc rv">
+      <div class="head">
+        <div class="eyebrow" data-i18n="ac.eyebrow">Conquistas</div>
+        <h2 class="display h2" data-i18n-html="ac.title">Uma sinfonia de<br>expertise &amp; arte</h2>
+      </div>
+      <ol>
+        <li><b>01</b><div><h3 data-i18n="ac.1.t">Artista premiado &amp; jurado</h3><p data-i18n="ac.1.p">Reconhecido em convenções e convidado a avaliar outros artistas.</p></div></li>
+        <li><b>02</b><div><h3 data-i18n="ac.2.t">Entre os melhores</h3><p data-i18n="ac.2.p">Referência em micro-realismo no Brasil e no exterior.</p></div></li>
+        <li><b>03</b><div><h3 data-i18n="ac.3.t">Técnica única</h3><p data-i18n="ac.3.p">Realismo + geometria + intervenções gráficas em uma linguagem própria.</p></div></li>
+        <li><b>04</b><div><h3 data-i18n="ac.4.t">Educador</h3><p data-i18n="ac.4.p">Compartilha método e processo com novas gerações de tatuadores.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="values rv">
+      <div><h3 data-i18n="va.1.t">Cicatrização perfeita</h3><p data-i18n="va.1.p">Tatuagens criadas para manter nitidez, contraste e profundidade, mesmo após anos na pele.</p></div>
+      <div><h3 data-i18n="va.2.t">Projetos exclusivos</h3><p data-i18n="va.2.p">Composições sob medida para cada cliente. Sem repetição, sem templates. Só a sua história virando arte.</p></div>
+      <div><h3 data-i18n="va.3.t">Significado por design</h3><p data-i18n="va.3.p">Suas ideias, emoções e histórias traduzidas em arte exclusiva, feita para durar.</p></div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="quote" id="orcamento">
+    <div class="wrap quote-grid">
+      <div class="intro rv">
+        <div class="eyebrow" data-i18n="q.eyebrow">Orçamento</div>
+        <h2 class="display h2" data-i18n="q.title">Dê vida à sua ideia</h2>
+        <p data-i18n="q.intro">Preencha em 2 minutos. Seu pedido chega organizado no WhatsApp do Renato, e você recebe a resposta com valor, tempo de sessão e próximos passos.</p>
+        <ol class="steps">
+          <li><b>1</b><span><span data-i18n="q.s1">Descreva a ideia</span><small data-i18n="q.s1s">Estilo, local do corpo e referências.</small></span></li>
+          <li><b>2</b><span><span data-i18n="q.s2">Envie pelo WhatsApp</span><small data-i18n="q.s2s">A mensagem já vai pronta e formatada.</small></span></li>
+          <li><b>3</b><span><span data-i18n="q.s3">Receba o orçamento</span><small data-i18n="q.s3s">Valor, duração e data confirmada.</small></span></li>
+        </ol>
+      </div>
+
+      <form class="form rv" id="quoteForm" novalidate>
+        <div class="two">
+          <div class="field">
+            <label for="nome" data-i18n="f.name">Seu nome</label>
+            <input type="text" id="nome" name="nome" data-i18n-ph="f.namePh" placeholder="Como você gostaria de ser chamado" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="estilo" data-i18n="f.style">Estilo</label>
+            <select id="estilo" name="estilo" required></select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label for="local" data-i18n="f.place">Local do corpo</label>
+            <select id="local" name="local" required></select>
+          </div>
+          <div class="field">
+            <label for="tamanho" data-i18n-html="f.size">Tamanho aproximado <em>opcional</em></label>
+            <select id="tamanho" name="tamanho"></select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label for="data" data-i18n-html="f.date">Data desejada <em>opcional</em></label>
+            <input type="date" id="data" name="data">
+          </div>
+          <div class="field">
+            <div class="lbl" data-i18n-html="f.refs">Referências <em>até 5</em></div>
+            <label class="pick" id="drop">
+              <input type="file" id="refs" accept="image/*" multiple>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
+              <span data-i18n="f.pick">Selecionar imagens</span>
+              <span class="cnt" id="cnt">0/5</span>
+            </label>
+            <div class="thumbs" id="thumbs"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ideia" data-i18n="f.idea">Descreva a ideia</label>
+          <textarea id="ideia" name="ideia" data-i18n-ph="f.ideaPh" placeholder="Ex.: uma figura clássica em micro-realismo com linhas geométricas ao redor, algo que represente..." required></textarea>
+          <div class="help" data-i18n="f.ideaHelp">Não precisa estar pronta. O Renato ajuda a desenvolver. Ao abrir o WhatsApp, anexe as imagens de referência na conversa.</div>
+        </div>
+
+        <div class="submit">
+          <div class="msg" id="msg" data-i18n="f.error">Preencha a descrição, o estilo e o local do corpo para enviar.</div>
+          <button type="submit" class="btn big full"><span data-i18n="f.submit">Enviar pedido pelo WhatsApp</span>
+            <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <div class="note" data-i18n="f.note">Abre o WhatsApp com a mensagem pronta. Nada é enviado sem você confirmar.</div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="final-grid rv">
+      <div>
+        <div class="eyebrow" data-i18n="fi.eyebrow">Sua visão é única</div>
+        <h2 data-i18n="fi.title">Fale com a gente hoje e vamos criar algo verdadeiramente significativo juntos.</h2>
+        <p data-i18n="fi.p">Está pronto para ver seu projeto transformado em uma peça de arte atemporal?</p>
+      </div>
+      <div class="actions">
+        <a class="btn big" href="#orcamento"><span data-i18n="nav.cta">Pedir orçamento</span>
+          <svg viewBox="0 0 25 8" fill="none" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3" stroke="currentColor" stroke-width="1.2"/></svg>
+        </a>
+        <a class="sec wa-direct" href="#" target="_blank" rel="noopener" data-i18n="fi.direct">Prefere falar direto? Abrir WhatsApp ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="brand">R.STRWSK</div>
+  <nav>
+    <a href="#">Cookies</a>
+    <a href="https://www.reostrowski.com/tc" target="_blank" rel="noopener" data-i18n="ft.terms">Termos e Condições</a>
+    <a href="https://instagram.com/reostrowski" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <div class="copy"><b>Florianópolis, BR</b> &nbsp;·&nbsp; ©2025 Renato Ostrowski. <span data-i18n="ft.rights">Todos os direitos reservados.</span></div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="wa-float wa-direct" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.9 11.9 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.1 12C2.1 6.5 6.5 2 12 2c2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.5-4.5 9.9-9.9 9.9zm5.4-7.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg>
+  <span class="lbl">WhatsApp</span>
+  <span class="dot" aria-hidden="true"></span>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button aria-label="Fechar" id="lbClose">×</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script>
+  const WA_NUMBER = '5548991224542'; // mesmo número usado nos CTAs do site atual
+  const MAX_REFS = 5;
+
+  /* =========================================================
+     i18n — PT / EN
+     ========================================================= */
+  const T = {
+    pt: {
+      'proto.tag':'Protótipo',
+      'proto.text':'Proposta de melhorias para reostrowski.com com foco em conversão. Fotos e textos são do site atual; legendas e números de exemplo são editáveis.',
+      'nav.portfolio':'Portfólio','nav.works':'Trabalhos','nav.about':'Sobre','nav.cta':'Pedir orçamento','nav.lang':'Idioma',
+      'hero.welcome':'Bem-vindo, colecionadores de expressão atemporal e apreciadores da criação refinada.',
+      'hero.tag':'Micro-realismo · Antebraço',
+      'hero.card.title':'Clique aqui para o seu orçamento',
+      'hero.card.text':'Descreva sua ideia em 2 minutos e receba a resposta pelo WhatsApp.',
+      'hero.kpi':'anos criando peças exclusivas para clientes do mundo todo. Sem repetição, sem templates.',
+      'hero.agenda':'Agenda aberta · Florianópolis',
+      'strip.1.t':'Artista premiado & jurado','strip.1.s':'Reconhecido em convenções',
+      'strip.2.t':'Técnica única','strip.2.s':'Realismo + intervenções gráficas',
+      'strip.3.t':'Cicatrização perfeita','strip.3.s':'Contraste e nitidez após anos',
+      'strip.4.t':'Resposta rápida','strip.4.s':'Orçamento organizado pelo WhatsApp',
+      'pf.eyebrow':'Portfólio','pf.title':'Explore por estilo',
+      'pf.lead':'Encontre a linguagem que conversa com a sua ideia. Cada estilo tem sua própria lógica de composição, contraste e cicatrização.',
+      'pf.all':'Todos','pf.view':'Ver ampliado',
+      'pf.ctaHelp':'Gostou de algum estilo? Ele já vai selecionado no formulário de orçamento.',
+      'pf.ctaBtn':'Quero algo nesse estilo','pf.ctaIn':'Quero algo em {s}',
+      'style.micro':'Micro-realismo','style.geo':'Realismo + Geométrico','style.graf':'Gráfico + Lettering','style.fine':'Fine line','style.unsure':'Ainda não sei',
+      'place.forearm':'Antebraço','place.arm':'Braço','place.back':'Costas','place.chest':'Peito','place.leg':'Perna','place.ribs':'Costela','place.handneck':'Mão / Pescoço','place.other':'Outro',
+      'size.1':'Até 10 cm','size.2':'10 a 20 cm','size.3':'20 a 30 cm','size.4':'Acima de 30 cm','size.5':'Fechamento / projeto grande',
+      'gl.eyebrow':'Trabalhos','gl.title':'Três peças, três histórias',
+      'gl.lead':'Composições exclusivas, criadas do zero para cada cliente. O que você vê aqui é resultado real na pele.',
+      'gl.link':'Quero algo assim',
+      'gl.1.t':'Figura clássica','gl.1.p':'Referência de pintura renascentista traduzida para a pele com sombreado suave e drapeado em movimento.',
+      'gl.2.t':'Realismo & geometria','gl.2.p':'Personagem em realismo cortado por uma composição geométrica com a mão em destaque. Ritmo e leitura limpa mesmo em área pequena.',
+      'gl.3.t':'Busto & intervenção','gl.3.p':'Escultura clássica em realismo interrompida por traços gráficos: a assinatura do Renato, contraste pensado para durar após a cicatrização.',
+      'ab.eyebrow':'A pessoa por trás da permanência',
+      'ab.p1':'Renato é um tatuador brasileiro especializado em tatuagens micro-realistas. Com mais de 7 anos de experiência, desenvolveu um estilo único que combina realismo com elementos geométricos e outras intervenções gráficas. Seu trabalho é conhecido pelo resultado limpo e impressionante, especialmente após a cicatrização.',
+      'ab.p2':'Já atendeu clientes de várias partes do mundo, e cada novo projeto é uma oportunidade de expandir limites criativos e construir algo verdadeiramente original e impactante.',
+      'ab.btn':'Falar com o Renato',
+      'ac.eyebrow':'Conquistas','ac.title':'Uma sinfonia de<br>expertise &amp; arte',
+      'ac.1.t':'Artista premiado & jurado','ac.1.p':'Reconhecido em convenções e convidado a avaliar outros artistas.',
+      'ac.2.t':'Entre os melhores','ac.2.p':'Referência em micro-realismo no Brasil e no exterior.',
+      'ac.3.t':'Técnica única','ac.3.p':'Realismo + geometria + intervenções gráficas em uma linguagem própria.',
+      'ac.4.t':'Educador','ac.4.p':'Compartilha método e processo com novas gerações de tatuadores.',
+      'va.1.t':'Cicatrização perfeita','va.1.p':'Tatuagens criadas para manter nitidez, contraste e profundidade, mesmo após anos na pele.',
+      'va.2.t':'Projetos exclusivos','va.2.p':'Composições sob medida para cada cliente. Sem repetição, sem templates. Só a sua história virando arte.',
+      'va.3.t':'Significado por design','va.3.p':'Suas ideias, emoções e histórias traduzidas em arte exclusiva, feita para durar.',
+      'q.eyebrow':'Orçamento','q.title':'Dê vida à sua ideia',
+      'q.intro':'Preencha em 2 minutos. Seu pedido chega organizado no WhatsApp do Renato, e você recebe a resposta com valor, tempo de sessão e próximos passos.',
+      'q.s1':'Descreva a ideia','q.s1s':'Estilo, local do corpo e referências.',
+      'q.s2':'Envie pelo WhatsApp','q.s2s':'A mensagem já vai pronta e formatada.',
+      'q.s3':'Receba o orçamento','q.s3s':'Valor, duração e data confirmada.',
+      'f.name':'Seu nome','f.namePh':'Como você gostaria de ser chamado',
+      'f.style':'Estilo','f.place':'Local do corpo',
+      'f.size':'Tamanho aproximado <em>opcional</em>','f.date':'Data desejada <em>opcional</em>',
+      'f.refs':'Referências <em>até 5</em>','f.pick':'Selecionar imagens',
+      'f.select':'Selecione',
+      'f.idea':'Descreva a ideia','f.ideaPh':'Ex.: uma figura clássica em micro-realismo com linhas geométricas ao redor, algo que represente...',
+      'f.ideaHelp':'Não precisa estar pronta. O Renato ajuda a desenvolver. Ao abrir o WhatsApp, anexe as imagens de referência na conversa.',
+      'f.preview':'Ver como o Renato vai receber',
+      'f.error':'Preencha a descrição, o estilo e o local do corpo para enviar.',
+      'f.submit':'Enviar pedido pelo WhatsApp',
+      'f.note':'Abre o WhatsApp com a mensagem pronta. Nada é enviado sem você confirmar.',
+      'fi.eyebrow':'Sua visão é única',
+      'fi.title':'Fale com a gente hoje e vamos criar algo verdadeiramente significativo juntos.',
+      'fi.p':'Está pronto para ver seu projeto transformado em uma peça de arte atemporal?',
+      'fi.direct':'Prefere falar direto? Abrir WhatsApp ↗',
+      'ft.terms':'Termos e Condições','ft.rights':'Todos os direitos reservados.',
+      // WhatsApp message
+      'm.hello':'Olá Renato! Quero um orçamento para o meu projeto.',
+      'm.name':'Nome','m.idea':'Ideia','m.style':'Estilo','m.place':'Local do corpo','m.size':'Tamanho aprox.','m.date':'Data desejada',
+      'm.refs':'Referências','m.refsNone':'nenhuma por enquanto','m.refsSome':'{n} imagem(ns), envio em seguida',
+      'm.footer':'Enviado pelo site reostrowski.com',
+      'm.direct':'Olá Renato! Quero um orçamento para o meu projeto.'
+    },
+    en: {
+      'proto.tag':'Prototype',
+      'proto.text':'Improvement proposal for reostrowski.com, focused on conversion. Photos and copy come from the current site; captions and sample figures are editable.',
+      'nav.portfolio':'Portfolio','nav.works':'Works','nav.about':'About','nav.cta':'Get a quote','nav.lang':'Language',
+      'hero.welcome':'Welcome, collectors of timeless expression and connoisseurs of refined creation.',
+      'hero.tag':'Micro-realism · Forearm',
+      'hero.card.title':'Click here for your quote',
+      'hero.card.text':'Describe your idea in 2 minutes and get a reply on WhatsApp.',
+      'hero.kpi':'years creating exclusive pieces for clients worldwide. No repetition, no templates.',
+      'hero.agenda':'Booking open · Florianópolis, Brazil',
+      'strip.1.t':'Awarded artist & judge','strip.1.s':'Recognized at conventions',
+      'strip.2.t':'Unique technique','strip.2.s':'Realism + graphic interventions',
+      'strip.3.t':'Healing, perfected','strip.3.s':'Contrast and clarity after years',
+      'strip.4.t':'Fast reply','strip.4.s':'Organized quote request on WhatsApp',
+      'pf.eyebrow':'Portfolio','pf.title':'Explore by style',
+      'pf.lead':'Find the language that speaks to your idea. Each style has its own logic of composition, contrast and healing.',
+      'pf.all':'All','pf.view':'View larger',
+      'pf.ctaHelp':'Like a style? It comes pre-selected in the quote form.',
+      'pf.ctaBtn':'I want something in this style','pf.ctaIn':'I want something in {s}',
+      'style.micro':'Micro-realism','style.geo':'Realism + Geometric','style.graf':'Graphic + Lettering','style.fine':'Fine line','style.unsure':'Not sure yet',
+      'place.forearm':'Forearm','place.arm':'Upper arm','place.back':'Back','place.chest':'Chest','place.leg':'Leg','place.ribs':'Ribs','place.handneck':'Hand / Neck','place.other':'Other',
+      'size.1':'Up to 10 cm (4 in)','size.2':'10 to 20 cm (4–8 in)','size.3':'20 to 30 cm (8–12 in)','size.4':'Over 30 cm (12 in)','size.5':'Sleeve / large project',
+      'gl.eyebrow':'Works','gl.title':'Three pieces, three stories',
+      'gl.lead':'Exclusive compositions, created from scratch for each client. What you see here is the real result on skin.',
+      'gl.link':'I want something like this',
+      'gl.1.t':'Classical figure','gl.1.p':'A Renaissance painting reference translated to skin with soft shading and drapery in motion.',
+      'gl.2.t':'Realism & geometry','gl.2.p':'A character in realism cut through by a geometric composition with the hand as focal point. Rhythm and clean reading even in a small area.',
+      'gl.3.t':'Bust & intervention','gl.3.p':'A classical sculpture in realism interrupted by graphic marks: Renato\'s signature, with contrast built to last after healing.',
+      'ab.eyebrow':'The person behind the permanence',
+      'ab.p1':'Renato is a Brazilian tattoo artist who specializes in micro-realistic tattoos. With over 7 years of experience, he has developed a unique style that combines realism with geometric elements and other graphic interventions. His work is known for its clean and impressive results, especially after healing.',
+      'ab.p2':'He has worked with clients from around the world, and each new project is an opportunity to push creative boundaries and craft something truly original and impactful.',
+      'ab.btn':'Talk to Renato',
+      'ac.eyebrow':'Accomplishments','ac.title':'A symphony of<br>expertise &amp; artistry',
+      'ac.1.t':'Awarded artist & judge','ac.1.p':'Recognized at conventions and invited to judge other artists.',
+      'ac.2.t':'Among the best','ac.2.p':'A reference in micro-realism in Brazil and abroad.',
+      'ac.3.t':'Unique technique','ac.3.p':'Realism + geometry + graphic interventions in a language of his own.',
+      'ac.4.t':'Educator','ac.4.p':'Shares method and process with new generations of tattoo artists.',
+      'va.1.t':'Healing, perfected','va.1.p':'Tattoos crafted to maintain clarity, contrast and depth, even after years on the skin.',
+      'va.2.t':'Exclusive projects','va.2.p':'Tailored compositions crafted uniquely for each client. No repetition, no templates. Just your story, turned into art.',
+      'va.3.t':'Meaningful by design','va.3.p':'Your ideas, emotions and stories translated into exclusive artwork, made to last.',
+      'q.eyebrow':'Quote','q.title':'Bring your idea to life',
+      'q.intro':'Takes 2 minutes. Your request lands organized in Renato\'s WhatsApp, and you get a reply with price, session time and next steps.',
+      'q.s1':'Describe your idea','q.s1s':'Style, placement and references.',
+      'q.s2':'Send on WhatsApp','q.s2s':'The message comes ready and formatted.',
+      'q.s3':'Get your quote','q.s3s':'Price, duration and a confirmed date.',
+      'f.name':'Your name','f.namePh':'What should we call you',
+      'f.style':'Style','f.place':'Body placement',
+      'f.size':'Approximate size <em>optional</em>','f.date':'Preferred date <em>optional</em>',
+      'f.refs':'References <em>up to 5</em>','f.pick':'Choose images',
+      'f.select':'Select',
+      'f.idea':'Describe your idea','f.ideaPh':'E.g.: a classical figure in micro-realism with geometric lines around it, something that represents...',
+      'f.ideaHelp':'It doesn\'t need to be final. Renato helps develop it. Once WhatsApp opens, attach your reference images in the chat.',
+      'f.preview':'See what Renato receives',
+      'f.error':'Fill in the description, style and placement to send.',
+      'f.submit':'Send request on WhatsApp',
+      'f.note':'Opens WhatsApp with the message ready. Nothing is sent until you confirm.',
+      'fi.eyebrow':'Your vision is unique',
+      'fi.title':'Contact us today and let\'s create something truly meaningful together.',
+      'fi.p':'Are you ready to see it transformed into a timeless piece of art?',
+      'fi.direct':'Prefer to talk directly? Open WhatsApp ↗',
+      'ft.terms':'Terms and Conditions','ft.rights':'All rights reserved.',
+      'm.hello':'Hi Renato! I\'d like a quote for my project.',
+      'm.name':'Name','m.idea':'Idea','m.style':'Style','m.place':'Placement','m.size':'Approx. size','m.date':'Preferred date',
+      'm.refs':'References','m.refsNone':'none yet','m.refsSome':'{n} image(s), sending next',
+      'm.footer':'Sent from reostrowski.com',
+      'm.direct':'Hi Renato! I\'d like a quote for my project.'
+    }
+  };
+  const STYLE_KEYS = ['micro','geo','graf','fine','unsure'];
+  const PLACE_KEYS = ['forearm','arm','back','chest','leg','ribs','handneck','other'];
+  const SIZE_KEYS  = ['1','2','3','4','5'];
+
+  let lang = 'pt';
+  try { lang = localStorage.getItem('ro-lang') || ((navigator.language||'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en'); } catch(e){}
+  if(!T[lang]) lang = 'pt';
+  const t = (k, vars) => { let s = (T[lang][k] ?? T.pt[k] ?? k); if(vars) Object.keys(vars).forEach(v=>s=s.replace(`{${v}}`, vars[v])); return s; };
+
+  function fillSelect(sel, prefix, keys, allowEmpty){
+    const cur = sel.value;
+    sel.innerHTML = '';
+    const o0 = document.createElement('option'); o0.value=''; o0.textContent = t('f.select'); o0.disabled = !allowEmpty; o0.selected = true; sel.appendChild(o0);
+    keys.forEach(k=>{ const o=document.createElement('option'); o.value=k; o.textContent=t(`${prefix}.${k}`); sel.appendChild(o); });
+    if(cur) sel.value = cur;
+    sel.classList.toggle('empty', !sel.value);
+  }
+
+  function applyLang(){
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML = t(el.dataset.i18nHtml); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder = t(el.dataset.i18nPh); });
+    document.querySelectorAll('.lang button').forEach(b=>{ const on=b.dataset.lang===lang; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
+    fillSelect(document.getElementById('estilo'),'style',STYLE_KEYS,false);
+    fillSelect(document.getElementById('local'),'place',PLACE_KEYS,false);
+    fillSelect(document.getElementById('tamanho'),'size',SIZE_KEYS,true);
+    const direct = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t('m.direct'))}`;
+    document.querySelectorAll('.wa-direct').forEach(a=>a.href=direct);
+    updateStyleCta();
+    render();
+  }
+  document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{
+    lang = b.dataset.lang; try{ localStorage.setItem('ro-lang',lang);}catch(e){}
+    applyLang();
+  }));
+
+  /* ---------- Reveal on scroll (visible at rest) ---------- */
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove('pending'); e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.08});
+  if(!reduce){
+    document.querySelectorAll('.rv').forEach(el=>{
+      if(el.getBoundingClientRect().top > innerHeight){ el.classList.add('pending'); io.observe(el); }
+    });
+  }
+
+  /* ---------- Portfolio filter ---------- */
+  const chips = document.querySelectorAll('.chip');
+  const works = document.querySelectorAll('#grid .work');
+  let currentStyle = null; // style key or null
+  function updateStyleCta(){
+    document.getElementById('cta-style-text').textContent = currentStyle ? t('pf.ctaIn',{s:t(`style.${currentStyle}`)}) : t('pf.ctaBtn');
+  }
+  chips.forEach(ch=>{
+    ch.addEventListener('click',()=>{
+      chips.forEach(c=>{c.classList.remove('active');c.setAttribute('aria-selected','false')});
+      ch.classList.add('active'); ch.setAttribute('aria-selected','true');
+      const f = ch.dataset.f;
+      works.forEach(w=>w.classList.toggle('hide', f!=='all' && w.dataset.c!==f));
+      currentStyle = f==='all' ? null : f;
+      updateStyleCta();
+    });
+  });
+  document.getElementById('cta-style').addEventListener('click',()=>{
+    if(!currentStyle) return;
+    const sel = document.getElementById('estilo'); sel.value = currentStyle; sel.classList.remove('empty'); render();
+  });
+
+  /* ---------- Lightbox ---------- */
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+  document.querySelectorAll('.work[data-full]').forEach(w=>{
+    w.addEventListener('click',()=>{
+      lbImg.src = w.dataset.full;
+      lbCap.textContent = (w.querySelector('.cap b')||{}).textContent || '';
+      lb.classList.add('open'); document.body.style.overflow='hidden';
+    });
+  });
+  const closeLb=()=>{lb.classList.remove('open'); lbImg.src=''; document.body.style.overflow='';};
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
+
+  /* ---------- Quote form ---------- */
+  const form = document.getElementById('quoteForm');
+  const msg = document.getElementById('msg');
+  const refsInput = document.getElementById('refs');
+  const thumbs = document.getElementById('thumbs');
+  const drop = document.getElementById('drop');
+  const cnt = document.getElementById('cnt');
+  let refFiles = [];
+
+  const today = new Date(); const pad=n=>String(n).padStart(2,'0');
+  document.getElementById('data').min = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+
+  const val = n => (form.elements[n] && form.elements[n].value || '').trim();
+  const fmtDate = s => { if(!s) return ''; const [y,m,d]=s.split('-'); return lang==='pt' ? `${d}/${m}/${y}` : `${y}-${m}-${d}`; };
+
+  function buildMessage(){
+    const nome = val('nome'), ideia = val('ideia');
+    const estilo = val('estilo') ? t(`style.${val('estilo')}`) : '';
+    const local  = val('local')  ? t(`place.${val('local')}`)  : '';
+    const tamanho= val('tamanho')? t(`size.${val('tamanho')}`) : '';
+    const data = fmtDate(val('data'));
+    const L = [];
+    L.push(t('m.hello')); L.push('');
+    if(nome) L.push(`*${t('m.name')}:* ${nome}`);
+    L.push(`*${t('m.idea')}:* ${ideia || '—'}`);
+    L.push(`*${t('m.style')}:* ${estilo || '—'}`);
+    L.push(`*${t('m.place')}:* ${local || '—'}`);
+    if(tamanho) L.push(`*${t('m.size')}:* ${tamanho}`);
+    if(data) L.push(`*${t('m.date')}:* ${data}`);
+    L.push(`*${t('m.refs')}:* ${refFiles.length ? t('m.refsSome',{n:refFiles.length}) : t('m.refsNone')}`);
+    L.push(''); L.push(t('m.footer'));
+    return L.join('\n');
+  }
+  function render(){ cnt.textContent = `${refFiles.length}/${MAX_REFS}`; }
+  form.addEventListener('input', render);
+  form.addEventListener('change', e=>{ if(e.target.tagName==='SELECT') e.target.classList.toggle('empty', !e.target.value); render(); });
+
+  function renderThumbs(){
+    thumbs.innerHTML = '';
+    refFiles.forEach((f,i)=>{
+      const url = URL.createObjectURL(f);
+      const d = document.createElement('div'); d.className='thumb';
+      d.innerHTML = `<img src="${url}" alt=""><button type="button" aria-label="Remover / Remove">×</button>`;
+      d.querySelector('button').addEventListener('click',()=>{ refFiles.splice(i,1); renderThumbs(); render(); });
+      thumbs.appendChild(d);
+    });
+  }
+  function addFiles(list){
+    for(const f of list){
+      if(!f.type.startsWith('image/')) continue;
+      if(refFiles.length >= MAX_REFS) break;
+      refFiles.push(f);
+    }
+    renderThumbs(); render();
+  }
+  refsInput.addEventListener('change', e=>{ addFiles(e.target.files); refsInput.value=''; });
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+  drop.addEventListener('drop', e=>addFiles(e.dataTransfer.files));
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const ideia = form.elements.ideia, estilo = form.elements.estilo, local = form.elements.local;
+    let ok = true, first = null;
+    [[ideia, !!ideia.value.trim()],[estilo, !!estilo.value],[local, !!local.value]].forEach(([el,valid])=>{
+      el.classList.toggle('err', !valid); if(!valid){ ok=false; first = first || el; }
+    });
+    msg.classList.toggle('show', !ok);
+    if(!ok){ first.scrollIntoView({behavior:'smooth',block:'center'}); first.focus({preventScroll:true}); return; }
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}`,'_blank','noopener');
+  });
+
+  applyLang();
+</script>
+</body>
+</html>
