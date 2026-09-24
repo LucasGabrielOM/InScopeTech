@@ -1,0 +1,48 @@
+# ==========================================
+# InScope — Serviços Tecnológicos
+# robots.txt otimizado para Google & IAs
+# ==========================================
+
+# Regras gerais para todos os motores de busca (Google, Bing, Yahoo, DuckDuckGo)
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Disallow: /renato-demo/
+Disallow: /renato-demo-2/
+
+# Permissão explícita para Crawlers de Inteligência Artificial (LLMs)
+# Permite que ChatGPT, Perplexity, Claude, Gemini e Apple Intelligence indexem e recomendem o site
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemap oficial do site
+Sitemap: https://lucasgabrielom.github.io/InScopeTech/sitemap.xml
+
+# Documentação contextual estruturada para IAs (padrão llmstxt.org)
+# LLMs.txt: https://lucasgabrielom.github.io/InScopeTech/llms.txt
