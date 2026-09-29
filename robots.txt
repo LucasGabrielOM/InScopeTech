@@ -9,6 +9,9 @@ Allow: /
 Allow: /assets/
 Allow: /css/
 Allow: /js/
+Allow: /favicon.ico
+Allow: /favicon.png
+Allow: /favicon.svg
 Disallow: /renato-demo/
 Disallow: /renato-demo-2/
 
@@ -42,7 +45,7 @@ User-agent: Bytespider
 Allow: /
 
 # Sitemap oficial do site
-Sitemap: https://lucasgabrielom.github.io/InScopeTech/sitemap.xml
+Sitemap: https://inscopetech.vercel.app/sitemap.xml
 
 # Documentação contextual estruturada para IAs (padrão llmstxt.org)
-# LLMs.txt: https://lucasgabrielom.github.io/InScopeTech/llms.txt
+# LLMs.txt: https://inscopetech.vercel.app/llms.txt

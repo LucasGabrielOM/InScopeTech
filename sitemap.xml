@@ -5,8 +5,8 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Página Principal Oficial: InScope Serviços Tecnológicos -->
   <url>
-    <loc>https://lucasgabrielom.github.io/InScopeTech/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <loc>https://inscopetech.vercel.app/</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
