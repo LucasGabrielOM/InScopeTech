@@ -189,7 +189,7 @@ export function AnimatedNavFramer() {
               ))}
             </div>
             <a
-              href="https://wa.me/5548935005396?text=Olá%20InScope!%20Gostaria%20de%20um%20orçamento."
+              href="https://wa.me/5548996116327?text=Olá%20InScope!%20Gostaria%20de%20um%20orçamento."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg transition"

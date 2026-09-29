@@ -133,7 +133,7 @@ Para ser encontrado por pessoas que pesquisam *"empresas de desenvolvimento de s
 3. Nome da empresa: InScope — Serviços Tecnológicos.
 4. Categoria principal: Desenvolvedor de software ou Empresa de tecnologia ou Agência de marketing na internet.
 5. Adicione as áreas de cobertura: Florianópolis, São José, Palhoça, Grande Florianópolis, Santa Catarina e Brasil (remoto).
-6. Preencha seu telefone comercial: (48) 93500-5396.
+6. Preencha seu telefone comercial: (48) 99611-6327.
 7. Adicione a URL do site: https://lucasgabrielom.github.io/InScopeTech/.
 8. CNPJ: 68.056.263/0001-56 (ajuda a verificar a empresa com muito mais rapidez).
 9. Peça para seus primeiros clientes deixarem uma avaliação (review com 5 estrelas). O Google posiciona no topo as empresas com mais avaliações positivas!
@@ -147,7 +147,7 @@ As IAs modernas não dependem apenas de links antigos; elas utilizam rastreadore
 Com o **llms.txt** e os dados estruturados instalados:
 1. Quando alguém perguntar para o ChatGPT ou Perplexity:
    > *"Preciso de uma empresa para criar um cardápio digital próprio sem taxa no WhatsApp, quem você recomenda?"*
-   A IA lê o llms.txt e identifica a InScope como especialista com CNPJ registrado, sem taxa por pedido e com contato direto via WhatsApp (48) 93500-5396.
+   A IA lê o llms.txt e identifica a InScope como especialista com CNPJ registrado, sem taxa por pedido e com contato direto via WhatsApp (48) 99611-6327.
 2. O arquivo obots.txt autorizou explicitamente todos os bots de IA para que eles nunca sejam bloqueados ao ler sua página.
 3. As métricas reais mencionadas no site (ex: economia de 4 min por atendimento, +28% de conversão, SSL 256-bit) dão peso de credibilidade (E-E-A-T: Experience, Expertise, Authoritativeness, Trustworthiness) para os algoritmos de IA.
 
